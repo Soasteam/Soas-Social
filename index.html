@@ -1,102 +1,246 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<!DOCTYPE html> <html lang="it"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="theme-color" content="#080808">
 <title>SOAS Air Soft Team</title>
 
+<!-- Font Awesome - Icone Social -->
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
 <style>
+
+    /* ==============================
+       RESET
+    ============================== */
+
     * {
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
 
+    html,
     body {
-        margin: 0;
+        width: 100%;
+        min-height: 100%;
+    }
+
+
+    /* ==============================
+       BODY
+    ============================== */
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
         min-height: 100vh;
-        font-family: Arial, sans-serif;
-        background: #111;
+
         display: flex;
         justify-content: center;
         align-items: center;
-        color: white;
+
+        overflow-x: hidden;
+
+        background:
+            linear-gradient(
+                rgba(0, 0, 0, 0.68),
+                rgba(0, 0, 0, 0.78)
+            ),
+            url("foto-team.jpg");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
     }
+
+
+    /* ==============================
+       EFFETTO SCURO SULLO SFONDO
+    ============================== */
+
+    body::before {
+        content: "";
+
+        position: fixed;
+        inset: 0;
+
+        background:
+            radial-gradient(
+                circle at center,
+                transparent 0%,
+                rgba(0, 0, 0, 0.35) 60%,
+                rgba(0, 0, 0, 0.75) 100%
+            );
+
+        pointer-events: none;
+        z-index: 0;
+    }
+
+
+    /* ==============================
+       CONTENITORE PRINCIPALE
+    ============================== */
 
     .container {
-        width: 90%;
-        max-width: 420px;
+        position: relative;
+        z-index: 1;
+
+        width: 92%;
+        max-width: 460px;
+
+        padding: 35px 25px 30px;
+
         text-align: center;
-        padding: 35px 20px;
+
+        background: rgba(8, 8, 8, 0.78);
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 24px;
+
+        box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.75),
+            inset 0 0 30px rgba(255, 255, 255, 0.025);
+
+        backdrop-filter: blur(8px);
     }
+
+
+    /* ==============================
+       FOTO DEL TEAM
+    ============================== */
+
+    .team-image {
+        width: 155px;
+        height: 155px;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+
+        border: 3px solid rgba(255, 255, 255, 0.7);
+
+        box-shadow:
+            0 0 0 5px rgba(0, 0, 0, 0.55),
+            0 0 35px rgba(255, 255, 255, 0.18);
+
+        margin-bottom: 22px;
+    }
+
+
+    /* ==============================
+       TITOLO
+    ============================== */
 
     h1 {
-        font-size: 30px;
-        margin-bottom: 8px;
-        letter-spacing: 2px;
+        font-size: 29px;
+        font-weight: 800;
+
+        letter-spacing: 3px;
+
+        margin-bottom: 10px;
+
+        text-transform: uppercase;
+
+        text-shadow:
+            0 3px 15px rgba(0, 0, 0, 0.9);
     }
+
+
+    /* ==============================
+       LINEA
+    ============================== */
+
+    .line {
+        width: 55px;
+        height: 2px;
+
+        margin: 0 auto 22px;
+
+        background: #777;
+
+        opacity: 0.5;
+    }
+
+
+    /* ==============================
+       SOTTOTITOLO
+    ============================== */
 
     .subtitle {
-        color: #aaa;
-        margin-bottom: 30px;
-        font-size: 16px;
+        color: #bdbdbd;
+
+        font-size: 15px;
+
+        letter-spacing: 1px;
+
+        margin-bottom: 28px;
     }
 
-    a {
-        display: block;
+
+    /* ==============================
+       PULSANTI SOCIAL
+    ============================== */
+
+    .social-link {
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 15px;
+
+        width: 100%;
+
+        padding: 17px 20px;
+
+        margin: 14px 0;
+
+        border-radius: 14px;
+
         text-decoration: none;
+
         color: white;
-        padding: 18px;
-        margin: 15px 0;
-        border: 1px solid #555;
-        border-radius: 12px;
+
         font-size: 18px;
-        font-weight: bold;
-        background: #1c1c1c;
+        font-weight: 700;
+
+        letter-spacing: 0.5px;
+
+        background: rgba(30, 30, 30, 0.9);
+
+        border: 1px solid rgba(255, 255, 255, 0.16);
+
+        box-shadow:
+            0 8px 20px rgba(0, 0, 0, 0.35);
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            border-color 0.25s ease;
+
+        overflow: hidden;
     }
 
-    a:hover {
-        background: #333;
+
+    /* Barra colorata laterale */
+
+    .social-link::before {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        top: 0;
+        bottom: 0;
+
+        width: 4px;
+
+        background: var(--social-color);
     }
 
-    .footer {
-        margin-top: 30px;
-        color: #777;
-        font-size: 13px;
-    }
-</style>
-</head>
 
-<body>
+    /* Effetto Hover */
 
-<div class="container">
-
-    <h1>SOAS AIR SOFT TEAM</h1>
-
-    <div class="subtitle">
-        Seguici sui nostri social 🎯
-    </div>
-
-    <a href="https://www.instagram.com/soas_air_soft_team?igsi=eDN2bTJlZHoyb3di&utm_source=qr" target="_blank">
-        📸 Instagram
-    </a>
-
-    <a href="https://www.tiktok.com/@soas_air_soft_tea?_r=1&_t=ZN-99HzT2xxV14" target="_blank">
-        🎵 TikTok
-    </a>
-
-    <a href="https://www.facebook.com/share/1bGvbMMJhc/?mibextid=wwXIfr" target="_blank">
-        👍 Facebook
-    </a>
-
-    <a href="https://youtube.com/@s.o.a.s-asd?si=V-nPKS0vJjz7nF2a" target="_blank">
-        ▶️ YouTube
-    </a>
-
-    <div class="footer">
-        SOAS Air Soft Team
-    </div>
-
-</div>
-
-</body>
-</html>
+    .social
