@@ -41,6 +41,7 @@
 
         overflow-x: hidden;
 
+        /* FOTO COME SFONDO */
         background:
             linear-gradient(
                 rgba(0, 0, 0, 0.68),
@@ -224,7 +225,9 @@
     }
 
 
-    /* Barra colorata laterale */
+    /* ==============================
+       BARRA COLORATA LATERALE
+    ============================== */
 
     .social-link::before {
         content: "";
@@ -241,6 +244,20 @@
     }
 
 
-    /* Effetto Hover */
+    /* ==============================
+       EFFETTO HOVER
+    ============================== */
 
-    .social
+    .social-link:hover {
+        transform: translateY(-3px) scale(1.015);
+
+        border-color: var(--social-color);
+
+        box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.55),
+            0 0 18px var(--social-glow);
+    }
+
+
+    /* ==============================
+       EFFETTO CLICK
