@@ -51,7 +51,9 @@
             position: absolute;
             display: block;
             z-index: 10;
+
             cursor: pointer;
+
             border-radius: 12px;
 
             transition:
@@ -62,7 +64,7 @@
 
 
         /* ========================= */
-        /* INSTAGRAM - ROSA / VIOLA */
+        /* INSTAGRAM */
         /* ========================= */
 
         .instagram {
@@ -96,7 +98,7 @@
 
 
         /* ========================= */
-        /* TIKTOK - AZZURRO */
+        /* TIKTOK */
         /* ========================= */
 
         .tiktok {
@@ -130,7 +132,7 @@
 
 
         /* ========================= */
-        /* FACEBOOK - BLU */
+        /* FACEBOOK */
         /* ========================= */
 
         .facebook {
@@ -164,7 +166,7 @@
 
 
         /* ========================= */
-        /* YOUTUBE - ROSSO */
+        /* YOUTUBE */
         /* ========================= */
 
         .youtube {
@@ -198,7 +200,7 @@
 
 
         /* ========================= */
-        /* UNISCITI AL TEAM - VERDE */
+        /* UNISCITI AL TEAM */
         /* ========================= */
 
         .join-team {
@@ -237,21 +239,27 @@
 
         .music-control {
             position: fixed;
+
             right: 16px;
             bottom: 16px;
-            z-index: 1000;
 
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            z-index: 9999;
+
+            border: 1px solid rgba(255, 255, 255, 0.30);
+
             border-radius: 8px;
 
-            background: rgba(0, 0, 0, 0.78);
+            background: rgba(0, 0, 0, 0.85);
+
             color: #fff;
 
-            padding: 9px 12px;
+            padding: 10px 14px;
 
             font-family: Arial, sans-serif;
+
             font-size: 12px;
-            font-weight: 600;
+
+            font-weight: bold;
 
             letter-spacing: 0.4px;
 
@@ -260,24 +268,19 @@
             backdrop-filter: blur(5px);
 
             box-shadow:
-                0 3px 15px rgba(0, 0, 0, 0.5);
+                0 3px 15px rgba(0, 0, 0, 0.6);
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .music-control:hover {
+            background: rgba(30, 30, 30, 0.95);
         }
 
         .music-control:active {
-            transform: scale(0.96);
-        }
-
-
-        /* ========================= */
-        /* EFFETTO TOUCH MOBILE */
-        /* ========================= */
-
-        @media (hover: none) {
-
-            .click-area:active {
-                transform: scale(0.98);
-            }
-
+            transform: scale(0.95);
         }
 
 
@@ -290,8 +293,23 @@
             .music-control {
                 right: 10px;
                 bottom: 10px;
-                padding: 8px 10px;
+
+                padding: 9px 11px;
+
                 font-size: 11px;
+            }
+
+        }
+
+
+        /* ========================= */
+        /* TOUCH MOBILE */
+        /* ========================= */
+
+        @media (hover: none) {
+
+            .click-area:active {
+                transform: scale(0.98);
             }
 
         }
@@ -307,7 +325,10 @@
 
         <!-- IMMAGINE PRINCIPALE -->
 
-        <img src="ingresso.jpeg" alt="SOAS Air Soft Team">
+        <img
+            src="ingresso.jpeg"
+            alt="SOAS Air Soft Team"
+        >
 
 
         <!-- INSTAGRAM -->
@@ -358,20 +379,33 @@
 
 
     <!-- ========================= -->
-    <!-- MUSICA -->
+    <!-- AUDIO -->
     <!-- ========================= -->
 
-    <audio id="bgMusic" loop preload="metadata">
-        <source src="musica.mp3" type="audio/mpeg">
+    <audio
+        id="bgMusic"
+        preload="auto"
+        loop
+    >
+        <source
+            src="./musica.mp3"
+            type="audio/mpeg"
+        >
+
+        Il tuo browser non supporta l'audio HTML5.
+
     </audio>
 
 
+    <!-- ========================= -->
     <!-- PULSANTE MUSICA -->
+    <!-- ========================= -->
 
     <button
         type="button"
         class="music-control"
-        id="musicBtn">
+        id="musicBtn"
+    >
         🔇 MUSICA OFF
     </button>
 
@@ -379,67 +413,151 @@
     <script>
 
         const music = document.getElementById("bgMusic");
+
         const musicBtn = document.getElementById("musicBtn");
 
-        /* VOLUME 18% */
+
+        /* ========================= */
+        /* VOLUME */
+        /* ========================= */
 
         music.volume = 0.18;
 
 
         /* ========================= */
-        /* PULSANTE ON / OFF */
+        /* FUNZIONE AVVIO MUSICA */
         /* ========================= */
 
-        musicBtn.addEventListener("click", async function () {
+        async function startMusic() {
 
-            if (music.paused) {
+            try {
 
-                try {
+                music.volume = 0.18;
 
-                    await music.play();
+                await music.play();
 
-                    musicBtn.textContent = "🔊 MUSICA ON";
+                musicBtn.textContent = "🔊 MUSICA ON";
 
-                } catch (error) {
+                return true;
 
-                    musicBtn.textContent = "⚠️ AUDIO";
+            } catch (error) {
+
+                console.log(
+                    "Riproduzione bloccata dal browser:",
+                    error
+                );
+
+                musicBtn.textContent = "▶️ AVVIA MUSICA";
+
+                return false;
+
+            }
+
+        }
+
+
+        /* ========================= */
+        /* FUNZIONE STOP */
+        /* ========================= */
+
+        function stopMusic() {
+
+            music.pause();
+
+            musicBtn.textContent = "🔇 MUSICA OFF";
+
+        }
+
+
+        /* ========================= */
+        /* PULSANTE */
+        /* ========================= */
+
+        musicBtn.addEventListener(
+            "click",
+            async function(event) {
+
+                event.stopPropagation();
+
+                if (music.paused) {
+
+                    await startMusic();
+
+                } else {
+
+                    stopMusic();
 
                 }
 
-            } else {
+            }
+        );
 
-                music.pause();
+
+        /* ========================= */
+        /* PRIMO CLICK SULLA PAGINA */
+        /* ========================= */
+
+        document.addEventListener(
+            "click",
+            async function() {
+
+                if (music.paused) {
+
+                    await startMusic();
+
+                }
+
+            },
+            {
+                once: true
+            }
+        );
+
+
+        /* ========================= */
+        /* CONTROLLO ERRORI AUDIO */
+        /* ========================= */
+
+        music.addEventListener(
+            "error",
+            function() {
+
+                console.error(
+                    "Errore caricamento musica.mp3"
+                );
+
+                musicBtn.textContent = "⚠️ AUDIO";
+
+            }
+        );
+
+
+        /* ========================= */
+        /* QUANDO PARTE */
+        /* ========================= */
+
+        music.addEventListener(
+            "play",
+            function() {
+
+                musicBtn.textContent = "🔊 MUSICA ON";
+
+            }
+        );
+
+
+        /* ========================= */
+        /* QUANDO VIENE MESSA IN PAUSA */
+        /* ========================= */
+
+        music.addEventListener(
+            "pause",
+            function() {
 
                 musicBtn.textContent = "🔇 MUSICA OFF";
 
             }
-
-        });
-
-
-        /* ========================= */
-        /* AVVIO AL PRIMO TOCCO */
-        /* ========================= */
-
-        document.addEventListener("click", function () {
-
-            if (music.paused) {
-
-                music.play()
-                    .then(function () {
-
-                        musicBtn.textContent = "🔊 MUSICA ON";
-
-                    })
-                    .catch(function () {
-
-                        /* Il browser potrebbe bloccare l'autoplay */
-
-                    });
-
-            }
-
-        }, { once: true });
+        );
 
     </script>
 
