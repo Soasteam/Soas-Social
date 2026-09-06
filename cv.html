@@ -9,367 +9,839 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-*{box-sizing:border-box}
 
-body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:#050505;
-    color:white
+* {
+    box-sizing: border-box;
 }
 
-.page{
-    min-height:100vh;
-    padding:25px 15px;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050505;
+    color: white;
+}
+
+.page {
+    min-height: 100vh;
+    padding: 25px 15px;
     background:
-        linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.78)),
-        url("sfondo-cv.jpeg") center center/cover fixed
+        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.78)),
+        url("sfondo-cv.jpeg") center center / cover fixed;
 }
 
-.container{
-    max-width:950px;
-    margin:auto
+.container {
+    max-width: 950px;
+    margin: auto;
 }
 
-.logo-title{
-    text-align:center;
-    margin-bottom:25px
+.logo-title {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
-.logo-title h1{
-    margin:0;
-    font-size:32px;
-    letter-spacing:3px;
-    text-transform:uppercase
+.logo-title h1 {
+    margin: 0;
+    font-size: 32px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
-.logo-title p{
-    margin-top:8px;
-    color:#aaa;
-    letter-spacing:2px
+.logo-title p {
+    margin-top: 8px;
+    color: #aaa;
+    letter-spacing: 2px;
 }
 
-.form-box{
-    background:rgba(10,10,10,.94);
-    border:1px solid #333;
-    border-radius:14px;
-    padding:22px;
-    box-shadow:0 0 30px rgba(0,0,0,.7)
+.form-box {
+    background: rgba(10,10,10,.94);
+    border: 1px solid #333;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 0 30px rgba(0,0,0,.7);
 }
 
-.section-title{
-    color:#69ff69;
-    border-bottom:1px solid #333;
-    padding-bottom:8px;
-    margin-top:25px;
-    margin-bottom:15px;
-    font-size:18px;
-    letter-spacing:1px
+.section-title {
+    color: #69ff69;
+    border-bottom: 1px solid #333;
+    padding-bottom: 8px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    letter-spacing: 1px;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
 }
 
-.field{
-    display:flex;
-    flex-direction:column
+.field {
+    display: flex;
+    flex-direction: column;
 }
 
-.field.full{
-    grid-column:1/-1
+.field.full {
+    grid-column: 1 / -1;
 }
 
-label{
-    font-size:12px;
-    color:#aaa;
-    margin-bottom:6px;
-    text-transform:uppercase
+label {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 6px;
+    text-transform: uppercase;
 }
 
-input,select,textarea{
-    width:100%;
-    padding:12px;
-    border-radius:7px;
-    border:1px solid #444;
-    background:#111;
-    color:white;
-    outline:none;
-    font-size:16px
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 7px;
+    border: 1px solid #444;
+    background: #111;
+    color: white;
+    outline: none;
+    font-size: 16px;
 }
 
-input:focus,select:focus,textarea:focus{
-    border-color:#69ff69
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #69ff69;
 }
 
-textarea{
-    min-height:110px;
-    resize:vertical
+textarea {
+    min-height: 110px;
+    resize: vertical;
 }
 
-.roles{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px
+.roles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
 }
 
-.role{
-    background:#111;
-    border:1px solid #333;
-    padding:10px;
-    border-radius:7px
+.role {
+    background: #111;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 7px;
 }
 
-.role label{
-    margin:0;
-    color:white;
-    cursor:pointer
+.role label {
+    margin: 0;
+    color: white;
+    cursor: pointer;
 }
 
-.role input{
-    width:auto;
-    margin-right:7px
+.role input {
+    width: auto;
+    margin-right: 7px;
 }
 
-.photo-box{
-    text-align:center;
-    margin-bottom:20px
+.photo-box {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.photo-preview{
-    width:150px;
-    height:180px;
-    border:2px dashed #555;
-    border-radius:8px;
-    margin:10px auto 15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    background:#111;
-    color:#777
+.photo-preview {
+    width: 150px;
+    height: 180px;
+    border: 2px dashed #555;
+    border-radius: 8px;
+    margin: 10px auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #111;
+    color: #777;
 }
 
-.photo-preview img{
-    width:100%;
-    height:100%;
-    object-fit:cover
+.photo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.photo-input{
-    display:block;
-    max-width:100%;
-    margin:auto
+.photo-input {
+    display: block;
+    max-width: 100%;
+    margin: auto;
 }
 
-.main-button{
-    width:100%;
-    padding:16px;
-    margin-top:25px;
-    background:#69ff69;
-    border:none;
-    border-radius:8px;
-    color:#000;
-    font-weight:bold;
-    font-size:16px;
-    cursor:pointer;
-    letter-spacing:1px
+.main-button {
+    width: 100%;
+    padding: 16px;
+    margin-top: 25px;
+    background: #69ff69;
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    letter-spacing: 1px;
 }
 
-.main-button:hover{
-    background:#42e842
+.main-button:hover {
+    background: #42e842;
 }
 
-.cv-result{
-    display:none;
-    margin-top:30px;
-    background:white;
-    color:#111;
-    padding:30px;
-    border-radius:12px
+.cv-result {
+    display: none;
+    margin-top: 30px;
+    background: white;
+    color: #111;
+    padding: 30px;
+    border-radius: 12px;
 }
 
-.cv-header{
-    display:flex;
-    gap:25px;
-    align-items:flex-start;
-    border-bottom:3px solid #111;
-    padding-bottom:20px
+.cv-header {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+    border-bottom: 3px solid #111;
+    padding-bottom: 20px;
 }
 
-.cv-photo{
-    width:150px;
-    height:180px;
-    object-fit:cover;
-    border:2px solid #111;
-    display:block
+.cv-photo {
+    width: 150px;
+    height: 180px;
+    object-fit: cover;
+    border: 2px solid #111;
+    display: block;
 }
 
-.cv-photo-placeholder{
-    width:150px;
-    height:180px;
-    border:2px solid #111;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#eee
+.cv-photo-placeholder {
+    width: 150px;
+    height: 180px;
+    border: 2px solid #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
 }
 
-.cv-name{
-    font-size:28px;
-    font-weight:bold;
-    margin-bottom:5px
+.cv-name {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.cv-nickname{
-    font-size:18px;
-    color:#555;
-    margin-bottom:15px
+.cv-nickname {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 15px;
 }
 
-.cv-section{
-    margin-top:25px
+.cv-section {
+    margin-top: 25px;
 }
 
-.cv-section h3{
-    background:#111;
-    color:white;
-    padding:8px;
-    margin-bottom:10px;
-    font-size:15px
+.cv-section h3 {
+    background: #111;
+    color: white;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 15px;
 }
 
-.cv-section p{
-    margin:7px 0;
-    white-space:pre-wrap
+.cv-section p {
+    margin: 7px 0;
+    white-space: pre-wrap;
 }
 
-.cv-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px
+.cv-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
 }
 
-.actions{
-    display:none;
-    margin-top:20px;
-    gap:10px;
-    flex-wrap:wrap
+.actions {
+    display: none;
+    margin-top: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.action-button{
-    flex:1;
-    min-width:200px;
-    padding:14px;
-    border:none;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:15px
+.action-button {
+    flex: 1;
+    min-width: 200px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-.pdf-button{
-    background:#222;
-    color:white
+.pdf-button {
+    background: #222;
+    color: white;
 }
 
-.whatsapp-button{
-    background:#25D366;
-    color:white;
-    text-decoration:none;
-    text-align:center;
-    display:flex;
-    align-items:center;
-    justify-content:center
+.whatsapp-button {
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.whatsapp-button:hover{
-    background:#1ebe5d
+.whatsapp-button:hover {
+    background: #1ebe5d;
 }
 
-.print-button{
-    background:#555;
-    color:white
+.print-button {
+    background: #555;
+    color: white;
 }
 
-.pdf-warning{
-    width:100%;
-    text-align:center;
-    background:#111;
-    border:1px solid #444;
-    border-radius:8px;
-    padding:14px 12px;
-    color:#69ff69;
-    font-weight:bold;
-    line-height:1.5
+.status {
+    text-align: center;
+    margin-top: 15px;
+    color: #69ff69;
 }
 
-.pdf-warning span{
-    color:#aaa;
-    font-size:13px;
-    font-weight:normal
-}
+@media(max-width: 700px) {
 
-.status{
-    text-align:center;
-    margin-top:15px;
-    color:#69ff69
-}
-
-@media(max-width:700px){
-
-    .grid{
-        grid-template-columns:1fr
+    .grid {
+        grid-template-columns: 1fr;
     }
 
-    .roles{
-        grid-template-columns:repeat(2,1fr)
+    .roles {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .cv-header{
-        flex-direction:column
+    .cv-header {
+        flex-direction: column;
     }
 
-    .cv-grid{
-        grid-template-columns:1fr
+    .cv-grid {
+        grid-template-columns: 1fr;
     }
 
-    .cv-result{
-        padding:20px
+    .cv-result {
+        padding: 20px;
     }
 
-    .logo-title h1{
-        font-size:24px
+    .logo-title h1 {
+        font-size: 24px;
     }
+
 }
 
-@media print{
+@media print {
 
-    body{
-        background:white
+    body {
+        background: white;
     }
 
-    .page{
-        background:white;
-        padding:0
+    .page {
+        background: white;
+        padding: 0;
     }
 
     .form-box,
     .logo-title,
     .actions,
-    .status{
-        display:none!important
+    .status {
+        display: none !important;
     }
 
-    .cv-result{
-        display:block!important;
-        margin:0;
-        box-shadow:none;
-        border-radius:0
+    .cv-result {
+        display: block !important;
+        margin: 0;
+        box-shadow: none;
+        border-radius: 0;
     }
+
 }
+
+
+/* ===== SOAS V2 TACTICAL UI ===== */
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#020302
+}
+
+.page{
+    padding:18px 12px;
+    background:
+        linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.84)),
+        url("sfondo-cv.jpeg") center/cover fixed
+}
+
+.container{
+    max-width:980px
+}
+
+.logo-title{
+    position:relative;
+    padding:18px 12px 20px;
+    margin-bottom:18px;
+    border:1px solid #263226;
+    background:rgba(4,8,4,.72);
+    box-shadow:0 0 30px rgba(0,0,0,.5);
+    overflow:hidden
+}
+
+.logo-title:before{
+    content:"SOAS // OPERATOR REGISTRY";
+    position:absolute;
+    top:7px;
+    left:12px;
+    font-size:9px;
+    letter-spacing:2px;
+    color:#4d704d
+}
+
+.logo-title h1{
+    font-size:30px;
+    letter-spacing:4px;
+    text-shadow:0 0 12px rgba(105,255,105,.2)
+}
+
+.logo-title p{
+    font-size:11px;
+    color:#69ff69;
+    letter-spacing:4px;
+    margin-bottom:0
+}
+
+.form-box{
+    background:rgba(7,10,7,.95);
+    border:1px solid #293529;
+    border-radius:4px;
+    padding:22px;
+    box-shadow:0 15px 45px rgba(0,0,0,.65);
+    position:relative
+}
+
+.form-box:after{
+    content:"CLASSIFIED // SOAS ASD";
+    position:absolute;
+    right:14px;
+    top:10px;
+    font-size:8px;
+    color:#405340;
+    letter-spacing:2px
+}
+
+.section-title{
+    color:#69ff69;
+    border-bottom:1px solid #283828;
+    padding:10px 0 8px;
+    margin-top:26px;
+    margin-bottom:15px;
+    font-size:14px;
+    letter-spacing:2px;
+    position:relative
+}
+
+.section-title:before{
+    content:"//";
+    margin-right:8px;
+    color:#3e8b3e
+}
+
+input,select,textarea{
+    border-radius:3px;
+    border:1px solid #354235;
+    background:#0b100b;
+    transition:.2s
+}
+
+input:focus,select:focus,textarea:focus{
+    border-color:#69ff69;
+    box-shadow:0 0 0 2px rgba(105,255,105,.08)
+}
+
+.role{
+    background:linear-gradient(135deg,#0b100b,#111711);
+    border:1px solid #2c382c;
+    border-radius:3px;
+    transition:.2s
+}
+
+.role:hover{
+    border-color:#69ff69;
+    transform:translateY(-1px)
+}
+
+.role input{
+    accent-color:#69ff69
+}
+
+.photo-preview{
+    border:1px dashed #486048;
+    border-radius:3px;
+    background:#080c08;
+    box-shadow:inset 0 0 25px rgba(0,0,0,.7)
+}
+
+.main-button{
+    border-radius:3px;
+    background:#69ff69;
+    box-shadow:0 0 18px rgba(105,255,105,.15);
+    letter-spacing:2px
+}
+
+.main-button:hover{
+    box-shadow:0 0 25px rgba(105,255,105,.3);
+    transform:translateY(-1px)
+}
+
+
+/* GENERATED OPERATOR PROFILE */
+
+.cv-result{
+    position:relative;
+    background:#f4f5f2;
+    padding:0;
+    border-radius:3px;
+    overflow:hidden;
+    box-shadow:0 18px 50px rgba(0,0,0,.7);
+    border:1px solid #252b25
+}
+
+.cv-result:before{
+    content:"SOAS ASD // OPERATOR PROFILE";
+    display:block;
+    background:#101510;
+    color:#69ff69;
+    font-size:10px;
+    letter-spacing:3px;
+    padding:9px 16px;
+    border-bottom:3px solid #69ff69
+}
+
+.cv-header{
+    position:relative;
+    padding:24px;
+    background:linear-gradient(135deg,#f8faf7,#e7ebe6);
+    border-bottom:3px solid #111;
+    gap:22px
+}
+
+.cv-header:after{
+    content:"OPERATOR";
+    position:absolute;
+    right:18px;
+    bottom:12px;
+    font-size:9px;
+    letter-spacing:3px;
+    color:#9ba49b
+}
+
+.cv-photo,.cv-photo-placeholder{
+    width:145px;
+    height:175px;
+    border:3px solid #111;
+    box-shadow:5px 5px 0 #69ff69;
+    object-fit:cover
+}
+
+.cv-name{
+    font-size:30px;
+    letter-spacing:1px;
+    text-transform:uppercase
+}
+
+.cv-nickname{
+    font-size:16px;
+    color:#3d4a3d;
+    font-weight:bold
+}
+
+.operator-id{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    margin-top:8px;
+    padding:6px 9px;
+    background:#101510;
+    color:#69ff69;
+    font:700 11px monospace;
+    letter-spacing:1px
+}
+
+.operator-status{
+    display:inline-flex;
+    margin:8px 0 0 7px;
+    padding:6px 9px;
+    background:#dff4df;
+    color:#1f6b2a;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1px;
+    border:1px solid #b9d9b9
+}
+
+.cv-meta-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:6px 16px;
+    margin-top:12px;
+    font-size:12px
+}
+
+.cv-meta-grid p{
+    margin:0
+}
+
+.cv-section{
+    margin:0;
+    padding:18px 24px;
+    border-bottom:1px solid #d7dbd6
+}
+
+.cv-section h3{
+    background:#111711;
+    color:#fff;
+    border-left:5px solid #69ff69;
+    padding:9px 11px;
+    margin:0 0 12px;
+    font-size:12px;
+    letter-spacing:2px
+}
+
+.role-badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px
+}
+
+.role-badge{
+    background:#151b15;
+    color:#fff;
+    padding:7px 10px;
+    border:1px solid #303c30;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1px;
+    box-shadow:2px 2px 0 #69ff69
+}
+
+.skill-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:13px 24px
+}
+
+.skill-card{
+    font-size:11px
+}
+
+.skill-head{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:5px;
+    font-weight:bold;
+    text-transform:uppercase
+}
+
+.skill-level{
+    color:#486048
+}
+
+.skill-track{
+    height:8px;
+    background:#dce1dc;
+    border:1px solid #c5ccc5;
+    overflow:hidden
+}
+
+.skill-fill{
+    height:100%;
+    width:0;
+    background:linear-gradient(90deg,#1f8f1f,#69ff69);
+    position:relative;
+    transition:width 1.2s cubic-bezier(.22,1,.36,1);
+    box-shadow:0 0 8px rgba(105,255,105,.35)
+}
+
+.skill-fill:after{
+    content:"";
+    position:absolute;
+    right:0;
+    top:0;
+    bottom:0;
+    width:3px;
+    background:#d9ffd9;
+    box-shadow:0 0 8px #69ff69
+}
+
+.cv-text{
+    white-space:pre-wrap;
+    line-height:1.55
+}
+
+.availability-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px
+}
+
+.availability-card{
+    border:1px solid #cbd1ca;
+    padding:11px;
+    background:#f8faf7
+}
+
+.availability-card strong{
+    display:block;
+    font-size:9px;
+    letter-spacing:2px;
+    color:#687168;
+    margin-bottom:4px
+}
+
+.availability-value{
+    font-weight:bold
+}
+
+.final-profile{
+    margin-top:18px;
+    padding:18px;
+    border:1px solid #2e3d2e;
+    background:linear-gradient(135deg,#0b100b,#111711);
+    color:#fff;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.35)
+}
+
+.final-profile .created{
+    color:#69ff69;
+    font-size:10px;
+    letter-spacing:3px;
+    font-weight:bold
+}
+
+.final-profile .profile-id{
+    font:700 24px monospace;
+    letter-spacing:3px;
+    margin:6px 0 12px
+}
+
+.final-profile .ready{
+    display:inline-block;
+    padding:6px 12px;
+    border:1px solid #69ff69;
+    color:#69ff69;
+    font-size:10px;
+    letter-spacing:2px
+}
+
+.actions{
+    gap:8px
+}
+
+.action-button{
+    border-radius:3px;
+    transition:.2s
+}
+
+.action-button:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.08)
+}
+
+.pdf-warning{
+    border:1px solid #5b5b33!important;
+    background:#16160d!important;
+    border-radius:3px!important
+}
+
+@media(max-width:700px){
+
+    .page{
+        padding:10px 7px;
+        background-attachment:scroll
+    }
+
+    .form-box{
+        padding:15px
+    }
+
+    .logo-title h1{
+        font-size:21px;
+        letter-spacing:2px
+    }
+
+    .logo-title p{
+        font-size:9px;
+        letter-spacing:2px
+    }
+
+    .cv-header{
+        padding:18px;
+        align-items:center
+    }
+
+    .cv-header>div:last-child{
+        text-align:center;
+        width:100%
+    }
+
+    .cv-meta-grid,
+    .skill-grid,
+    .availability-grid{
+        grid-template-columns:1fr
+    }
+
+    .cv-section{
+        padding:15px
+    }
+
+    .cv-name{
+        font-size:24px
+    }
+
+    .cv-photo,
+    .cv-photo-placeholder{
+        width:135px;
+        height:165px
+    }
+
+    .role-badges{
+        justify-content:center
+    }
+
+    .actions .action-button{
+        min-width:100%
+    }
+
+}
+
+@media print{
+
+    .cv-result:before{
+        background:#111;
+        color:#111
+    }
+
+    .final-profile{
+        display:none
+    }
+
+    .operator-status{
+        color:#111;
+        background:#eee
+    }
+
+    .skill-fill{
+        background:#333!important;
+        box-shadow:none
+    }
+
+}
+
 </style>
 </head>
 
@@ -386,7 +858,9 @@ textarea{
 
 <div class="form-box">
 
-<div class="section-title">FOTO OPERATORE</div>
+<div class="section-title">
+    FOTO OPERATORE
+</div>
 
 <div class="photo-box">
 
@@ -403,7 +877,9 @@ textarea{
 
 </div>
 
-<div class="section-title">DATI PERSONALI</div>
+<div class="section-title">
+    DATI PERSONALI
+</div>
 
 <div class="grid">
 
@@ -444,7 +920,9 @@ textarea{
 
 </div>
 
-<div class="section-title">ESPERIENZA</div>
+<div class="section-title">
+    ESPERIENZA
+</div>
 
 <div class="grid">
 
@@ -465,49 +943,80 @@ textarea{
 
 </div>
 
-<div class="section-title">RUOLI OPERATIVI</div>
+<div class="section-title">
+    RUOLI OPERATIVI
+</div>
 
 <div class="roles">
 
 <div class="role">
-<label><input type="checkbox" value="Fuciliere">Fuciliere</label>
+<label>
+<input type="checkbox" value="Fuciliere">
+Fuciliere
+</label>
 </div>
 
 <div class="role">
-<label><input type="checkbox" value="Assaltatore">Assaltatore</label>
+<label>
+<input type="checkbox" value="Assaltatore">
+Assaltatore
+</label>
 </div>
 
 <div class="role">
-<label><input type="checkbox" value="Supporto">Supporto</label>
+<label>
+<input type="checkbox" value="Supporto">
+Supporto
+</label>
 </div>
 
 <div class="role">
-<label><input type="checkbox" value="Sniper">Sniper</label>
+<label>
+<input type="checkbox" value="Sniper">
+Sniper
+</label>
 </div>
 
 <div class="role">
-<label><input type="checkbox" value="Scout">Scout</label>
+<label>
+<input type="checkbox" value="Scout">
+Scout
+</label>
 </div>
 
 <div class="role">
-<label><input type="checkbox" value="Medico">Medico</label>
+<label>
+<input type="checkbox" value="Medico">
+Medico
+</label>
 </div>
 
 <div class="role">
-<label><input type="checkbox" value="Artificiere">Artificiere</label>
+<label>
+<input type="checkbox" value="Artificiere">
+Artificiere
+</label>
 </div>
 
 <div class="role">
-<label><input type="checkbox" value="CQB">CQB</label>
+<label>
+<input type="checkbox" value="CQB">
+CQB
+</label>
 </div>
 
 <div class="role">
-<label><input type="checkbox" value="Comandante">Comandante</label>
+<label>
+<input type="checkbox" value="Comandante">
+Comandante
+</label>
 </div>
 
 </div>
 
-<div class="section-title">COMPETENZE</div>
+<div class="section-title">
+    COMPETENZE
+</div>
 
 <div class="grid">
 
@@ -573,14 +1082,18 @@ textarea{
 
 </div>
 
-<div class="section-title">EQUIPAGGIAMENTO</div>
+<div class="section-title">
+    EQUIPAGGIAMENTO
+</div>
 
 <textarea
 id="equipaggiamento"
 placeholder="Inserisci il tuo equipaggiamento..."
 ></textarea>
 
-<div class="section-title">DISPONIBILITÀ</div>
+<div class="section-title">
+    DISPONIBILITÀ
+</div>
 
 <div class="grid">
 
@@ -605,7 +1118,9 @@ placeholder="Inserisci il tuo equipaggiamento..."
 
 </div>
 
-<div class="section-title">PRESENTAZIONE</div>
+<div class="section-title">
+    PRESENTAZIONE
+</div>
 
 <textarea
 id="presentazione"
@@ -622,15 +1137,18 @@ GENERA IL MIO CV
 
 </div>
 
-
-<!-- CV GENERATO -->
+<!-- =========================
+     CV GENERATO
+========================= -->
 
 <div class="cv-result" id="cvResult">
 
 <div class="cv-header">
 
 <div id="cvPhotoContainer">
-    <div class="cv-photo-placeholder">📷</div>
+    <div class="cv-photo-placeholder">
+        📷
+    </div>
 </div>
 
 <div>
@@ -639,22 +1157,28 @@ GENERA IL MIO CV
 
 <div class="cv-nickname" id="cvNickname"></div>
 
+<div>
+<span class="operator-id" id="cvOperatorId">SOAS-0000</span>
+<span class="operator-status">● PROFILE READY</span>
+</div>
+
+<div class="cv-meta-grid">
 <p id="cvLocalita"></p>
-
 <p id="cvEta"></p>
-
 <p id="cvWhatsapp"></p>
-
 </div>
 
 </div>
 
+</div>
 
 <div class="cv-section">
-<h3>RUOLI OPERATIVI</h3>
-<p id="cvRuoli"></p>
-</div>
 
+<h3>RUOLI OPERATIVI</h3>
+
+<div class="role-badges" id="cvRuoli"></div>
+
+</div>
 
 <div class="cv-section">
 
@@ -674,58 +1198,91 @@ GENERA IL MIO CV
 
 </div>
 
-<p><strong>Esperienze precedenti:</strong></p>
+<p>
+<strong>Esperienze precedenti:</strong>
+</p>
+
 <p id="cvEsperienze"></p>
 
 </div>
-
 
 <div class="cv-section">
 
 <h3>COMPETENZE</h3>
 
-<div class="cv-grid">
+<div class="skill-grid">
 
-<p>
-<strong>Tiro:</strong>
-<span id="cvTiro"></span>
-</p>
+<div class="skill-card">
+<div class="skill-head">
+<span>Tiro</span>
+<span class="skill-level" id="cvTiro"></span>
+</div>
+<div class="skill-track">
+<div class="skill-fill" id="barTiro"></div>
+</div>
+</div>
 
-<p>
-<strong>Movimento tattico:</strong>
-<span id="cvMovimento"></span>
-</p>
+<div class="skill-card">
+<div class="skill-head">
+<span>Movimento tattico</span>
+<span class="skill-level" id="cvMovimento"></span>
+</div>
+<div class="skill-track">
+<div class="skill-fill" id="barMovimento"></div>
+</div>
+</div>
 
-<p>
-<strong>CQB:</strong>
-<span id="cvCQB"></span>
-</p>
+<div class="skill-card">
+<div class="skill-head">
+<span>CQB</span>
+<span class="skill-level" id="cvCQB"></span>
+</div>
+<div class="skill-track">
+<div class="skill-fill" id="barCQB"></div>
+</div>
+</div>
 
-<p>
-<strong>Radio:</strong>
-<span id="cvRadio"></span>
-</p>
+<div class="skill-card">
+<div class="skill-head">
+<span>Comunicazioni radio</span>
+<span class="skill-level" id="cvRadio"></span>
+</div>
+<div class="skill-track">
+<div class="skill-fill" id="barRadio"></div>
+</div>
+</div>
 
-<p>
-<strong>Navigazione:</strong>
-<span id="cvNavigazione"></span>
-</p>
+<div class="skill-card">
+<div class="skill-head">
+<span>Navigazione</span>
+<span class="skill-level" id="cvNavigazione"></span>
+</div>
+<div class="skill-track">
+<div class="skill-fill" id="barNavigazione"></div>
+</div>
+</div>
 
-<p>
-<strong>Primo soccorso:</strong>
-<span id="cvSoccorso"></span>
-</p>
-
+<div class="skill-card">
+<div class="skill-head">
+<span>Primo soccorso</span>
+<span class="skill-level" id="cvSoccorso"></span>
+</div>
+<div class="skill-track">
+<div class="skill-fill" id="barSoccorso"></div>
+</div>
 </div>
 
 </div>
 
+</div>
 
 <div class="cv-section">
-<h3>EQUIPAGGIAMENTO</h3>
-<p id="cvEquipaggiamento"></p>
-</div>
 
+<h3>EQUIPAGGIAMENTO</h3>
+
+<p id="cvEquipaggiamento" class="cv-text"></p>
+
+</div>
 
 <div class="cv-section">
 
@@ -743,20 +1300,37 @@ GENERA IL MIO CV
 
 </div>
 
-
 <div class="cv-section">
 
 <h3>PRESENTAZIONE PERSONALE</h3>
-<p id="cvPresentazione"></p>
+
+<p id="cvPresentazione" class="cv-text"></p>
 
 </div>
 
 </div>
 
+<div class="final-profile" id="finalProfile">
 
-<!-- PULSANTI -->
+<div class="created">
+OPERATOR PROFILE CREATED
+</div>
+
+<div class="profile-id" id="finalOperatorId">
+SOAS-0000
+</div>
+
+<div class="ready">
+● STATUS: READY
+</div>
+
+</div>
 
 <div class="actions" id="actions">
+
+<div style="width:100%; text-align:center; font-size:12px; color:#888; margin-bottom:2px;">
+Da smartphone: il pulsante apre il menu del telefono per salvare o condividere il PDF.
+</div>
 
 <button
 type="button"
@@ -766,20 +1340,6 @@ id="pdfButton"
 📄 CONDIVIDI / SALVA PDF
 </button>
 
-
-<div class="pdf-warning">
-
-⚠️ SCARICA / SALVA IL FILE PDF PRIMA DI INVIARLO SU WHATSAPP
-
-<br>
-
-<span>
-Salva il CV sul dispositivo, poi apri WhatsApp e allega il file PDF.
-</span>
-
-</div>
-
-
 <a
 class="action-button whatsapp-button"
 id="whatsappButton"
@@ -788,7 +1348,6 @@ aria-label="Apri la chat WhatsApp SOAS"
 >
 💬 APRI CHAT WHATSAPP SOAS
 </a>
-
 
 <button
 type="button"
@@ -800,7 +1359,6 @@ id="printButton"
 
 </div>
 
-
 <div
 class="status"
 id="status"
@@ -810,17 +1368,45 @@ aria-live="polite"
 </div>
 </div>
 
-
 <script>
 
 "use strict";
-
 
 /* =========================================
    VARIABILI
 ========================================= */
 
 let fotoBase64 = "";
+let fotoMimeType = "image/jpeg";
+
+function getOperatorId(){
+
+    let id = localStorage.getItem("soas_operator_id");
+
+    if(!id){
+
+        id =
+            "SOAS-" +
+            Math.random()
+                .toString(36)
+                .substring(2,6)
+                .toUpperCase();
+
+        localStorage.setItem(
+            "soas_operator_id",
+            id
+        );
+    }
+
+    return id;
+}
+
+const skillMap = {
+    Base:25,
+    Buono:50,
+    Avanzato:75,
+    Esperto:100
+};
 
 
 /* =========================================
@@ -842,212 +1428,163 @@ const pdfButton =
 const printButton =
     document.getElementById("printButton");
 
-const status =
-    document.getElementById("status");
-
 
 /* =========================================
    FOTO
 ========================================= */
 
-fotoInput.addEventListener(
-    "change",
-    function(event){
+fotoInput.addEventListener("change", function(event) {
 
-        const file =
-            event.target.files &&
-            event.target.files[0];
+    const file =
+        event.target.files &&
+        event.target.files[0];
 
-        if(!file){
-            return;
-        }
+    if (!file) {
+        return;
+    }
 
-        if(!file.type.startsWith("image/")){
+    if (!file.type.startsWith("image/")) {
 
-            alert(
-                "Seleziona una foto valida."
-            );
+        alert("Seleziona una foto valida.");
 
-            fotoInput.value = "";
+        fotoInput.value = "";
 
-            return;
-        }
+        return;
+    }
 
+    const reader = new FileReader();
 
-        const reader =
-            new FileReader();
+    reader.onload = function(e) {
 
+        const tempImg = new Image();
 
-        reader.onload =
-            function(e){
+        tempImg.onload = function() {
 
-                const image =
-                    new Image();
+            const maxSize = 1400;
 
+            let width =
+                tempImg.naturalWidth;
 
-                image.onload =
-                    function(){
+            let height =
+                tempImg.naturalHeight;
 
-                        const maxSize =
-                            1400;
+            if (
+                width > maxSize ||
+                height > maxSize
+            ) {
 
-                        let width =
-                            image.naturalWidth;
+                const ratio =
+                    Math.min(
+                        maxSize / width,
+                        maxSize / height
+                    );
 
-                        let height =
-                            image.naturalHeight;
+                width =
+                    Math.round(width * ratio);
 
+                height =
+                    Math.round(height * ratio);
+            }
 
-                        if(
-                            width > maxSize ||
-                            height > maxSize
-                        ){
+            const canvas =
+                document.createElement("canvas");
 
-                            if(width > height){
+            canvas.width = width;
+            canvas.height = height;
 
-                                height =
-                                    Math.round(
-                                        height *
-                                        maxSize /
-                                        width
-                                    );
+            const ctx =
+                canvas.getContext("2d");
 
-                                width =
-                                    maxSize;
-
-                            }else{
-
-                                width =
-                                    Math.round(
-                                        width *
-                                        maxSize /
-                                        height
-                                    );
-
-                                height =
-                                    maxSize;
-                            }
-                        }
-
-
-                        const canvas =
-                            document.createElement(
-                                "canvas"
-                            );
-
-
-                        canvas.width =
-                            width;
-
-                        canvas.height =
-                            height;
-
-
-                        const ctx =
-                            canvas.getContext(
-                                "2d"
-                            );
-
-
-                        ctx.drawImage(
-                            image,
-                            0,
-                            0,
-                            width,
-                            height
-                        );
-
-
-                        /*
-                            Convertiamo sempre
-                            la foto in JPEG.
-                            In questo modo il PDF
-                            non ha problemi con
-                            WebP/HEIC/PNG.
-                        */
-
-                        fotoBase64 =
-                            canvas.toDataURL(
-                                "image/jpeg",
-                                0.88
-                            );
-
-
-                        photoPreview.innerHTML =
-                            "";
-
-
-                        const preview =
-                            document.createElement(
-                                "img"
-                            );
-
-
-                        preview.src =
-                            fotoBase64;
-
-                        preview.alt =
-                            "Foto operatore";
-
-
-                        photoPreview.appendChild(
-                            preview
-                        );
-
-                    };
-
-
-                image.onerror =
-                    function(){
-
-                        fotoBase64 = "";
-
-                        alert(
-                            "Non è stato possibile elaborare la foto."
-                        );
-
-                    };
-
-
-                image.src =
-                    e.target.result;
-
-            };
-
-
-        reader.onerror =
-            function(){
-
-                fotoBase64 = "";
+            if (!ctx) {
 
                 alert(
-                    "Non è stato possibile leggere la foto."
+                    "Impossibile preparare la foto."
                 );
 
-            };
+                return;
+            }
 
+            ctx.fillStyle = "#ffffff";
 
-        reader.readAsDataURL(file);
+            ctx.fillRect(
+                0,
+                0,
+                width,
+                height
+            );
 
-    }
-);
+            ctx.drawImage(
+                tempImg,
+                0,
+                0,
+                width,
+                height
+            );
+
+            fotoBase64 =
+                canvas.toDataURL(
+                    "image/jpeg",
+                    0.88
+                );
+
+            fotoMimeType =
+                "image/jpeg";
+
+            photoPreview.innerHTML = "";
+
+            const img =
+                document.createElement("img");
+
+            img.src =
+                fotoBase64;
+
+            img.alt =
+                "Foto operatore";
+
+            photoPreview.appendChild(img);
+        };
+
+        tempImg.onerror = function() {
+
+            fotoBase64 = "";
+
+            alert(
+                "Non è stato possibile caricare la foto."
+            );
+        };
+
+        tempImg.src =
+            e.target.result;
+    };
+
+    reader.onerror = function() {
+
+        fotoBase64 = "";
+
+        alert(
+            "Non è stato possibile leggere la foto."
+        );
+    };
+
+    reader.readAsDataURL(file);
+
+});
 
 
 /* =========================================
-   FUNZIONE VALORE
+   FUNZIONE TESTO
 ========================================= */
 
-function valore(id){
+function valore(id) {
 
     const element =
         document.getElementById(id);
 
-    if(!element){
+    if (!element) {
         return "";
     }
 
     return element.value.trim();
-
 }
 
 
@@ -1057,7 +1594,7 @@ function valore(id){
 
 generateButton.addEventListener(
     "click",
-    function(){
+    function() {
 
         const nome =
             valore("nome");
@@ -1065,8 +1602,7 @@ generateButton.addEventListener(
         const cognome =
             valore("cognome");
 
-
-        if(!nome || !cognome){
+        if (!nome || !cognome) {
 
             alert(
                 "Inserisci almeno Nome e Cognome."
@@ -1075,24 +1611,20 @@ generateButton.addEventListener(
             return;
         }
 
-
         document.getElementById(
             "cvNome"
         ).textContent =
             nome + " " + cognome;
 
-
         const nickname =
             valore("nickname");
-
 
         document.getElementById(
             "cvNickname"
         ).textContent =
             nickname
-            ? '"' + nickname + '"'
-            : "";
-
+                ? '"' + nickname + '"'
+                : "";
 
         const citta =
             valore("citta");
@@ -1100,65 +1632,82 @@ generateButton.addEventListener(
         const provincia =
             valore("provincia");
 
-
         document.getElementById(
             "cvLocalita"
         ).textContent =
-            [citta,provincia]
-            .filter(Boolean)
-            .join(" - ");
-
+            [citta, provincia]
+                .filter(Boolean)
+                .join(" - ");
 
         const eta =
             valore("eta");
-
 
         document.getElementById(
             "cvEta"
         ).textContent =
             eta
-            ? "Età: " + eta
-            : "";
-
+                ? "Età: " + eta
+                : "";
 
         const numero =
             valore("whatsapp");
-
 
         document.getElementById(
             "cvWhatsapp"
         ).textContent =
             numero
-            ? "WhatsApp: " + numero
-            : "";
-
+                ? "WhatsApp: " + numero
+                : "";
 
         /* RUOLI */
 
         const roles = [];
 
-
         document
-        .querySelectorAll(
-            '.role input[type="checkbox"]:checked'
-        )
-        .forEach(
-            function(item){
+            .querySelectorAll(
+                '.role input[type="checkbox"]:checked'
+            )
+            .forEach(function(item) {
 
                 roles.push(
                     item.value
                 );
+            });
 
-            }
-        );
+        const rolesBox =
+            document.getElementById(
+                "cvRuoli"
+            );
 
+        rolesBox.innerHTML = "";
 
-        document.getElementById(
-            "cvRuoli"
-        ).textContent =
-            roles.length
-            ? roles.join(" • ")
-            : "Nessun ruolo selezionato";
+        if(roles.length){
+
+            roles.forEach(
+                function(role){
+
+                    const badge =
+                        document.createElement(
+                            "span"
+                        );
+
+                    badge.className =
+                        "role-badge";
+
+                    badge.textContent =
+                        role.toUpperCase();
+
+                    rolesBox.appendChild(
+                        badge
+                    );
+                }
+            );
+
+        } else {
+
+            rolesBox.textContent =
+                "NESSUN RUOLO SELEZIONATO";
+        }
 
 
         /* ESPERIENZA */
@@ -1168,12 +1717,10 @@ generateButton.addEventListener(
         ).textContent =
             valore("esperienza") || "-";
 
-
         document.getElementById(
             "cvSquadra"
         ).textContent =
             valore("squadra") || "-";
-
 
         document.getElementById(
             "cvEsperienze"
@@ -1188,35 +1735,100 @@ generateButton.addEventListener(
         ).textContent =
             valore("tiro");
 
-
         document.getElementById(
             "cvMovimento"
         ).textContent =
             valore("movimento");
-
 
         document.getElementById(
             "cvCQB"
         ).textContent =
             valore("cqb");
 
-
         document.getElementById(
             "cvRadio"
         ).textContent =
             valore("radio");
-
 
         document.getElementById(
             "cvNavigazione"
         ).textContent =
             valore("navigazione");
 
-
         document.getElementById(
             "cvSoccorso"
         ).textContent =
             valore("soccorso");
+
+
+        const operatorId =
+            getOperatorId();
+
+        document.getElementById(
+            "cvOperatorId"
+        ).textContent =
+            operatorId;
+
+        document.getElementById(
+            "finalOperatorId"
+        ).textContent =
+            operatorId;
+
+
+        [
+            "Tiro",
+            "Movimento",
+            "CQB",
+            "Radio",
+            "Navigazione",
+            "Soccorso"
+        ].forEach(
+            function(key){
+
+                const map = {
+                    Tiro:"tiro",
+                    Movimento:"movimento",
+                    CQB:"cqb",
+                    Radio:"radio",
+                    Navigazione:"navigazione",
+                    Soccorso:"soccorso"
+                };
+
+                const bar =
+                    document.getElementById(
+                        "bar" + key
+                    );
+
+                if(bar){
+
+                    bar.style.width =
+                        "0%";
+
+                    const level =
+                        skillMap[
+                            valore(
+                                map[key]
+                            )
+                        ] || 25;
+
+                    requestAnimationFrame(
+                        function(){
+
+                            setTimeout(
+                                function(){
+
+                                    bar.style.width =
+                                        level + "%";
+
+                                },
+                                80
+                            );
+
+                        }
+                    );
+                }
+            }
+        );
 
 
         /* EQUIPAGGIAMENTO */
@@ -1233,7 +1845,6 @@ generateButton.addEventListener(
             "cvDisponibilita"
         ).textContent =
             valore("disponibilita");
-
 
         document.getElementById(
             "cvTrasferte"
@@ -1256,18 +1867,12 @@ generateButton.addEventListener(
                 "cvPhotoContainer"
             );
 
+        if (fotoBase64) {
 
-        if(fotoBase64){
-
-            photoContainer.innerHTML =
-                "";
-
+            photoContainer.innerHTML = "";
 
             const img =
-                document.createElement(
-                    "img"
-                );
-
+                document.createElement("img");
 
             img.className =
                 "cv-photo";
@@ -1278,16 +1883,14 @@ generateButton.addEventListener(
             img.alt =
                 "Foto operatore";
 
-
             photoContainer.appendChild(
                 img
             );
 
-        }else{
+        } else {
 
             photoContainer.innerHTML =
                 '<div class="cv-photo-placeholder">📷</div>';
-
         }
 
 
@@ -1298,9 +1901,78 @@ generateButton.addEventListener(
                 "cvResult"
             );
 
-
         cvResult.style.display =
             "block";
+
+
+        /* Animazione barre competenze */
+
+        document
+            .querySelectorAll(
+                ".skill-fill"
+            )
+            .forEach(
+                function(bar){
+
+                    bar.style.transition =
+                        "none";
+
+                    bar.style.width =
+                        "0%";
+                }
+            );
+
+        requestAnimationFrame(
+            function(){
+
+                requestAnimationFrame(
+                    function(){
+
+                        [
+                            "Tiro",
+                            "Movimento",
+                            "CQB",
+                            "Radio",
+                            "Navigazione",
+                            "Soccorso"
+                        ].forEach(
+                            function(key){
+
+                                const map = {
+                                    Tiro:"tiro",
+                                    Movimento:"movimento",
+                                    CQB:"cqb",
+                                    Radio:"radio",
+                                    Navigazione:"navigazione",
+                                    Soccorso:"soccorso"
+                                };
+
+                                const bar =
+                                    document.getElementById(
+                                        "bar" + key
+                                    );
+
+                                if(bar){
+
+                                    bar.style.transition =
+                                        "width 1.2s cubic-bezier(.22,1,.36,1)";
+
+                                    bar.style.width =
+                                        (
+                                            skillMap[
+                                                valore(
+                                                    map[key]
+                                                )
+                                            ] || 25
+                                        ) + "%";
+                                }
+                            }
+                        );
+
+                    }
+                );
+
+            });
 
 
         document.getElementById(
@@ -1308,10 +1980,10 @@ generateButton.addEventListener(
         ).style.display =
             "flex";
 
-
-        status.textContent =
+        document.getElementById(
+            "status"
+        ).textContent =
             "✓ CV generato correttamente";
-
 
         cvResult.scrollIntoView({
             behavior:"smooth",
@@ -1323,42 +1995,31 @@ generateButton.addEventListener(
 
 
 /* =========================================
-   CREA PDF
+   PDF
 ========================================= */
 
-function creaPDF(){
+function creaPDF() {
 
-    const cvResult =
-        document.getElementById(
-            "cvResult"
-        );
-
-
-    if(
-        !cvResult ||
-        cvResult.style.display === "none"
-    ){
+    if (
+        !document.getElementById("cvResult") ||
+        document.getElementById("cvResult").style.display === "none"
+    ) {
 
         throw new Error(
             "Genera prima il CV."
         );
-
     }
-
 
     const jsPDF =
         window.jspdf &&
         window.jspdf.jsPDF;
 
-
-    if(!jsPDF){
+    if (!jsPDF) {
 
         throw new Error(
             "Libreria PDF non caricata."
         );
-
     }
-
 
     const pdf =
         new jsPDF({
@@ -1367,12 +2028,10 @@ function creaPDF(){
             format:"a4"
         });
 
-
     const nome =
         document.getElementById(
             "cvNome"
         ).textContent;
-
 
     let y = 18;
 
@@ -1386,19 +2045,15 @@ function creaPDF(){
 
     pdf.setFontSize(20);
 
-
     pdf.text(
         "SOAS AIR SOFT TEAM",
         20,
         y
     );
 
-
     y += 8;
 
-
     pdf.setFontSize(12);
-
 
     pdf.text(
         "TACTICAL OPERATOR CV",
@@ -1406,15 +2061,14 @@ function creaPDF(){
         y
     );
 
-
     y += 13;
 
 
     /* FOTO */
 
-    if(fotoBase64){
+    if (fotoBase64) {
 
-        try{
+        try {
 
             pdf.addImage(
                 fotoBase64,
@@ -1425,15 +2079,13 @@ function creaPDF(){
                 54
             );
 
-        }catch(error){
+        } catch(error) {
 
             console.warn(
                 "Impossibile inserire la foto nel PDF:",
                 error
             );
-
         }
-
     }
 
 
@@ -1441,16 +2093,13 @@ function creaPDF(){
 
     pdf.setFontSize(18);
 
-
     pdf.text(
         nome,
         20,
         y
     );
 
-
     y += 7;
-
 
     pdf.setFont(
         "helvetica",
@@ -1459,14 +2108,12 @@ function creaPDF(){
 
     pdf.setFontSize(10);
 
-
     const nickname =
         document.getElementById(
             "cvNickname"
         ).textContent;
 
-
-    if(nickname){
+    if (nickname) {
 
         pdf.text(
             nickname,
@@ -1477,14 +2124,12 @@ function creaPDF(){
         y += 5;
     }
 
-
     const localita =
         document.getElementById(
             "cvLocalita"
         ).textContent;
 
-
-    if(localita){
+    if (localita) {
 
         pdf.text(
             localita,
@@ -1495,14 +2140,12 @@ function creaPDF(){
         y += 5;
     }
 
-
     const eta =
         document.getElementById(
             "cvEta"
         ).textContent;
 
-
-    if(eta){
+    if (eta) {
 
         pdf.text(
             eta,
@@ -1513,14 +2156,12 @@ function creaPDF(){
         y += 5;
     }
 
-
     const whatsapp =
         document.getElementById(
             "cvWhatsapp"
         ).textContent;
 
-
-    if(whatsapp){
+    if (whatsapp) {
 
         pdf.text(
             whatsapp,
@@ -1531,25 +2172,22 @@ function creaPDF(){
         y += 5;
     }
 
-
     y += 8;
 
 
-    /* FUNZIONE SEZIONE */
+    /* SEZIONE PDF */
 
     function sezione(
         titolo,
         testo
-    ){
+    ) {
 
-        if(y > 265){
+        if (y > 265) {
 
             pdf.addPage();
 
             y = 20;
-
         }
-
 
         pdf.setFont(
             "helvetica",
@@ -1558,16 +2196,13 @@ function creaPDF(){
 
         pdf.setFontSize(12);
 
-
         pdf.text(
             titolo,
             20,
             y
         );
 
-
         y += 6;
-
 
         pdf.setFont(
             "helvetica",
@@ -1576,13 +2211,11 @@ function creaPDF(){
 
         pdf.setFontSize(10);
 
-
         const righe =
             pdf.splitTextToSize(
                 testo || "-",
                 170
             );
-
 
         pdf.text(
             righe,
@@ -1590,15 +2223,11 @@ function creaPDF(){
             y
         );
 
-
         y +=
             righe.length * 5 +
             8;
-
     }
 
-
-    /* RUOLI */
 
     sezione(
         "RUOLI OPERATIVI",
@@ -1607,8 +2236,6 @@ function creaPDF(){
         ).textContent
     );
 
-
-    /* ESPERIENZA */
 
     sezione(
         "ESPERIENZA",
@@ -1626,8 +2253,6 @@ function creaPDF(){
         ).textContent
     );
 
-
-    /* COMPETENZE */
 
     sezione(
         "COMPETENZE",
@@ -1658,8 +2283,6 @@ function creaPDF(){
     );
 
 
-    /* EQUIPAGGIAMENTO */
-
     sezione(
         "EQUIPAGGIAMENTO",
         document.getElementById(
@@ -1667,8 +2290,6 @@ function creaPDF(){
         ).textContent
     );
 
-
-    /* DISPONIBILITÀ */
 
     sezione(
         "DISPONIBILITÀ",
@@ -1683,8 +2304,6 @@ function creaPDF(){
     );
 
 
-    /* PRESENTAZIONE */
-
     sezione(
         "PRESENTAZIONE PERSONALE",
         document.getElementById(
@@ -1693,160 +2312,160 @@ function creaPDF(){
     );
 
 
-    /* OUTPUT */
-
     const blob =
         pdf.output("blob");
 
-
-    return{
-
+    return {
         blob:blob,
-
         filename:
             "CV_SOAS_" +
             nome
-            .replace(/\s+/g,"_")
-            .replace(
-                /[^a-zA-Z0-9_-]/g,
-                ""
-            ) +
+                .replace(/\s+/g,"_")
+                .replace(
+                    /[^a-zA-Z0-9_-]/g,
+                    ""
+                ) +
             ".pdf"
-
     };
-
 }
-
-
-/* =========================================
+    /* =========================================
    CONDIVIDI / SALVA PDF
 ========================================= */
 
 pdfButton.addEventListener(
     "click",
-    function(){
+    async function() {
 
-        try{
+        let objectUrl = "";
+
+        try {
+
+            const status =
+                document.getElementById(
+                    "status"
+                );
 
             status.textContent =
-                "⏳ Generazione PDF...";
-
-
-            /*
-                NIENTE await qui.
-                È importante per Safari:
-                manteniamo l'azione dell'utente
-                attiva durante navigator.share().
-            */
+                "⏳ Preparazione PDF...";
 
             const result =
                 creaPDF();
 
 
-            const pdfFile =
-                new File(
-                    [result.blob],
-                    result.filename,
-                    {
-                        type:"application/pdf"
-                    }
-                );
-
-
             /*
-                SMARTPHONE / TABLET
-            */
+             * Su smartphone proviamo prima
+             * il menu Condividi del sistema.
+             */
 
-            if(
+            if (
                 navigator.share &&
-                navigator.canShare &&
-                navigator.canShare({
-                    files:[pdfFile]
-                })
-            ){
+                navigator.canShare
+            ) {
 
-                navigator.share({
-
-                    title:
-                        "CV Operatore SOAS",
-
-                    text:
-                        "CV Operatore SOAS",
-
-                    files:
-                        [pdfFile]
-
-                })
-
-                .then(
-                    function(){
-
-                        status.textContent =
-                            "✓ PDF pronto";
-
-                    }
-                )
-
-                .catch(
-                    function(error){
-
-                        /*
-                            L'utente ha semplicemente
-                            chiuso il menu.
-                        */
-
-                        if(
-                            error &&
-                            error.name ===
-                            "AbortError"
-                        ){
-
-                            status.textContent =
-                                "PDF pronto";
-
-                            return;
+                const pdfFile =
+                    new File(
+                        [result.blob],
+                        result.filename,
+                        {
+                            type:"application/pdf"
                         }
+                    );
 
+                if (
+                    navigator.canShare({
+                        files:[pdfFile]
+                    })
+                ) {
 
-                        apriPDF(
-                            result
-                        );
+                    status.textContent =
+                        "📤 Apri il menu Condividi...";
 
-                    }
-                );
+                    navigator.share({
+                        title:
+                            "CV Operatore SOAS",
 
+                        text:
+                            "CV Operatore SOAS",
 
-                return;
+                        files:[
+                            pdfFile
+                        ]
+                    });
 
+                    status.textContent =
+                        "✓ PDF pronto per essere salvato o condiviso";
+
+                    return;
+                }
             }
 
 
             /*
-                PC / BROWSER CHE NON SUPPORTA
-                LA CONDIVISIONE FILE
-            */
+             * Fallback per browser senza
+             * condivisione file.
+             */
 
-            scaricaPDF(
-                result
+            objectUrl =
+                URL.createObjectURL(
+                    result.blob
+                );
+
+            const newWindow =
+                window.open(
+                    objectUrl,
+                    "_blank"
+                );
+
+            if (!newWindow) {
+
+                window.location.href =
+                    objectUrl;
+            }
+
+            status.textContent =
+                "✓ PDF aperto. Usa Condividi o Salva dal telefono.";
+
+            setTimeout(
+                function(){
+
+                    if(objectUrl){
+
+                        URL.revokeObjectURL(
+                            objectUrl
+                        );
+                    }
+
+                },
+                60000
             );
 
         }
 
-        catch(error){
+        catch(error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
+            if (
+                error &&
+                error.name === "AbortError"
+            ) {
 
-            status.textContent =
+                document.getElementById(
+                    "status"
+                ).textContent =
+                    "PDF pronto. Condivisione annullata.";
+
+                return;
+            }
+
+            document.getElementById(
+                "status"
+            ).textContent =
                 "❌ Errore nella generazione del PDF";
 
-
             alert(
-                "Errore nella generazione del PDF."
+                "Non è stato possibile preparare il PDF. Riprova."
             );
-
         }
 
     }
@@ -1854,116 +2473,31 @@ pdfButton.addEventListener(
 
 
 /* =========================================
-   DOWNLOAD PC
-========================================= */
-
-function scaricaPDF(result){
-
-    const url =
-        URL.createObjectURL(
-            result.blob
-        );
-
-
-    const link =
-        document.createElement(
-            "a"
-        );
-
-
-    link.href =
-        url;
-
-    link.download =
-        result.filename;
-
-
-    document.body.appendChild(
-        link
-    );
-
-
-    link.click();
-
-
-    link.remove();
-
-
-    setTimeout(
-        function(){
-
-            URL.revokeObjectURL(
-                url
-            );
-
-        },
-        5000
-    );
-
-
-    status.textContent =
-        "✓ PDF scaricato correttamente";
-
-}
-
-
-/* =========================================
-   FALLBACK SAFARI
-========================================= */
-
-function apriPDF(result){
-
-    const url =
-        URL.createObjectURL(
-            result.blob
-        );
-
-
-    const nuovaFinestra =
-        window.open(
-            url,
-            "_blank"
-        );
-
-
-    if(!nuovaFinestra){
-
-        window.location.href =
-            url;
-
-    }
-
-
-    status.textContent =
-        "✓ PDF pronto — usa Condividi → Salva su File";
-
-
-    setTimeout(
-        function(){
-
-            URL.revokeObjectURL(
-                url
-            );
-
-        },
-        60000
-    );
-
-}
-
-
-/* =========================================
-   STAMPA / SALVA PDF
+   STAMPA
 ========================================= */
 
 printButton.addEventListener(
     "click",
-    function(){
+    function() {
 
         window.print();
 
     }
 );
+
+
+/* =========================================
+   WHATSAPP
+========================================= */
+
+/*
+    WhatsApp utilizza un normale link HTTPS:
+
+    https://wa.me/393501077763
+
+    Questo apre direttamente la chat SOAS.
+*/
+
 
 </script>
 
