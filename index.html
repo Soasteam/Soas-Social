@@ -2,21 +2,17 @@
 <html lang="it">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#080808">
-
-    <title>SOAS Air Soft Team</title>
+    <title>SOAS AIR SOFT TEAM</title>
 
     <style>
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html,
@@ -30,111 +26,221 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-
-            min-height: 100vh;
-
             overflow-x: hidden;
         }
 
-        /* CONTENITORE DELLA HOMEPAGE */
+        /* CONTENITORE HOMEPAGE */
 
         .homepage {
             position: relative;
-
             width: 100%;
             max-width: 972px;
-
-            line-height: 0;
         }
 
         /* IMMAGINE HOMEPAGE */
 
         .homepage img {
             display: block;
-
             width: 100%;
             height: auto;
         }
 
-        /*
-        =====================================================
-        ZONE CLICCABILI
-        =====================================================
-        */
+        /* ZONE CLICCABILI */
 
         .click-area {
             position: absolute;
-
             display: block;
-
             z-index: 10;
 
             cursor: pointer;
 
-            /*
-            Durante i test puoi togliere il commento
-            alla riga sotto per vedere le zone.
-            */
+            border-radius: 12px;
 
-            /* background: rgba(255, 0, 0, 0.20); */
+            transition:
+                background 0.25s ease,
+                box-shadow 0.25s ease,
+                transform 0.25s ease;
         }
 
-        /* INSTAGRAM */
+
+        /* ========================= */
+        /* INSTAGRAM - ROSA / VIOLA */
+        /* ========================= */
 
         .instagram {
             left: 8.5%;
             right: 8.5%;
-
             top: 44.5%;
             height: 7.8%;
         }
 
-        /* TIKTOK */
+        .instagram:hover {
+            background: rgba(225, 48, 108, 0.25);
+
+            box-shadow:
+                0 0 10px rgba(225, 48, 108, 0.7),
+                0 0 25px rgba(225, 48, 108, 0.45),
+                inset 0 0 15px rgba(225, 48, 108, 0.2);
+
+            transform: scale(1.02);
+        }
+
+        .instagram:active {
+            background: rgba(225, 48, 108, 0.40);
+
+            box-shadow:
+                0 0 15px rgba(225, 48, 108, 0.9),
+                0 0 30px rgba(225, 48, 108, 0.7),
+                inset 0 0 20px rgba(225, 48, 108, 0.3);
+
+            transform: scale(0.98);
+        }
+
+
+        /* ========================= */
+        /* TIKTOK - AZZURRO */
+        /* ========================= */
 
         .tiktok {
             left: 8.5%;
             right: 8.5%;
-
             top: 53%;
             height: 7.8%;
         }
 
-        /* FACEBOOK */
+        .tiktok:hover {
+            background: rgba(0, 242, 234, 0.22);
+
+            box-shadow:
+                0 0 10px rgba(0, 242, 234, 0.7),
+                0 0 25px rgba(0, 242, 234, 0.45),
+                inset 0 0 15px rgba(0, 242, 234, 0.2);
+
+            transform: scale(1.02);
+        }
+
+        .tiktok:active {
+            background: rgba(0, 242, 234, 0.38);
+
+            box-shadow:
+                0 0 15px rgba(0, 242, 234, 0.9),
+                0 0 30px rgba(0, 242, 234, 0.7),
+                inset 0 0 20px rgba(0, 242, 234, 0.3);
+
+            transform: scale(0.98);
+        }
+
+
+        /* ========================= */
+        /* FACEBOOK - BLU */
+        /* ========================= */
 
         .facebook {
             left: 8.5%;
             right: 8.5%;
-
             top: 61.5%;
             height: 7.8%;
         }
 
-        /* YOUTUBE */
+        .facebook:hover {
+            background: rgba(24, 119, 242, 0.25);
+
+            box-shadow:
+                0 0 10px rgba(24, 119, 242, 0.7),
+                0 0 25px rgba(24, 119, 242, 0.45),
+                inset 0 0 15px rgba(24, 119, 242, 0.2);
+
+            transform: scale(1.02);
+        }
+
+        .facebook:active {
+            background: rgba(24, 119, 242, 0.40);
+
+            box-shadow:
+                0 0 15px rgba(24, 119, 242, 0.9),
+                0 0 30px rgba(24, 119, 242, 0.7),
+                inset 0 0 20px rgba(24, 119, 242, 0.3);
+
+            transform: scale(0.98);
+        }
+
+
+        /* ========================= */
+        /* YOUTUBE - ROSSO */
+        /* ========================= */
 
         .youtube {
             left: 8.5%;
             right: 8.5%;
-
             top: 70%;
             height: 7.8%;
         }
 
-        /* UNISCITI AL TEAM */
+        .youtube:hover {
+            background: rgba(255, 0, 0, 0.23);
+
+            box-shadow:
+                0 0 10px rgba(255, 0, 0, 0.7),
+                0 0 25px rgba(255, 0, 0, 0.45),
+                inset 0 0 15px rgba(255, 0, 0, 0.2);
+
+            transform: scale(1.02);
+        }
+
+        .youtube:active {
+            background: rgba(255, 0, 0, 0.38);
+
+            box-shadow:
+                0 0 15px rgba(255, 0, 0, 0.9),
+                0 0 30px rgba(255, 0, 0, 0.7),
+                inset 0 0 20px rgba(255, 0, 0, 0.3);
+
+            transform: scale(0.98);
+        }
+
+
+        /* ========================= */
+        /* UNISCITI AL TEAM - VERDE */
+        /* ========================= */
 
         .join-team {
             left: 8.5%;
             right: 8.5%;
-
             top: 79.2%;
             height: 8.8%;
         }
 
-        /* MOBILE */
+        .join-team:hover {
+            background: rgba(70, 150, 70, 0.25);
 
-        @media (max-width: 600px) {
+            box-shadow:
+                0 0 10px rgba(70, 150, 70, 0.7),
+                0 0 25px rgba(70, 150, 70, 0.45),
+                inset 0 0 15px rgba(70, 150, 70, 0.2);
 
-            .homepage {
-                width: 100%;
+            transform: scale(1.02);
+        }
+
+        .join-team:active {
+            background: rgba(70, 150, 70, 0.40);
+
+            box-shadow:
+                0 0 15px rgba(70, 150, 70, 0.9),
+                0 0 30px rgba(70, 150, 70, 0.7),
+                inset 0 0 20px rgba(70, 150, 70, 0.3);
+
+            transform: scale(0.98);
+        }
+
+
+        /* ========================= */
+        /* EFFETTO TOUCH MOBILE */
+        /* ========================= */
+
+        @media (hover: none) {
+
+            .click-area:active {
+                transform: scale(0.98);
             }
 
         }
@@ -146,69 +252,58 @@
 
 <body>
 
-    <main class="homepage">
+    <div class="homepage">
 
-        <!-- HOMEPAGE SOAS -->
+        <!-- IMMAGINE PRINCIPALE -->
 
-        <img
-            src="ingresso.jpeg"
-            alt="SOAS Air Soft Team"
-        >
+        <img src="ingresso.jpeg" alt="SOAS Air Soft Team">
 
 
         <!-- INSTAGRAM -->
 
         <a
-            class="click-area instagram"
             href="https://www.instagram.com/soas.asd?utm_source=qr"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram SOAS"
-        ></a>
+            class="click-area instagram"
+            aria-label="Instagram SOAS">
+        </a>
 
 
         <!-- TIKTOK -->
 
         <a
-            class="click-area tiktok"
             href="https://www.tiktok.com/@soas.asd?_r=1&_t=ZN-99IF5SQS9f4"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok SOAS"
-        ></a>
+            class="click-area tiktok"
+            aria-label="TikTok SOAS">
+        </a>
 
 
         <!-- FACEBOOK -->
 
         <a
-            class="click-area facebook"
             href="https://www.facebook.com/share/1bGvbMMJhc/?mibextid=wwXIfr"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook SOAS"
-        ></a>
+            class="click-area facebook"
+            aria-label="Facebook SOAS">
+        </a>
 
 
         <!-- YOUTUBE -->
 
         <a
-            class="click-area youtube"
             href="https://www.youtube.com/@S.O.A.S-ASD/videos"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="YouTube SOAS"
-        ></a>
+            class="click-area youtube"
+            aria-label="YouTube SOAS">
+        </a>
 
 
         <!-- UNISCITI AL TEAM -->
 
         <a
-            class="click-area join-team"
             href="cv.html"
-            aria-label="Unisciti al team"
-        ></a>
+            class="click-area join-team"
+            aria-label="Unisciti al Team">
+        </a>
 
-    </main>
+    </div>
 
 </body>
 
