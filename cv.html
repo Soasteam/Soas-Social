@@ -9,353 +9,365 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050505;
+    color:white
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #050505;
-    color: white;
-}
-
-.page {
-    min-height: 100vh;
-    padding: 25px 15px;
+.page{
+    min-height:100vh;
+    padding:25px 15px;
     background:
-        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.78)),
-        url("sfondo-cv.jpeg") center center / cover fixed;
+        linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.78)),
+        url("sfondo-cv.jpeg") center center/cover fixed
 }
 
-.container {
-    max-width: 950px;
-    margin: auto;
+.container{
+    max-width:950px;
+    margin:auto
 }
 
-.logo-title {
-    text-align: center;
-    margin-bottom: 25px;
+.logo-title{
+    text-align:center;
+    margin-bottom:25px
 }
 
-.logo-title h1 {
-    margin: 0;
-    font-size: 32px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+.logo-title h1{
+    margin:0;
+    font-size:32px;
+    letter-spacing:3px;
+    text-transform:uppercase
 }
 
-.logo-title p {
-    margin-top: 8px;
-    color: #aaa;
-    letter-spacing: 2px;
+.logo-title p{
+    margin-top:8px;
+    color:#aaa;
+    letter-spacing:2px
 }
 
-.form-box {
-    background: rgba(10,10,10,.94);
-    border: 1px solid #333;
-    border-radius: 14px;
-    padding: 22px;
-    box-shadow: 0 0 30px rgba(0,0,0,.7);
+.form-box{
+    background:rgba(10,10,10,.94);
+    border:1px solid #333;
+    border-radius:14px;
+    padding:22px;
+    box-shadow:0 0 30px rgba(0,0,0,.7)
 }
 
-.section-title {
-    color: #69ff69;
-    border-bottom: 1px solid #333;
-    padding-bottom: 8px;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    font-size: 18px;
-    letter-spacing: 1px;
+.section-title{
+    color:#69ff69;
+    border-bottom:1px solid #333;
+    padding-bottom:8px;
+    margin-top:25px;
+    margin-bottom:15px;
+    font-size:18px;
+    letter-spacing:1px
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px
 }
 
-.field {
-    display: flex;
-    flex-direction: column;
+.field{
+    display:flex;
+    flex-direction:column
 }
 
-.field.full {
-    grid-column: 1 / -1;
+.field.full{
+    grid-column:1/-1
 }
 
-label {
-    font-size: 12px;
-    color: #aaa;
-    margin-bottom: 6px;
-    text-transform: uppercase;
+label{
+    font-size:12px;
+    color:#aaa;
+    margin-bottom:6px;
+    text-transform:uppercase
 }
 
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 12px;
-    border-radius: 7px;
-    border: 1px solid #444;
-    background: #111;
-    color: white;
-    outline: none;
-    font-size: 16px;
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    border-radius:7px;
+    border:1px solid #444;
+    background:#111;
+    color:white;
+    outline:none;
+    font-size:16px
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: #69ff69;
+input:focus,select:focus,textarea:focus{
+    border-color:#69ff69
 }
 
-textarea {
-    min-height: 110px;
-    resize: vertical;
+textarea{
+    min-height:110px;
+    resize:vertical
 }
 
-.roles {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+.roles{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px
 }
 
-.role {
-    background: #111;
-    border: 1px solid #333;
-    padding: 10px;
-    border-radius: 7px;
+.role{
+    background:#111;
+    border:1px solid #333;
+    padding:10px;
+    border-radius:7px
 }
 
-.role label {
-    margin: 0;
-    color: white;
-    cursor: pointer;
+.role label{
+    margin:0;
+    color:white;
+    cursor:pointer
 }
 
-.role input {
-    width: auto;
-    margin-right: 7px;
+.role input{
+    width:auto;
+    margin-right:7px
 }
 
-.photo-box {
-    text-align: center;
-    margin-bottom: 20px;
+.photo-box{
+    text-align:center;
+    margin-bottom:20px
 }
 
-.photo-preview {
-    width: 150px;
-    height: 180px;
-    border: 2px dashed #555;
-    border-radius: 8px;
-    margin: 10px auto 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #111;
-    color: #777;
+.photo-preview{
+    width:150px;
+    height:180px;
+    border:2px dashed #555;
+    border-radius:8px;
+    margin:10px auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:#111;
+    color:#777
 }
 
-.photo-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.photo-preview img{
+    width:100%;
+    height:100%;
+    object-fit:cover
 }
 
-.photo-input {
-    display: block;
-    max-width: 100%;
-    margin: auto;
+.photo-input{
+    display:block;
+    max-width:100%;
+    margin:auto
 }
 
-.main-button {
-    width: 100%;
-    padding: 16px;
-    margin-top: 25px;
-    background: #69ff69;
-    border: none;
-    border-radius: 8px;
-    color: #000;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    letter-spacing: 1px;
+.main-button{
+    width:100%;
+    padding:16px;
+    margin-top:25px;
+    background:#69ff69;
+    border:none;
+    border-radius:8px;
+    color:#000;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+    letter-spacing:1px
 }
 
-.main-button:hover {
-    background: #42e842;
+.main-button:hover{
+    background:#42e842
 }
 
-.cv-result {
-    display: none;
-    margin-top: 30px;
-    background: white;
-    color: #111;
-    padding: 30px;
-    border-radius: 12px;
+.cv-result{
+    display:none;
+    margin-top:30px;
+    background:white;
+    color:#111;
+    padding:30px;
+    border-radius:12px
 }
 
-.cv-header {
-    display: flex;
-    gap: 25px;
-    align-items: flex-start;
-    border-bottom: 3px solid #111;
-    padding-bottom: 20px;
+.cv-header{
+    display:flex;
+    gap:25px;
+    align-items:flex-start;
+    border-bottom:3px solid #111;
+    padding-bottom:20px
 }
 
-.cv-photo {
-    width: 150px;
-    height: 180px;
-    object-fit: cover;
-    border: 2px solid #111;
-    display: block;
+.cv-photo{
+    width:150px;
+    height:180px;
+    object-fit:cover;
+    border:2px solid #111;
+    display:block
 }
 
-.cv-photo-placeholder {
-    width: 150px;
-    height: 180px;
-    border: 2px solid #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #eee;
+.cv-photo-placeholder{
+    width:150px;
+    height:180px;
+    border:2px solid #111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eee
 }
 
-.cv-name {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 5px;
+.cv-name{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:5px
 }
 
-.cv-nickname {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 15px;
+.cv-nickname{
+    font-size:18px;
+    color:#555;
+    margin-bottom:15px
 }
 
-.cv-section {
-    margin-top: 25px;
+.cv-section{
+    margin-top:25px
 }
 
-.cv-section h3 {
-    background: #111;
-    color: white;
-    padding: 8px;
-    margin-bottom: 10px;
-    font-size: 15px;
+.cv-section h3{
+    background:#111;
+    color:white;
+    padding:8px;
+    margin-bottom:10px;
+    font-size:15px
 }
 
-.cv-section p {
-    margin: 7px 0;
-    white-space: pre-wrap;
+.cv-section p{
+    margin:7px 0;
+    white-space:pre-wrap
 }
 
-.cv-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+.cv-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px
 }
 
-.actions {
-    display: none;
-    margin-top: 20px;
-    gap: 10px;
-    flex-wrap: wrap;
+.actions{
+    display:none;
+    margin-top:20px;
+    gap:10px;
+    flex-wrap:wrap
 }
 
-.action-button {
-    flex: 1;
-    min-width: 200px;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 15px;
+.action-button{
+    flex:1;
+    min-width:200px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px
 }
 
-.pdf-button {
-    background: #222;
-    color: white;
+.pdf-button{
+    background:#222;
+    color:white
 }
 
-.whatsapp-button {
-    background: #25D366;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.whatsapp-button{
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content:center
 }
 
-.whatsapp-button:hover {
-    background: #1ebe5d;
+.whatsapp-button:hover{
+    background:#1ebe5d
 }
 
-.print-button {
-    background: #555;
-    color: white;
+.print-button{
+    background:#555;
+    color:white
 }
 
-.status {
-    text-align: center;
-    margin-top: 15px;
-    color: #69ff69;
+.pdf-warning{
+    width:100%;
+    text-align:center;
+    background:#111;
+    border:1px solid #444;
+    border-radius:8px;
+    padding:14px 12px;
+    color:#69ff69;
+    font-weight:bold;
+    line-height:1.5
 }
 
-@media(max-width: 700px) {
+.pdf-warning span{
+    color:#aaa;
+    font-size:13px;
+    font-weight:normal
+}
 
-    .grid {
-        grid-template-columns: 1fr;
+.status{
+    text-align:center;
+    margin-top:15px;
+    color:#69ff69
+}
+
+@media(max-width:700px){
+
+    .grid{
+        grid-template-columns:1fr
     }
 
-    .roles {
-        grid-template-columns: repeat(2, 1fr);
+    .roles{
+        grid-template-columns:repeat(2,1fr)
     }
 
-    .cv-header {
-        flex-direction: column;
+    .cv-header{
+        flex-direction:column
     }
 
-    .cv-grid {
-        grid-template-columns: 1fr;
+    .cv-grid{
+        grid-template-columns:1fr
     }
 
-    .cv-result {
-        padding: 20px;
+    .cv-result{
+        padding:20px
     }
 
-    .logo-title h1 {
-        font-size: 24px;
+    .logo-title h1{
+        font-size:24px
     }
 }
 
-@media print {
+@media print{
 
-    body {
-        background: white;
+    body{
+        background:white
     }
 
-    .page {
-        background: white;
-        padding: 0;
+    .page{
+        background:white;
+        padding:0
     }
 
     .form-box,
     .logo-title,
     .actions,
-    .status {
-        display: none !important;
+    .status{
+        display:none!important
     }
 
-    .cv-result {
-        display: block !important;
-        margin: 0;
-        box-shadow: none;
-        border-radius: 0;
+    .cv-result{
+        display:block!important;
+        margin:0;
+        box-shadow:none;
+        border-radius:0
     }
 }
 </style>
@@ -374,9 +386,7 @@ textarea {
 
 <div class="form-box">
 
-<div class="section-title">
-    FOTO OPERATORE
-</div>
+<div class="section-title">FOTO OPERATORE</div>
 
 <div class="photo-box">
 
@@ -393,9 +403,7 @@ textarea {
 
 </div>
 
-<div class="section-title">
-    DATI PERSONALI
-</div>
+<div class="section-title">DATI PERSONALI</div>
 
 <div class="grid">
 
@@ -436,9 +444,7 @@ textarea {
 
 </div>
 
-<div class="section-title">
-    ESPERIENZA
-</div>
+<div class="section-title">ESPERIENZA</div>
 
 <div class="grid">
 
@@ -459,80 +465,49 @@ textarea {
 
 </div>
 
-<div class="section-title">
-    RUOLI OPERATIVI
-</div>
+<div class="section-title">RUOLI OPERATIVI</div>
 
 <div class="roles">
 
 <div class="role">
-<label>
-<input type="checkbox" value="Fuciliere">
-Fuciliere
-</label>
+<label><input type="checkbox" value="Fuciliere">Fuciliere</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Assaltatore">
-Assaltatore
-</label>
+<label><input type="checkbox" value="Assaltatore">Assaltatore</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Supporto">
-Supporto
-</label>
+<label><input type="checkbox" value="Supporto">Supporto</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Sniper">
-Sniper
-</label>
+<label><input type="checkbox" value="Sniper">Sniper</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Scout">
-Scout
-</label>
+<label><input type="checkbox" value="Scout">Scout</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Medico">
-Medico
-</label>
+<label><input type="checkbox" value="Medico">Medico</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Artificiere">
-Artificiere
-</label>
+<label><input type="checkbox" value="Artificiere">Artificiere</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="CQB">
-CQB
-</label>
+<label><input type="checkbox" value="CQB">CQB</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Comandante">
-Comandante
-</label>
+<label><input type="checkbox" value="Comandante">Comandante</label>
 </div>
 
 </div>
 
-<div class="section-title">
-    COMPETENZE
-</div>
+<div class="section-title">COMPETENZE</div>
 
 <div class="grid">
 
@@ -598,18 +573,14 @@ Comandante
 
 </div>
 
-<div class="section-title">
-    EQUIPAGGIAMENTO
-</div>
+<div class="section-title">EQUIPAGGIAMENTO</div>
 
 <textarea
 id="equipaggiamento"
 placeholder="Inserisci il tuo equipaggiamento..."
 ></textarea>
 
-<div class="section-title">
-    DISPONIBILITÀ
-</div>
+<div class="section-title">DISPONIBILITÀ</div>
 
 <div class="grid">
 
@@ -634,9 +605,7 @@ placeholder="Inserisci il tuo equipaggiamento..."
 
 </div>
 
-<div class="section-title">
-    PRESENTAZIONE
-</div>
+<div class="section-title">PRESENTAZIONE</div>
 
 <textarea
 id="presentazione"
@@ -654,18 +623,14 @@ GENERA IL MIO CV
 </div>
 
 
-<!-- =========================
-     CV GENERATO
-========================= -->
+<!-- CV GENERATO -->
 
 <div class="cv-result" id="cvResult">
 
 <div class="cv-header">
 
 <div id="cvPhotoContainer">
-    <div class="cv-photo-placeholder">
-        📷
-    </div>
+    <div class="cv-photo-placeholder">📷</div>
 </div>
 
 <div>
@@ -684,13 +649,12 @@ GENERA IL MIO CV
 
 </div>
 
+
 <div class="cv-section">
-
 <h3>RUOLI OPERATIVI</h3>
-
 <p id="cvRuoli"></p>
-
 </div>
+
 
 <div class="cv-section">
 
@@ -710,13 +674,11 @@ GENERA IL MIO CV
 
 </div>
 
-<p>
-<strong>Esperienze precedenti:</strong>
-</p>
-
+<p><strong>Esperienze precedenti:</strong></p>
 <p id="cvEsperienze"></p>
 
 </div>
+
 
 <div class="cv-section">
 
@@ -758,13 +720,12 @@ GENERA IL MIO CV
 
 </div>
 
+
 <div class="cv-section">
-
 <h3>EQUIPAGGIAMENTO</h3>
-
 <p id="cvEquipaggiamento"></p>
-
 </div>
+
 
 <div class="cv-section">
 
@@ -782,16 +743,18 @@ GENERA IL MIO CV
 
 </div>
 
+
 <div class="cv-section">
 
 <h3>PRESENTAZIONE PERSONALE</h3>
-
 <p id="cvPresentazione"></p>
 
 </div>
 
 </div>
 
+
+<!-- PULSANTI -->
 
 <div class="actions" id="actions">
 
@@ -802,6 +765,19 @@ id="pdfButton"
 >
 📄 CONDIVIDI / SALVA PDF
 </button>
+
+
+<div class="pdf-warning">
+
+⚠️ SCARICA / SALVA IL FILE PDF PRIMA DI INVIARLO SU WHATSAPP
+
+<br>
+
+<span>
+Salva il CV sul dispositivo, poi apri WhatsApp e allega il file PDF.
+</span>
+
+</div>
 
 
 <a
@@ -874,172 +850,204 @@ const status =
    FOTO
 ========================================= */
 
-fotoInput.addEventListener("change", function(event) {
+fotoInput.addEventListener(
+    "change",
+    function(event){
 
-    const file =
-        event.target.files &&
-        event.target.files[0];
+        const file =
+            event.target.files &&
+            event.target.files[0];
 
-    if (!file) {
-        return;
-    }
+        if(!file){
+            return;
+        }
 
-    if (!file.type.startsWith("image/")) {
+        if(!file.type.startsWith("image/")){
 
-        alert("Seleziona una foto valida.");
+            alert(
+                "Seleziona una foto valida."
+            );
 
-        fotoInput.value = "";
+            fotoInput.value = "";
 
-        return;
-    }
-
-
-    const reader =
-        new FileReader();
-
-
-    reader.onload = function(e) {
-
-        const originalImage =
-            new Image();
-
-        originalImage.onload = function() {
-
-            /*
-                Convertiamo qualsiasi formato
-                in JPEG.
-
-                Questo evita problemi con WebP/HEIC
-                durante la creazione del PDF.
-            */
-
-            const maxSize = 1400;
-
-            let width =
-                originalImage.naturalWidth;
-
-            let height =
-                originalImage.naturalHeight;
+            return;
+        }
 
 
-            if (width > maxSize || height > maxSize) {
+        const reader =
+            new FileReader();
 
-                if (width > height) {
 
-                    height =
-                        Math.round(
-                            height *
-                            maxSize /
-                            width
-                        );
+        reader.onload =
+            function(e){
 
-                    width =
-                        maxSize;
+                const image =
+                    new Image();
 
-                } else {
 
-                    width =
-                        Math.round(
-                            width *
-                            maxSize /
+                image.onload =
+                    function(){
+
+                        const maxSize =
+                            1400;
+
+                        let width =
+                            image.naturalWidth;
+
+                        let height =
+                            image.naturalHeight;
+
+
+                        if(
+                            width > maxSize ||
+                            height > maxSize
+                        ){
+
+                            if(width > height){
+
+                                height =
+                                    Math.round(
+                                        height *
+                                        maxSize /
+                                        width
+                                    );
+
+                                width =
+                                    maxSize;
+
+                            }else{
+
+                                width =
+                                    Math.round(
+                                        width *
+                                        maxSize /
+                                        height
+                                    );
+
+                                height =
+                                    maxSize;
+                            }
+                        }
+
+
+                        const canvas =
+                            document.createElement(
+                                "canvas"
+                            );
+
+
+                        canvas.width =
+                            width;
+
+                        canvas.height =
+                            height;
+
+
+                        const ctx =
+                            canvas.getContext(
+                                "2d"
+                            );
+
+
+                        ctx.drawImage(
+                            image,
+                            0,
+                            0,
+                            width,
                             height
                         );
 
-                    height =
-                        maxSize;
-                }
-            }
+
+                        /*
+                            Convertiamo sempre
+                            la foto in JPEG.
+                            In questo modo il PDF
+                            non ha problemi con
+                            WebP/HEIC/PNG.
+                        */
+
+                        fotoBase64 =
+                            canvas.toDataURL(
+                                "image/jpeg",
+                                0.88
+                            );
 
 
-            const canvas =
-                document.createElement("canvas");
-
-            canvas.width = width;
-            canvas.height = height;
+                        photoPreview.innerHTML =
+                            "";
 
 
-            const ctx =
-                canvas.getContext("2d");
-
-            ctx.drawImage(
-                originalImage,
-                0,
-                0,
-                width,
-                height
-            );
+                        const preview =
+                            document.createElement(
+                                "img"
+                            );
 
 
-            fotoBase64 =
-                canvas.toDataURL(
-                    "image/jpeg",
-                    0.88
+                        preview.src =
+                            fotoBase64;
+
+                        preview.alt =
+                            "Foto operatore";
+
+
+                        photoPreview.appendChild(
+                            preview
+                        );
+
+                    };
+
+
+                image.onerror =
+                    function(){
+
+                        fotoBase64 = "";
+
+                        alert(
+                            "Non è stato possibile elaborare la foto."
+                        );
+
+                    };
+
+
+                image.src =
+                    e.target.result;
+
+            };
+
+
+        reader.onerror =
+            function(){
+
+                fotoBase64 = "";
+
+                alert(
+                    "Non è stato possibile leggere la foto."
                 );
 
-
-            photoPreview.innerHTML = "";
-
-
-            const previewImage =
-                document.createElement("img");
-
-            previewImage.src =
-                fotoBase64;
-
-            previewImage.alt =
-                "Foto operatore";
+            };
 
 
-            photoPreview.appendChild(
-                previewImage
-            );
-        };
+        reader.readAsDataURL(file);
 
-
-        originalImage.onerror = function() {
-
-            alert(
-                "Non è stato possibile elaborare la foto."
-            );
-
-            fotoBase64 = "";
-        };
-
-
-        originalImage.src =
-            e.target.result;
-    };
-
-
-    reader.onerror = function() {
-
-        fotoBase64 = "";
-
-        alert(
-            "Non è stato possibile leggere la foto."
-        );
-    };
-
-
-    reader.readAsDataURL(file);
-
-});
+    }
+);
 
 
 /* =========================================
-   FUNZIONE TESTO
+   FUNZIONE VALORE
 ========================================= */
 
-function valore(id) {
+function valore(id){
 
     const element =
         document.getElementById(id);
 
-    if (!element) {
+    if(!element){
         return "";
     }
 
     return element.value.trim();
+
 }
 
 
@@ -1049,7 +1057,7 @@ function valore(id) {
 
 generateButton.addEventListener(
     "click",
-    function() {
+    function(){
 
         const nome =
             valore("nome");
@@ -1058,7 +1066,7 @@ generateButton.addEventListener(
             valore("cognome");
 
 
-        if (!nome || !cognome) {
+        if(!nome || !cognome){
 
             alert(
                 "Inserisci almeno Nome e Cognome."
@@ -1096,7 +1104,7 @@ generateButton.addEventListener(
         document.getElementById(
             "cvLocalita"
         ).textContent =
-            [citta, provincia]
+            [citta,provincia]
             .filter(Boolean)
             .join(" - ");
 
@@ -1131,16 +1139,18 @@ generateButton.addEventListener(
 
 
         document
-            .querySelectorAll(
-                '.role input[type="checkbox"]:checked'
-            )
-            .forEach(function(item) {
+        .querySelectorAll(
+            '.role input[type="checkbox"]:checked'
+        )
+        .forEach(
+            function(item){
 
                 roles.push(
                     item.value
                 );
 
-            });
+            }
+        );
 
 
         document.getElementById(
@@ -1247,22 +1257,23 @@ generateButton.addEventListener(
             );
 
 
-        if (fotoBase64) {
+        if(fotoBase64){
 
-            photoContainer.innerHTML = "";
+            photoContainer.innerHTML =
+                "";
 
 
             const img =
-                document.createElement("img");
+                document.createElement(
+                    "img"
+                );
 
 
             img.className =
                 "cv-photo";
 
-
             img.src =
                 fotoBase64;
-
 
             img.alt =
                 "Foto operatore";
@@ -1272,10 +1283,11 @@ generateButton.addEventListener(
                 img
             );
 
-        } else {
+        }else{
 
             photoContainer.innerHTML =
                 '<div class="cv-photo-placeholder">📷</div>';
+
         }
 
 
@@ -1302,8 +1314,8 @@ generateButton.addEventListener(
 
 
         cvResult.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+            behavior:"smooth",
+            block:"start"
         });
 
     }
@@ -1314,7 +1326,7 @@ generateButton.addEventListener(
    CREA PDF
 ========================================= */
 
-function creaPDF() {
+function creaPDF(){
 
     const cvResult =
         document.getElementById(
@@ -1322,14 +1334,15 @@ function creaPDF() {
         );
 
 
-    if (
+    if(
         !cvResult ||
         cvResult.style.display === "none"
-    ) {
+    ){
 
         throw new Error(
             "Genera prima il CV."
         );
+
     }
 
 
@@ -1338,19 +1351,20 @@ function creaPDF() {
         window.jspdf.jsPDF;
 
 
-    if (!jsPDF) {
+    if(!jsPDF){
 
         throw new Error(
             "Libreria PDF non caricata."
         );
+
     }
 
 
     const pdf =
         new jsPDF({
-            orientation: "portrait",
-            unit: "mm",
-            format: "a4"
+            orientation:"portrait",
+            unit:"mm",
+            format:"a4"
         });
 
 
@@ -1363,9 +1377,7 @@ function creaPDF() {
     let y = 18;
 
 
-    /* =========================================
-       TITOLO
-    ========================================= */
+    /* TITOLO */
 
     pdf.setFont(
         "helvetica",
@@ -1398,13 +1410,11 @@ function creaPDF() {
     y += 13;
 
 
-    /* =========================================
-       FOTO
-    ========================================= */
+    /* FOTO */
 
-    if (fotoBase64) {
+    if(fotoBase64){
 
-        try {
+        try{
 
             pdf.addImage(
                 fotoBase64,
@@ -1415,9 +1425,7 @@ function creaPDF() {
                 54
             );
 
-        }
-
-        catch(error) {
+        }catch(error){
 
             console.warn(
                 "Impossibile inserire la foto nel PDF:",
@@ -1425,12 +1433,11 @@ function creaPDF() {
             );
 
         }
+
     }
 
 
-    /* =========================================
-       DATI
-    ========================================= */
+    /* DATI */
 
     pdf.setFontSize(18);
 
@@ -1450,7 +1457,6 @@ function creaPDF() {
         "normal"
     );
 
-
     pdf.setFontSize(10);
 
 
@@ -1460,7 +1466,7 @@ function creaPDF() {
         ).textContent;
 
 
-    if (nickname) {
+    if(nickname){
 
         pdf.text(
             nickname,
@@ -1478,7 +1484,7 @@ function creaPDF() {
         ).textContent;
 
 
-    if (localita) {
+    if(localita){
 
         pdf.text(
             localita,
@@ -1496,7 +1502,7 @@ function creaPDF() {
         ).textContent;
 
 
-    if (eta) {
+    if(eta){
 
         pdf.text(
             eta,
@@ -1514,7 +1520,7 @@ function creaPDF() {
         ).textContent;
 
 
-    if (whatsapp) {
+    if(whatsapp){
 
         pdf.text(
             whatsapp,
@@ -1529,20 +1535,19 @@ function creaPDF() {
     y += 8;
 
 
-    /* =========================================
-       FUNZIONE SEZIONE
-    ========================================= */
+    /* FUNZIONE SEZIONE */
 
     function sezione(
         titolo,
         testo
-    ) {
+    ){
 
-        if (y > 265) {
+        if(y > 265){
 
             pdf.addPage();
 
             y = 20;
+
         }
 
 
@@ -1589,12 +1594,11 @@ function creaPDF() {
         y +=
             righe.length * 5 +
             8;
+
     }
 
 
-    /* =========================================
-       SEZIONI
-    ========================================= */
+    /* RUOLI */
 
     sezione(
         "RUOLI OPERATIVI",
@@ -1603,6 +1607,8 @@ function creaPDF() {
         ).textContent
     );
 
+
+    /* ESPERIENZA */
 
     sezione(
         "ESPERIENZA",
@@ -1620,6 +1626,8 @@ function creaPDF() {
         ).textContent
     );
 
+
+    /* COMPETENZE */
 
     sezione(
         "COMPETENZE",
@@ -1650,6 +1658,8 @@ function creaPDF() {
     );
 
 
+    /* EQUIPAGGIAMENTO */
+
     sezione(
         "EQUIPAGGIAMENTO",
         document.getElementById(
@@ -1657,6 +1667,8 @@ function creaPDF() {
         ).textContent
     );
 
+
+    /* DISPONIBILITÀ */
 
     sezione(
         "DISPONIBILITÀ",
@@ -1671,6 +1683,8 @@ function creaPDF() {
     );
 
 
+    /* PRESENTAZIONE */
+
     sezione(
         "PRESENTAZIONE PERSONALE",
         document.getElementById(
@@ -1679,28 +1693,28 @@ function creaPDF() {
     );
 
 
-    /* =========================================
-       OUTPUT
-    ========================================= */
+    /* OUTPUT */
 
     const blob =
         pdf.output("blob");
 
 
-    return {
+    return{
 
-        blob: blob,
+        blob:blob,
 
         filename:
             "CV_SOAS_" +
             nome
-                .replace(/\s+/g, "_")
-                .replace(
-                    /[^a-zA-Z0-9_-]/g,
-                    ""
-                ) +
+            .replace(/\s+/g,"_")
+            .replace(
+                /[^a-zA-Z0-9_-]/g,
+                ""
+            ) +
             ".pdf"
+
     };
+
 }
 
 
@@ -1710,19 +1724,19 @@ function creaPDF() {
 
 pdfButton.addEventListener(
     "click",
-    function() {
+    function(){
 
-        try {
+        try{
 
             status.textContent =
                 "⏳ Generazione PDF...";
 
 
             /*
-                IMPORTANTE:
-                niente await prima di navigator.share().
-                Su Safari questo aiuta a mantenere
-                l'attivazione del pulsante.
+                NIENTE await qui.
+                È importante per Safari:
+                manteniamo l'azione dell'utente
+                attiva durante navigator.share().
             */
 
             const result =
@@ -1734,22 +1748,22 @@ pdfButton.addEventListener(
                     [result.blob],
                     result.filename,
                     {
-                        type: "application/pdf"
+                        type:"application/pdf"
                     }
                 );
 
 
             /*
-                SMARTPHONE
+                SMARTPHONE / TABLET
             */
 
-            if (
+            if(
                 navigator.share &&
                 navigator.canShare &&
                 navigator.canShare({
-                    files: [pdfFile]
+                    files:[pdfFile]
                 })
-            ) {
+            ){
 
                 navigator.share({
 
@@ -1764,56 +1778,61 @@ pdfButton.addEventListener(
 
                 })
 
-                .then(function() {
-
-                    status.textContent =
-                        "✓ PDF pronto";
-
-                })
-
-                .catch(function(error) {
-
-                    /*
-                        Se l'utente chiude
-                        il menu di condivisione,
-                        non mostriamo errore.
-                    */
-
-                    if (
-                        error &&
-                        error.name ===
-                        "AbortError"
-                    ) {
+                .then(
+                    function(){
 
                         status.textContent =
-                            "PDF pronto";
+                            "✓ PDF pronto";
 
-                        return;
                     }
+                )
+
+                .catch(
+                    function(error){
+
+                        /*
+                            L'utente ha semplicemente
+                            chiuso il menu.
+                        */
+
+                        if(
+                            error &&
+                            error.name ===
+                            "AbortError"
+                        ){
+
+                            status.textContent =
+                                "PDF pronto";
+
+                            return;
+                        }
 
 
-                    apriPDF(
-                        result
-                    );
+                        apriPDF(
+                            result
+                        );
 
-                });
+                    }
+                );
 
 
                 return;
+
             }
 
 
             /*
-                FALLBACK SAFARI / BROWSER
+                PC / BROWSER CHE NON SUPPORTA
+                LA CONDIVISIONE FILE
             */
 
-            apriPDF(
+            scaricaPDF(
                 result
             );
 
         }
 
-        catch(error) {
+        catch(error){
 
             console.error(
                 error
@@ -1835,10 +1854,10 @@ pdfButton.addEventListener(
 
 
 /* =========================================
-   FALLBACK APRI PDF
+   DOWNLOAD PC
 ========================================= */
 
-function apriPDF(result) {
+function scaricaPDF(result){
 
     const url =
         URL.createObjectURL(
@@ -1846,13 +1865,59 @@ function apriPDF(result) {
         );
 
 
-    /*
-        Safari può aprire il PDF
-        direttamente nella sua anteprima.
+    const link =
+        document.createElement(
+            "a"
+        );
 
-        Da lì:
-        CONDIVIDI → SALVA SU FILE
-    */
+
+    link.href =
+        url;
+
+    link.download =
+        result.filename;
+
+
+    document.body.appendChild(
+        link
+    );
+
+
+    link.click();
+
+
+    link.remove();
+
+
+    setTimeout(
+        function(){
+
+            URL.revokeObjectURL(
+                url
+            );
+
+        },
+        5000
+    );
+
+
+    status.textContent =
+        "✓ PDF scaricato correttamente";
+
+}
+
+
+/* =========================================
+   FALLBACK SAFARI
+========================================= */
+
+function apriPDF(result){
+
+    const url =
+        URL.createObjectURL(
+            result.blob
+        );
+
 
     const nuovaFinestra =
         window.open(
@@ -1861,7 +1926,7 @@ function apriPDF(result) {
         );
 
 
-    if (!nuovaFinestra) {
+    if(!nuovaFinestra){
 
         window.location.href =
             url;
@@ -1874,7 +1939,7 @@ function apriPDF(result) {
 
 
     setTimeout(
-        function() {
+        function(){
 
             URL.revokeObjectURL(
                 url
@@ -1883,6 +1948,7 @@ function apriPDF(result) {
         },
         60000
     );
+
 }
 
 
@@ -1892,7 +1958,7 @@ function apriPDF(result) {
 
 printButton.addEventListener(
     "click",
-    function() {
+    function(){
 
         window.print();
 
