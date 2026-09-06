@@ -4,82 +4,489 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SOAS - Tactical Operator CV</title>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#eee;background:#050505}
-.page{min-height:100vh;padding:25px 15px;background:linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.84)),url("sfondo-cv.jpeg") center/cover fixed}
-.container{max-width:980px;margin:auto}
-.logo-title{text-align:center;margin-bottom:24px}
-.logo-title h1{margin:0;font-size:31px;letter-spacing:3px}
-.logo-title p{margin:7px 0;color:#aaa;letter-spacing:2px}
-.form-box,.cv-result{background:rgba(12,12,12,.92);border:1px solid #333;border-radius:12px;box-shadow:0 0 30px #000b}
-.form-box{padding:22px}
-.section-title{color:#eee;border-left:4px solid #c5161d;padding:8px 10px;margin:24px 0 14px;background:#171717;font-size:16px;letter-spacing:1px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
-.field{display:flex;flex-direction:column}
-.field.full{grid-column:1/-1}
-label{font-size:12px;color:#aaa;margin-bottom:6px;text-transform:uppercase}
-input,select,textarea{width:100%;padding:12px;border:1px solid #444;border-radius:6px;background:#101010;color:#fff;outline:none;font-size:15px}
-input:focus,select:focus,textarea:focus{border-color:#c5161d}
-textarea{min-height:105px;resize:vertical}
-.photo-box{text-align:center}
-.photo-preview{width:150px;height:180px;border:1px dashed #555;margin:10px auto 14px;display:flex;align-items:center;justify-content:center;background:#111;color:#777;overflow:hidden}
-.photo-preview img{width:100%;height:100%;object-fit:cover}
-.roles-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.role-category{background:#101010;border:1px solid #333;padding:14px}
-.role-category h3{margin:0 0 10px;color:#fff;font-size:14px}
-.role-list{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.role{padding:9px;border:1px solid #2d2d2d;background:#151515;border-radius:5px}
-.role label{margin:0;color:#eee;cursor:pointer}
-.role input{width:auto;margin-right:7px}
-.hint{font-size:12px;color:#888;margin:0 0 10px}
-.main-button,.action-button{border:0;border-radius:6px;font-weight:bold;cursor:pointer}
-.main-button{width:100%;padding:15px;margin-top:24px;background:#c5161d;color:#fff;letter-spacing:1px}
-.main-button:hover{background:#e02027}
-.actions{display:none;gap:10px;flex-wrap:wrap;margin-top:18px}
-.action-button{flex:1;min-width:190px;padding:13px;text-align:center;text-decoration:none}
-.pdf-button,.print-button{background:#222;color:#fff}
-.whatsapp-button{background:#25d366;color:#fff}
-.status{text-align:center;color:#d5d5d5;margin-top:12px}
-.cv-result{display:none;margin-top:28px;padding:25px;background:rgba(12,12,12,.95);color:#eee}
-.cv-header{display:flex;gap:22px;border-bottom:1px solid #444;padding-bottom:18px}
-.cv-photo,.cv-photo-placeholder{width:145px;height:175px;object-fit:cover;border:1px solid #555;display:flex;align-items:center;justify-content:center;background:#171717}
-.cv-name{font-size:27px;font-weight:bold}
-.cv-nickname{color:#aaa;margin:5px 0 13px}
-.cv-section{margin-top:20px}
-.cv-section h3{margin:0 0 10px;padding:8px 10px;border-left:4px solid #c5161d;background:#171717;font-size:14px}
-.cv-section p{white-space:pre-wrap;margin:7px 0}
-.cv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.badges{display:flex;flex-wrap:wrap;gap:7px}
-.badge{padding:7px 10px;background:#191919;border:1px solid #444;border-left:3px solid #c5161d}
-.skill-card{margin:8px 0}
-.skill-head{display:flex;justify-content:space-between;font-size:12px}
-.skill-track{height:7px;background:#333;margin-top:5px}
-.skill-fill{height:100%;background:#c5161d}
-.physical-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.music-control{position:fixed;right:18px;bottom:18px;background:#151515;border:1px solid #555;color:#fff;padding:10px 14px;border-radius:6px;cursor:pointer;z-index:20}
-.modal{display:none;position:fixed;inset:0;background:#000b;z-index:30;align-items:center;justify-content:center;padding:20px}
-.modal.open{display:flex}
-.modal-box{width:min(500px,100%);background:#111;border:1px solid #444;border-left:4px solid #c5161d;padding:20px;box-shadow:0 0 35px #000}
-.modal-box h2{margin-top:0}
-.modal-option{display:block;padding:12px;margin:8px 0;background:#181818;border:1px solid #333;border-radius:5px}
-.modal-actions{display:flex;gap:10px;margin-top:15px}
-.modal-actions button{flex:1;padding:11px;border:0;border-radius:5px;cursor:pointer}
-.save-modal{background:#c5161d;color:#fff}
-.close-modal{background:#333;color:#fff}
-@media(max-width:700px){.grid,.roles-grid,.cv-grid{grid-template-columns:1fr}.physical-grid{grid-template-columns:1fr 1fr}.role-list{grid-template-columns:1fr}.cv-header{flex-direction:column}.cv-result{padding:18px}}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#eee;
+  background:#050505
+}
+
+.page{
+  min-height:100vh;
+  padding:25px 15px;
+  background:
+    linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.84)),
+    url("sfondo-cv.jpeg") center/cover fixed
+}
+
+.container{
+  max-width:980px;
+  margin:auto
+}
+
+.logo-title{
+  text-align:center;
+  margin-bottom:24px
+}
+
+.logo-title h1{
+  margin:0;
+  font-size:31px;
+  letter-spacing:3px
+}
+
+.logo-title p{
+  margin:7px 0;
+  color:#aaa;
+  letter-spacing:2px
+}
+
+.form-box,.cv-result{
+  background:rgba(12,12,12,.92);
+  border:1px solid #333;
+  border-radius:12px;
+  box-shadow:0 0 30px #000b
+}
+
+.form-box{
+  padding:22px
+}
+
+.section-title{
+  color:#eee;
+  border-left:4px solid #c5161d;
+  padding:8px 10px;
+  margin:24px 0 14px;
+  background:#171717;
+  font-size:16px;
+  letter-spacing:1px
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px
+}
+
+.field{
+  display:flex;
+  flex-direction:column
+}
+
+.field.full{
+  grid-column:1/-1
+}
+
+label{
+  font-size:12px;
+  color:#aaa;
+  margin-bottom:6px;
+  text-transform:uppercase
+}
+
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #444;
+  border-radius:6px;
+  background:#101010;
+  color:#fff;
+  outline:none;
+  font-size:15px
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:#c5161d
+}
+
+textarea{
+  min-height:105px;
+  resize:vertical
+}
+
+.photo-box{
+  text-align:center
+}
+
+.photo-preview{
+  width:150px;
+  height:180px;
+  border:1px dashed #555;
+  margin:10px auto 14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#111;
+  color:#777;
+  overflow:hidden
+}
+
+.photo-preview img{
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+
+.roles-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px
+}
+
+.role-category{
+  background:#101010;
+  border:1px solid #333;
+  padding:14px
+}
+
+.role-category h3{
+  margin:0 0 10px;
+  color:#fff;
+  font-size:14px
+}
+
+.role-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px
+}
+
+.role{
+  padding:9px;
+  border:1px solid #2d2d2d;
+  background:#151515;
+  border-radius:5px
+}
+
+.role label{
+  margin:0;
+  color:#eee;
+  cursor:pointer
+}
+
+.role input{
+  width:auto;
+  margin-right:7px
+}
+
+.hint{
+  font-size:12px;
+  color:#888;
+  margin:0 0 10px
+}
+
+.main-button,.action-button{
+  border:0;
+  border-radius:6px;
+  font-weight:bold;
+  cursor:pointer
+}
+
+.main-button{
+  width:100%;
+  padding:15px;
+  margin-top:24px;
+  background:#c5161d;
+  color:#fff;
+  letter-spacing:1px
+}
+
+.main-button:hover{
+  background:#e02027
+}
+
+.actions{
+  display:none;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px
+}
+
+.action-button{
+  flex:1;
+  min-width:190px;
+  padding:13px;
+  text-align:center;
+  text-decoration:none
+}
+
+.pdf-button,.print-button{
+  background:#222;
+  color:#fff
+}
+
+.whatsapp-button{
+  background:#25d366;
+  color:#fff
+}
+
+.status{
+  text-align:center;
+  color:#d5d5d5;
+  margin-top:12px
+}
+
+.cv-result{
+  display:none;
+  margin-top:28px;
+  padding:25px;
+  background:rgba(12,12,12,.95);
+  color:#eee
+}
+
+.cv-header{
+  display:flex;
+  gap:22px;
+  border-bottom:1px solid #444;
+  padding-bottom:18px
+}
+
+.cv-photo,.cv-photo-placeholder{
+  width:145px;
+  height:175px;
+  object-fit:cover;
+  border:1px solid #555;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#171717
+}
+
+.cv-name{
+  font-size:27px;
+  font-weight:bold
+}
+
+.cv-nickname{
+  color:#aaa;
+  margin:5px 0 13px
+}
+
+.cv-section{
+  margin-top:20px
+}
+
+.cv-section h3{
+  margin:0 0 10px;
+  padding:8px 10px;
+  border-left:4px solid #c5161d;
+  background:#171717;
+  font-size:14px
+}
+
+.cv-section p{
+  white-space:pre-wrap;
+  margin:7px 0
+}
+
+.cv-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
+}
+
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px
+}
+
+.badge{
+  padding:7px 10px;
+  background:#191919;
+  border:1px solid #444;
+  border-left:3px solid #c5161d
+}
+
+.skill-card{
+  margin:8px 0
+}
+
+.skill-head{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px
+}
+
+.skill-track{
+  height:7px;
+  background:#333;
+  margin-top:5px
+}
+
+.skill-fill{
+  height:100%;
+  background:#c5161d
+}
+
+.physical-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px
+}
+
+.music-control{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  background:#151515;
+  border:1px solid #555;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  z-index:20
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:30;
+  align-items:center;
+  justify-content:center;
+  padding:20px
+}
+
+.modal.open{
+  display:flex
+}
+
+.modal-box{
+  width:min(500px,100%);
+  background:#111;
+  border:1px solid #444;
+  border-left:4px solid #c5161d;
+  padding:20px;
+  box-shadow:0 0 35px #000
+}
+
+.modal-box h2{
+  margin-top:0
+}
+
+.modal-option{
+  display:block;
+  padding:12px;
+  margin:8px 0;
+  background:#181818;
+  border:1px solid #333;
+  border-radius:5px
+}
+
+.modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:15px
+}
+
+.modal-actions button{
+  flex:1;
+  padding:11px;
+  border:0;
+  border-radius:5px;
+  cursor:pointer
+}
+
+.save-modal{
+  background:#c5161d;
+  color:#fff
+}
+
+.close-modal{
+  background:#333;
+  color:#fff
+}
+
+@media(max-width:700px){
+
+  .grid,
+  .roles-grid,
+  .cv-grid{
+    grid-template-columns:1fr
+  }
+
+  .physical-grid{
+    grid-template-columns:1fr 1fr
+  }
+
+  .role-list{
+    grid-template-columns:1fr
+  }
+
+  .cv-header{
+    flex-direction:column
+  }
+
+  .cv-result{
+    padding:18px
+  }
+}
+
 @media print{
-@page{size:A4 portrait;margin:0}
-html,body{width:210mm;height:297mm;margin:0!important;background:#fff!important;color:#111!important}
-.page{width:210mm;min-height:297mm;padding:0!important;background:#fff!important}
-.logo-title,.form-box,.actions,.status,.music-control{display:none!important}
-.cv-result{display:block!important;width:210mm;height:297mm;margin:0!important;padding:8mm!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:#fff!important;color:#111!important;overflow:hidden}
-.cv-section h3{background:#111!important;color:#fff!important;border-left-color:#c5161d!important}
-.skill-fill{background:#c5161d!important}
+
+  @page{
+    size:A4 portrait;
+    margin:0
+  }
+
+  html,body{
+    width:210mm;
+    height:297mm;
+    margin:0!important;
+    background:#fff!important;
+    color:#111!important
+  }
+
+  .page{
+    width:210mm;
+    min-height:297mm;
+    padding:0!important;
+    background:#fff!important
+  }
+
+  .logo-title,
+  .form-box,
+  .actions,
+  .status,
+  .music-control{
+    display:none!important
+  }
+
+  .cv-result{
+    display:block!important;
+    width:210mm;
+    height:297mm;
+    margin:0!important;
+    padding:8mm!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    background:#fff!important;
+    color:#111!important;
+    overflow:hidden
+  }
+
+  .cv-section h3{
+    background:#111!important;
+    color:#fff!important;
+    border-left-color:#c5161d!important
+  }
+
+  .skill-fill{
+    background:#c5161d!important
+  }
 }
 </style>
 </head>
+
 <body>
 
 <div class="page">
@@ -160,8 +567,10 @@ html,body{width:210mm;height:297mm;margin:0!important;background:#fff!important;
 <div class="field full">
 <label>Esperienze precedenti</label>
 
-<textarea id="esperienze"
-placeholder="Inserisci le tue precedenti esperienze nel softair: squadre di appartenenza, anni di attività, eventi, tornei, milsim o ruoli ricoperti."></textarea>
+<textarea
+id="esperienze"
+placeholder="Inserisci le tue precedenti esperienze nel softair: squadre di appartenenza, anni di attività, eventi, tornei, milsim o ruoli ricoperti."
+></textarea>
 
 </div>
 
@@ -241,13 +650,16 @@ Supporto
 
 <div class="field">
 <label>Tiro</label>
+
 <select id="tiro">
 <option>Base</option>
 <option>Buono</option>
 <option>Avanzato</option>
 <option>Esperto</option>
 </select>
+
 </div>
+
 <div class="field">
 
 <label>Movimento tattico</label>
@@ -269,10 +681,9 @@ Supporto
 type="button"
 class="main-button"
 style="margin:0"
-id="openEnv">
-
+id="openEnv"
+>
 SELEZIONA AMBIENTE
-
 </button>
 
 <input type="hidden" id="ambiente">
@@ -320,20 +731,22 @@ SELEZIONA AMBIENTE
 
 </div>
 
-<div class="section-title">
-STRUTTURA FISICA
-</div>
+<div class="section-title">STRUTTURA FISICA</div>
 
 <div class="grid">
 
 <div class="field">
+
 <label>Altezza (cm)</label>
 <input id="altezza" type="number">
+
 </div>
 
 <div class="field">
+
 <label>Peso (kg)</label>
 <input id="peso" type="number">
+
 </div>
 
 <div class="field full">
@@ -342,7 +755,8 @@ STRUTTURA FISICA
 
 <textarea
 id="sport"
-placeholder="Indica eventuali sport praticati, anche in passato, specificando se possibile il livello o gli anni di pratica."></textarea>
+placeholder="Indica eventuali sport praticati, anche in passato, specificando se possibile il livello o gli anni di pratica."
+></textarea>
 
 </div>
 
@@ -387,17 +801,14 @@ placeholder="Indica eventuali sport praticati, anche in passato, specificando se
 
 </div>
 
-<div class="section-title">
-EQUIPAGGIAMENTO
-</div>
+<div class="section-title">EQUIPAGGIAMENTO</div>
 
 <textarea
 id="equipaggiamento"
-placeholder="Indica l'equipaggiamento personale disponibile: replica, protezioni, radio, ottiche, equipaggiamento tattico, ecc."></textarea>
+placeholder="Indica l'equipaggiamento personale disponibile: replica, protezioni, radio, ottiche, equipaggiamento tattico, ecc."
+></textarea>
 
-<div class="section-title">
-DISPONIBILITÀ
-</div>
+<div class="section-title">DISPONIBILITÀ</div>
 
 <div class="grid">
 
@@ -428,36 +839,29 @@ DISPONIBILITÀ
 
 </div>
 
-<div class="section-title">
-PRESENTAZIONE PERSONALE
-</div>
+<div class="section-title">PRESENTAZIONE PERSONALE</div>
 
 <textarea
 id="presentazione"
-placeholder="Parlaci di te, delle tue esperienze e del tuo modo di giocare..."></textarea>
+placeholder="Parlaci di te, delle tue esperienze e del tuo modo di giocare..."
+></textarea>
 
 <button
 class="main-button"
 id="generateButton"
-type="button">
-
+type="button"
+>
 GENERA IL MIO CV
-
 </button>
 
 </div>
-
 
 <div class="cv-result" id="cvResult">
 
 <div class="cv-header">
 
 <div id="cvPhotoContainer">
-
-<div class="cv-photo-placeholder">
-📷
-</div>
-
+<div class="cv-photo-placeholder">📷</div>
 </div>
 
 <div>
@@ -467,9 +871,7 @@ GENERA IL MIO CV
 <div class="cv-nickname" id="cvNickname"></div>
 
 <p id="cvLocalita"></p>
-
 <p id="cvEta"></p>
-
 <p id="cvWhatsapp"></p>
 
 <p>
@@ -478,21 +880,15 @@ GENERA IL MIO CV
 </p>
 
 </div>
-
 </div>
-
 
 <div class="cv-section">
 
 <h3>RUOLI</h3>
 
-<div
-id="cvRuoli"
-class="badges">
-</div>
+<div id="cvRuoli" class="badges"></div>
 
 </div>
-
 
 <div class="cv-section">
 
@@ -501,19 +897,13 @@ class="badges">
 <div class="cv-grid">
 
 <div>
-
 <strong>Anni di esperienza</strong>
-
 <p id="cvEsperienza"></p>
-
 </div>
 
 <div>
-
 <strong>Squadra attuale</strong>
-
 <p id="cvSquadra"></p>
-
 </div>
 
 </div>
@@ -524,7 +914,6 @@ class="badges">
 
 </div>
 
-
 <div class="cv-section">
 
 <h3>COMPETENZE</h3>
@@ -532,7 +921,6 @@ class="badges">
 <div id="cvSkills"></div>
 
 </div>
-
 
 <div class="cv-section">
 
@@ -571,9 +959,7 @@ class="badges">
 </p>
 
 </div>
-
 </div>
-
 
 <div class="cv-section">
 
@@ -582,7 +968,6 @@ class="badges">
 <p id="cvEquipaggiamento"></p>
 
 </div>
-
 
 <div class="cv-section">
 
@@ -600,7 +985,6 @@ class="badges">
 
 </div>
 
-
 <div class="cv-section">
 
 <h3>PRESENTAZIONE PERSONALE</h3>
@@ -611,161 +995,102 @@ class="badges">
 
 </div>
 
-
 <div class="actions" id="actions">
 
 <button
 class="action-button pdf-button"
-id="pdfButton">
-
+id="pdfButton"
+>
 📄 SCARICA IL CV IN PDF
-
 </button>
 
 <a
 class="action-button whatsapp-button"
-href="https://wa.me/393501077763?text=Salve%2C%20ho%20generato%20il%20mio%20CV%20Operatore%20SOAS.">
-
+href="https://wa.me/393501077763?text=Salve%2C%20ho%20generato%20il%20mio%20CV%20Operatore%20SOAS."
+>
 💬 APRI CHAT WHATSAPP SOAS
-
 </a>
 
 <button
 class="action-button print-button"
-id="printButton">
-
+id="printButton"
+>
 🖨️ STAMPA / SALVA PDF
-
 </button>
 
 </div>
 
-<div
-class="status"
-id="status">
-</div>
+<div class="status" id="status"></div>
 
 </div>
 </div>
 
-
-<button
-class="music-control"
-id="musicBtn">
-
+<button class="music-control" id="musicBtn">
 🔇 MUSICA OFF
-
 </button>
 
-
-<audio
-id="bgMusic"
-loop
-preload="auto">
-
-<source
-src="musica.mp3"
-type="audio/mpeg">
-
+<audio id="bgMusic" loop preload="auto">
+<source src="musica.mp3" type="audio/mpeg">
 </audio>
 
-
-<div
-class="modal"
-id="envModal">
+<div class="modal" id="envModal">
 
 <div class="modal-box">
 
-<h2>
-COMPETENZE AMBIENTALI
-</h2>
+<h2>COMPETENZE AMBIENTALI</h2>
 
 <p>
 Seleziona l'ambiente operativo nel quale ritieni di esprimere al meglio le tue capacità.
 </p>
 
 <label class="modal-option">
-
-<input
-type="radio"
-name="amb"
-value="Boschivo">
-
+<input type="radio" name="amb" value="Boschivo">
 🌲 BOSCHIVO
-
 </label>
 
 <label class="modal-option">
-
-<input
-type="radio"
-name="amb"
-value="Urbano">
-
+<input type="radio" name="amb" value="Urbano">
 🏙️ URBANO
-
 </label>
 
 <label class="modal-option">
-
-<input
-type="radio"
-name="amb"
-value="Entrambi">
-
+<input type="radio" name="amb" value="Entrambi">
 🔄 ENTRAMBI
-
 </label>
-
 
 <div class="modal-actions">
 
-<button
-class="close-modal"
-id="closeEnv">
-
+<button class="close-modal" id="closeEnv">
 ANNULLA
-
 </button>
 
-<button
-class="save-modal"
-id="saveEnv">
-
+<button class="save-modal" id="saveEnv">
 CONFERMA
-
 </button>
 
 </div>
 
 </div>
 </div>
-
 
 <script>
 
 "use strict";
 
-const $ =
-id => document.getElementById(id);
+const $=id=>document.getElementById(id);
 
-const val =
-id => ($(id)?.value || "").trim();
+const val=id=>($(id)?.value||"").trim();
 
+let fotoBase64="";
 
-let fotoBase64 = "";
+let fotoMime="image/jpeg";
 
-let fotoMime = "image/jpeg";
+let operatorId=localStorage.getItem("soas_operator_id");
 
+if(!operatorId){
 
-let operatorId =
-localStorage.getItem("soas_operator_id");
-
-
-if (!operatorId) {
-
-operatorId =
-"SOAS-" +
+operatorId=
+"SOAS-"+
 Math.random()
 .toString(36)
 .substring(2,6)
@@ -778,34 +1103,26 @@ operatorId
 
 }
 
-
-$("cvId").textContent =
-operatorId;
+$("cvId").textContent=operatorId;
 
 
-$("foto").addEventListener(
-"change",
-e => {
+/* FOTO */
 
-const f =
-e.target.files?.[0];
+$("foto").addEventListener("change",e=>{
 
-if (!f) return;
+const f=e.target.files?.[0];
 
-fotoMime =
-f.type ||
-"image/jpeg";
+if(!f)return;
 
-const r =
-new FileReader();
+fotoMime=f.type||"image/jpeg";
 
-r.onload =
-x => {
+const r=new FileReader();
 
-fotoBase64 =
-x.target.result;
+r.onload=x=>{
 
-$("photoPreview").innerHTML =
+fotoBase64=x.target.result;
+
+$("photoPreview").innerHTML=
 `<img src="${fotoBase64}" alt="Foto operatore">`;
 
 };
@@ -815,68 +1132,47 @@ r.readAsDataURL(f);
 });
 
 
-$("openEnv").onclick =
-() => {
+/* AMBIENTE */
 
-$("envModal")
-.classList
-.add("open");
+$("openEnv").onclick=()=>
+$("envModal").classList.add("open");
 
-};
+$("closeEnv").onclick=()=>
+$("envModal").classList.remove("open");
 
+$("saveEnv").onclick=()=>{
 
-$("closeEnv").onclick =
-() => {
-
-$("envModal")
-.classList
-.remove("open");
-
-};
-
-
-$("saveEnv").onclick =
-() => {
-
-const c =
+const c=
 document.querySelector(
 'input[name="amb"]:checked'
 );
 
-if (c) {
+if(c){
 
-$("ambiente").value =
-c.value;
+$("ambiente").value=c.value;
 
-$("openEnv").textContent =
+$("openEnv").textContent=
 c.value.toUpperCase();
 
 }
 
-$("envModal")
-.classList
-.remove("open");
+$("envModal").classList.remove("open");
 
 };
 
 
-const level = {
+/* SKILL */
 
+const level={
 Base:25,
-
 Buono:50,
-
 Avanzato:75,
-
 Esperto:100
-
 };
 
-
-function skill(name,value) {
+function skill(name,value){
 
 return `
-
 <div class="skill-card">
 
 <div class="skill-head">
@@ -891,220 +1187,155 @@ return `
 
 <div
 class="skill-fill"
-style="width:${level[value] || 25}%">
+style="width:${level[value]||25}%"
+></div>
 
 </div>
 
 </div>
-
-</div>
-
 `;
 
 }
 
 
-$("generateButton").onclick =
-() => {
+/* GENERA CV */
 
-const nome =
-val("nome");
+$("generateButton").onclick=()=>{
 
-const cognome =
-val("cognome");
+const nome=val("nome");
 
+const cognome=val("cognome");
 
-if (!nome || !cognome) {
+if(!nome||!cognome){
 
-alert(
-"Inserisci almeno Nome e Cognome."
-);
+alert("Inserisci almeno Nome e Cognome.");
 
 return;
 
 }
 
+$("cvNome").textContent=
+nome+" "+cognome;
 
-$("cvNome").textContent =
-nome + " " + cognome;
-
-
-$("cvNickname").textContent =
+$("cvNickname").textContent=
 val("nickname")
-? `"${val("nickname")}"`
-: "";
+?`"${val("nickname")}"`
+:"";
 
-
-$("cvLocalita").textContent =
-[
-val("citta"),
-val("provincia")
-]
+$("cvLocalita").textContent=
+[val("citta"),val("provincia")]
 .filter(Boolean)
 .join(" - ");
 
-
-$("cvEta").textContent =
+$("cvEta").textContent=
 val("eta")
-? "Età: " + val("eta")
-: "";
+?"Età: "+val("eta")
+:"";
 
-
-$("cvWhatsapp").textContent =
+$("cvWhatsapp").textContent=
 val("whatsapp")
-? "WhatsApp: " + val("whatsapp")
-: "";
+?"WhatsApp: "+val("whatsapp")
+:"";
 
-
-const roles =
-[
-...document.querySelectorAll(
+const roles=
+[...document.querySelectorAll(
 '.role input:checked'
-)
-]
-.map(x => x.value);
+)]
+.map(x=>x.value);
 
-
-$("cvRuoli").innerHTML =
+$("cvRuoli").innerHTML=
 roles.length
-? roles
-.map(
-x =>
-`<span class="badge">${x}</span>`
-)
+?roles
+.map(x=>`<span class="badge">${x}</span>`)
 .join("")
-: "<span>Nessun ruolo selezionato</span>";
+:"<span>Nessun ruolo selezionato</span>";
 
+$("cvEsperienza").textContent=
+val("esperienza")||"-";
 
-$("cvEsperienza").textContent =
-val("esperienza") || "-";
+$("cvSquadra").textContent=
+val("squadra")||"-";
 
+$("cvEsperienze").textContent=
+val("esperienze")||"-";
 
-$("cvSquadra").textContent =
-val("squadra") || "-";
+$("cvSkills").innerHTML=
 
-
-$("cvEsperienze").textContent =
-val("esperienze") || "-";
-
-
-$("cvSkills").innerHTML =
-
-skill(
-"Tiro",
-val("tiro")
-)
-
-+
+skill("Tiro",val("tiro"))+
 
 skill(
 "Movimento tattico",
 val("movimento")
-)
-
-+
+)+
 
 skill(
 "Competenze ambientali",
-val("ambiente") || "Non selezionato"
-)
-
-+
+val("ambiente")||"Non selezionato"
+)+
 
 skill(
 "Comunicazioni radio",
 val("radio")
-)
-
-+
+)+
 
 skill(
 "Navigazione",
 val("navigazione")
-)
-
-+
+)+
 
 skill(
 "Primo soccorso",
 val("soccorso")
 );
 
-
-$("cvAltezza").textContent =
+$("cvAltezza").textContent=
 val("altezza")
-? val("altezza") + " cm"
-: "-";
+?val("altezza")+" cm"
+:"-";
 
-
-$("cvPeso").textContent =
+$("cvPeso").textContent=
 val("peso")
-? val("peso") + " kg"
-: "-";
+?val("peso")+" kg"
+:"-";
 
+$("cvSport").textContent=
+val("sport")||"-";
 
-$("cvSport").textContent =
-val("sport") || "-";
-
-
-$("cvAtletica").textContent =
+$("cvAtletica").textContent=
 val("atletica");
 
-
-$("cvResistenza").textContent =
+$("cvResistenza").textContent=
 val("resistenza");
 
-
-$("cvCondizione").textContent =
+$("cvCondizione").textContent=
 val("condizione");
 
+$("cvEquipaggiamento").textContent=
+val("equipaggiamento")||"-";
 
-$("cvEquipaggiamento").textContent =
-val("equipaggiamento") || "-";
-
-
-$("cvDisponibilita").textContent =
+$("cvDisponibilita").textContent=
 val("disponibilita");
 
-
-$("cvTrasferte").textContent =
+$("cvTrasferte").textContent=
 val("trasferte");
 
+$("cvPresentazione").textContent=
+val("presentazione")||"-";
 
-$("cvPresentazione").textContent =
-val("presentazione") || "-";
-
-
-$("cvPhotoContainer").innerHTML =
+$("cvPhotoContainer").innerHTML=
 
 fotoBase64
-
 ?
-
-`<img
-class="cv-photo"
-src="${fotoBase64}"
-alt="Foto operatore">`
-
+`<img class="cv-photo" src="${fotoBase64}" alt="Foto operatore">`
 :
+`<div class="cv-photo-placeholder">📷</div>`;
 
-`<div
-class="cv-photo-placeholder">
-📷
-</div>`;
+$("cvResult").style.display="block";
 
+$("actions").style.display="flex";
 
-$("cvResult").style.display =
-"block";
-
-
-$("actions").style.display =
-"flex";
-
-
-$("status").textContent =
+$("status").textContent=
 "✓ CV generato correttamente";
-
 
 $("cvResult").scrollIntoView({
 behavior:"smooth"
@@ -1113,32 +1344,24 @@ behavior:"smooth"
 };
 
 
-async function creaPDF() {
+/* PDF */
 
-const {jsPDF} =
-window.jspdf;
+async function creaPDF(){
 
+const {jsPDF}=window.jspdf;
 
-if (!jsPDF)
-throw Error(
-"Libreria PDF non caricata."
-);
+if(!jsPDF)
+throw Error("Libreria PDF non caricata.");
 
-
-const pdf =
-new jsPDF({
+const pdf=new jsPDF({
 orientation:"portrait",
 unit:"mm",
 format:"a4"
 });
 
+const nome=$("cvNome").textContent;
 
-const nome =
-$("cvNome").textContent;
-
-
-let y = 18;
-
+let y=18;
 
 pdf.setFont(
 "helvetica",
@@ -1153,9 +1376,7 @@ pdf.text(
 y
 );
 
-
-y += 8;
-
+y+=8;
 
 pdf.setFontSize(11);
 
@@ -1165,30 +1386,26 @@ pdf.text(
 y
 );
 
+y+=12;
 
-y += 12;
+if(fotoBase64){
 
-
-if (fotoBase64) {
-
-try {
+try{
 
 pdf.addImage(
 fotoBase64,
 fotoMime.includes("png")
-? "PNG"
-: "JPEG",
+?"PNG"
+:"JPEG",
 150,
 12,
 42,
 50
 );
 
-}
-catch(e){}
+}catch(e){}
 
 }
-
 
 pdf.setFontSize(17);
 
@@ -1198,9 +1415,7 @@ nome,
 y
 );
 
-
-y += 7;
-
+y+=7;
 
 pdf.setFont(
 "helvetica",
@@ -1209,44 +1424,33 @@ pdf.setFont(
 
 pdf.setFontSize(9);
 
-
 [
 $("cvNickname").textContent,
 $("cvLocalita").textContent,
 $("cvEta").textContent,
 $("cvWhatsapp").textContent,
-"Operator ID: " + operatorId
+"Operator ID: "+operatorId
 ]
-
 .filter(Boolean)
+.forEach(t=>{
 
-.forEach(
-t => {
+pdf.text(t,15,y);
 
-pdf.text(
-t,
-15,
-y
-);
-
-y += 5;
+y+=5;
 
 });
 
+y+=4;
 
-y += 4;
+function sec(t,s){
 
-
-function sec(t,s) {
-
-if (y > 270) {
+if(y>270){
 
 pdf.addPage();
 
-y = 18;
+y=18;
 
 }
-
 
 pdf.setFont(
 "helvetica",
@@ -1261,9 +1465,7 @@ t,
 y
 );
 
-
-y += 5;
-
+y+=5;
 
 pdf.setFont(
 "helvetica",
@@ -1272,13 +1474,11 @@ pdf.setFont(
 
 pdf.setFontSize(9);
 
-
-const lines =
+const lines=
 pdf.splitTextToSize(
-s || "-",
+s||"-",
 175
 );
-
 
 pdf.text(
 lines,
@@ -1286,121 +1486,86 @@ lines,
 y
 );
 
-
-y +=
-lines.length * 4.5 + 7;
+y+=
+lines.length*4.5+7;
 
 }
-
 
 sec(
 "RUOLI",
 $("cvRuoli").innerText
 );
 
-
 sec(
 "ESPERIENZA",
-
-"Anni di esperienza: " +
-$("cvEsperienza").textContent +
-
-"\nSquadra attuale: " +
-$("cvSquadra").textContent +
-
-"\nEsperienze precedenti: " +
+"Anni di esperienza: "+
+$("cvEsperienza").textContent+
+"\nSquadra attuale: "+
+$("cvSquadra").textContent+
+"\nEsperienze precedenti: "+
 $("cvEsperienze").textContent
 );
 
-
 sec(
 "COMPETENZE",
-
-"Tiro: " +
-val("tiro") +
-
-"\nMovimento tattico: " +
-val("movimento") +
-
-"\nAmbiente: " +
-(val("ambiente") || "-") +
-
-"\nRadio: " +
-val("radio") +
-
-"\nNavigazione: " +
-val("navigazione") +
-
-"\nPrimo soccorso: " +
+"Tiro: "+val("tiro")+
+"\nMovimento tattico: "+
+val("movimento")+
+"\nAmbiente: "+
+(val("ambiente")||"-")+
+"\nRadio: "+val("radio")+
+"\nNavigazione: "+
+val("navigazione")+
+"\nPrimo soccorso: "+
 val("soccorso")
 );
 
-
 sec(
 "STRUTTURA FISICA",
-
-"Altezza: " +
-(val("altezza") || "-") +
-" cm" +
-
-"\nPeso: " +
-(val("peso") || "-") +
-" kg" +
-
-"\nAltri sport: " +
-(val("sport") || "-") +
-
-"\nPreparazione atletica: " +
-val("atletica") +
-
-"\nResistenza fisica: " +
-val("resistenza") +
-
-"\nCondizione fisica: " +
+"Altezza: "+
+(val("altezza")||"-")+
+" cm\nPeso: "+
+(val("peso")||"-")+
+" kg\nAltri sport: "+
+(val("sport")||"-")+
+"\nPreparazione atletica: "+
+val("atletica")+
+"\nResistenza fisica: "+
+val("resistenza")+
+"\nCondizione fisica: "+
 val("condizione")
 );
-
 
 sec(
 "EQUIPAGGIAMENTO",
 val("equipaggiamento")
 );
 
-
 sec(
 "DISPONIBILITÀ",
-
-"Disponibilità: " +
-val("disponibilita") +
-
-"\nTrasferte: " +
+"Disponibilità: "+
+val("disponibilita")+
+"\nTrasferte: "+
 val("trasferte")
 );
-
 
 sec(
 "PRESENTAZIONE PERSONALE",
 val("presentazione")
 );
 
+return{
 
-return {
-
-blob:
-pdf.output("blob"),
+blob:pdf.output("blob"),
 
 filename:
-"CV_SOAS_" +
-
+"CV_SOAS_"+
 nome
 .replace(/\s+/g,"_")
 .replace(
 /[^a-zA-Z0-9_-]/g,
 ""
-)
-
-+
-
+)+
 ".pdf"
 
 };
@@ -1408,47 +1573,34 @@ nome
 }
 
 
-$("pdfButton").onclick =
-async () => {
+$("pdfButton").onclick=
+async()=>{
 
-try {
+try{
 
-const r =
-await creaPDF();
+const r=await creaPDF();
 
+const u=
+URL.createObjectURL(r.blob);
 
-const u =
-URL.createObjectURL(
-r.blob
-);
-
-
-const a =
+const a=
 document.createElement("a");
 
+a.href=u;
 
-a.href = u;
-
-a.download =
-r.filename;
-
+a.download=r.filename;
 
 a.click();
 
-
 setTimeout(
-() =>
-URL.revokeObjectURL(u),
+()=>URL.revokeObjectURL(u),
 1500
 );
 
-
-$("status").textContent =
+$("status").textContent=
 "✓ PDF generato correttamente";
 
-}
-
-catch(e) {
+}catch(e){
 
 console.error(e);
 
@@ -1461,57 +1613,139 @@ alert(
 };
 
 
-$("printButton").onclick =
-() =>
+$("printButton").onclick=()=>
 window.print();
 
 
-const music =
-$("bgMusic");
+/* =========================
+   MUSICA
+   ========================= */
+
+const music=$("bgMusic");
+
+const musicBtn=$("musicBtn");
+
+music.volume=.18;
+
+let musicStarted=false;
 
 
-const musicBtn =
-$("musicBtn");
+/* AVVIA MUSICA */
 
+async function startMusic(){
 
-music.volume =
-0.18;
+if(!music.paused)
+return;
 
-
-musicBtn.onclick =
-async () => {
-
-if (music.paused) {
-
-try {
+try{
 
 await music.play();
 
-musicBtn.textContent =
+musicStarted=true;
+
+musicBtn.textContent=
 "🔊 MUSICA ON";
 
-}
+}catch(e){
 
-catch(e) {
-
-alert(
-"Carica prima musica.mp3 nella stessa cartella di cv.html."
+console.log(
+"Riproduzione bloccata dal browser:",
+e
 );
 
 }
 
 }
 
-else {
+
+/* PULSANTE MUSICA */
+
+musicBtn.onclick=
+async function(e){
+
+e.stopPropagation();
+
+if(music.paused){
+
+await startMusic();
+
+}else{
 
 music.pause();
 
-musicBtn.textContent =
+musicBtn.textContent=
 "🔇 MUSICA OFF";
 
 }
 
 };
+
+
+/* PRIMO CLICK / TOCCO SULLA PAGINA */
+
+document.addEventListener(
+"pointerdown",
+function(e){
+
+if(
+e.target===musicBtn ||
+musicBtn.contains(e.target)
+){
+
+return;
+
+}
+
+if(!musicStarted){
+
+startMusic();
+
+}
+
+},
+{
+capture:true
+}
+);
+
+
+/* AGGIORNA PULSANTE */
+
+music.addEventListener(
+"play",
+function(){
+
+musicStarted=true;
+
+musicBtn.textContent=
+"🔊 MUSICA ON";
+
+}
+);
+
+music.addEventListener(
+"pause",
+function(){
+
+musicBtn.textContent=
+"🔇 MUSICA OFF";
+
+}
+);
+
+music.addEventListener(
+"error",
+function(){
+
+console.error(
+"Errore nel caricamento di musica.mp3"
+);
+
+musicBtn.textContent=
+"⚠️ AUDIO";
+
+}
+);
 
 </script>
 
