@@ -11,12 +11,6 @@
 
     <title>SOAS Air Soft Team</title>
 
-    <!-- Loghi ufficiali dei social tramite Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-
     <style>
 
         * {
@@ -29,391 +23,190 @@
         body {
             width: 100%;
             min-height: 100%;
+            background: #000;
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
             min-height: 100vh;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
             overflow-x: hidden;
-
-            /* FOTO COME SFONDO */
-            background:
-                linear-gradient(
-                    rgba(0, 0, 0, 0.68),
-                    rgba(0, 0, 0, 0.78)
-                ),
-                url("foto-team.npg");
-
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
         }
 
-        /* Effetto scuro sopra la foto */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
+        /* CONTENITORE DELLA HOMEPAGE */
 
-            background:
-                radial-gradient(
-                    circle at center,
-                    transparent 0%,
-                    rgba(0, 0, 0, 0.35) 60%,
-                    rgba(0, 0, 0, 0.75) 100%
-                );
-
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Riquadro principale */
-        .container {
+        .homepage {
             position: relative;
-            z-index: 1;
-
-            width: 92%;
-            max-width: 460px;
-
-            text-align: center;
-
-            padding: 35px 25px 30px;
-
-            background: rgba(8, 8, 8, 0.78);
-
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-
-            box-shadow:
-                0 25px 60px rgba(0, 0, 0, 0.75),
-                inset 0 0 30px rgba(255, 255, 255, 0.025);
-
-            backdrop-filter: blur(8px);
-        }
-
-        /* FOTO ROTONDA */
-        .team-image {
-            width: 155px;
-            height: 155px;
-
-            object-fit: cover;
-
-            border-radius: 50%;
-
-            border: 3px solid rgba(255, 255, 255, 0.7);
-
-            box-shadow:
-                0 0 0 5px rgba(0, 0, 0, 0.55),
-                0 0 35px rgba(255, 255, 255, 0.18);
-
-            margin-bottom: 22px;
-        }
-
-        /* TITOLO */
-        h1 {
-            font-size: 29px;
-            font-weight: 800;
-
-            letter-spacing: 3px;
-
-            margin-bottom: 10px;
-
-            text-transform: uppercase;
-
-            text-shadow:
-                0 3px 15px rgba(0, 0, 0, 0.9);
-        }
-
-        /* SOTTOTITOLO */
-        .subtitle {
-            color: #bdbdbd;
-
-            font-size: 15px;
-
-            letter-spacing: 1px;
-
-            margin-bottom: 28px;
-        }
-
-        /* LINEA */
-        .line {
-            width: 55px;
-            height: 2px;
-
-            margin: 0 auto 22px;
-
-            background: #777;
-
-            opacity: 0.5;
-        }
-
-        /* PULSANTI SOCIAL */
-        .social-link {
-            position: relative;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            gap: 15px;
 
             width: 100%;
+            max-width: 972px;
 
-            padding: 17px 20px;
-
-            margin: 14px 0;
-
-            border-radius: 14px;
-
-            text-decoration: none;
-
-            color: white;
-
-            font-size: 18px;
-            font-weight: 700;
-
-            letter-spacing: 0.5px;
-
-            background: rgba(30, 30, 30, 0.9);
-
-            border: 1px solid rgba(255, 255, 255, 0.16);
-
-            box-shadow:
-                0 8px 20px rgba(0, 0, 0, 0.35);
-
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease,
-                border-color 0.25s ease;
-
-            overflow: hidden;
+            line-height: 0;
         }
 
-        /* Barra colorata laterale */
-        .social-link::before {
-            content: "";
+        /* IMMAGINE HOMEPAGE */
 
+        .homepage img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+        }
+
+        /*
+        =====================================================
+        ZONE CLICCABILI
+        =====================================================
+        */
+
+        .click-area {
             position: absolute;
 
-            left: 0;
-            top: 0;
-            bottom: 0;
+            display: block;
 
-            width: 4px;
+            z-index: 10;
 
-            background: var(--social-color);
-        }
+            cursor: pointer;
 
-        /* Effetto quando passi sopra */
-        .social-link:hover {
-            transform: translateY(-3px) scale(1.015);
+            /*
+            Durante i test puoi togliere il commento
+            alla riga sotto per vedere le zone.
+            */
 
-            border-color: var(--social-color);
-
-            box-shadow:
-                0 12px 30px rgba(0, 0, 0, 0.55),
-                0 0 18px var(--social-glow);
-        }
-
-        .social-link:active {
-            transform: scale(0.98);
-        }
-
-        /* ICONE */
-        .social-link i {
-            font-size: 27px;
-
-            width: 34px;
-
-            text-align: center;
-
-            transition: transform 0.25s ease;
-        }
-
-        .social-link:hover i {
-            transform: scale(1.15);
+            /* background: rgba(255, 0, 0, 0.20); */
         }
 
         /* INSTAGRAM */
+
         .instagram {
-            --social-color: #e1306c;
-            --social-glow: rgba(225, 48, 108, 0.35);
-        }
+            left: 8.5%;
+            right: 8.5%;
 
-        .instagram i {
-            background:
-                linear-gradient(
-                    45deg,
-                    #feda75,
-                    #fa7e1e,
-                    #d62976,
-                    #962fbf,
-                    #4f5bd5
-                );
-
-            -webkit-background-clip: text;
-            background-clip: text;
-
-            -webkit-text-fill-color: transparent;
+            top: 44.5%;
+            height: 7.8%;
         }
 
         /* TIKTOK */
+
         .tiktok {
-            --social-color: #00f2ea;
-            --social-glow: rgba(0, 242, 234, 0.3);
-        }
+            left: 8.5%;
+            right: 8.5%;
 
-        .tiktok i {
-            color: #ffffff;
-
-            text-shadow:
-                2px 2px 0 #ff0050,
-                -2px -2px 0 #00f2ea;
+            top: 53%;
+            height: 7.8%;
         }
 
         /* FACEBOOK */
-        .facebook {
-            --social-color: #1877f2;
-            --social-glow: rgba(24, 119, 242, 0.35);
-        }
 
-        .facebook i {
-            color: #1877f2;
+        .facebook {
+            left: 8.5%;
+            right: 8.5%;
+
+            top: 61.5%;
+            height: 7.8%;
         }
 
         /* YOUTUBE */
+
         .youtube {
-            --social-color: #ff0000;
-            --social-glow: rgba(255, 0, 0, 0.35);
+            left: 8.5%;
+            right: 8.5%;
+
+            top: 70%;
+            height: 7.8%;
         }
 
-        .youtube i {
-            color: #ff0000;
+        /* UNISCITI AL TEAM */
+
+        .join-team {
+            left: 8.5%;
+            right: 8.5%;
+
+            top: 79.2%;
+            height: 8.8%;
         }
 
-        /* FOOTER */
-        .footer {
-            margin-top: 28px;
+        /* MOBILE */
 
-            color: #777;
+        @media (max-width: 600px) {
 
-            font-size: 12px;
-
-            letter-spacing: 1px;
-        }
-
-        /* VERSIONE TELEFONO */
-        @media (max-width: 500px) {
-
-            body {
-                background-attachment: scroll;
+            .homepage {
+                width: 100%;
             }
 
-            .container {
-                width: 94%;
-
-                padding: 30px 18px 25px;
-
-                border-radius: 20px;
-            }
-
-            .team-image {
-                width: 135px;
-                height: 135px;
-            }
-
-            h1 {
-                font-size: 24px;
-                letter-spacing: 2px;
-            }
-
-            .subtitle {
-                font-size: 14px;
-            }
-
-            .social-link {
-                padding: 16px;
-                font-size: 17px;
-            }
         }
 
     </style>
 
 </head>
 
+
 <body>
 
-    <main class="container">
+    <main class="homepage">
 
-        <!-- FOTO DEL TEAM -->
+        <!-- HOMEPAGE SOAS -->
+
         <img
-            class="team-image"
-            src="foto-team.npg"
+            src="ingresso.jpeg"
             alt="SOAS Air Soft Team"
         >
 
-        <!-- NOME DEL TEAM -->
-        <h1>SOAS AIR SOFT TEAM</h1>
-
-        <div class="line"></div>
-
-        <div class="subtitle">
-            Seguici sui nostri social
-        </div>
 
         <!-- INSTAGRAM -->
+
         <a
-            class="social-link instagram"
+            class="click-area instagram"
             href="https://www.instagram.com/soas.asd?utm_source=qr"
             target="_blank"
             rel="noopener noreferrer"
-        >
-            <i class="fa-brands fa-instagram"></i>
-            <span>SOAS.ASD</span>
-        </a>
+            aria-label="Instagram SOAS"
+        ></a>
+
 
         <!-- TIKTOK -->
+
         <a
-            class="social-link tiktok"
+            class="click-area tiktok"
             href="https://www.tiktok.com/@soas.asd?_r=1&_t=ZN-99IF5SQS9f4"
             target="_blank"
             rel="noopener noreferrer"
-        >
-            <i class="fa-brands fa-tiktok"></i>
-            <span>SOAS.ASD</span>
-        </a>
+            aria-label="TikTok SOAS"
+        ></a>
+
 
         <!-- FACEBOOK -->
+
         <a
-            class="social-link facebook"
+            class="click-area facebook"
             href="https://www.facebook.com/share/1bGvbMMJhc/?mibextid=wwXIfr"
             target="_blank"
             rel="noopener noreferrer"
-        >
-            <i class="fa-brands fa-facebook-f"></i>
-            <span>SOAS ASD</span>
-        </a>
+            aria-label="Facebook SOAS"
+        ></a>
+
 
         <!-- YOUTUBE -->
+
         <a
-            class="social-link youtube"
+            class="click-area youtube"
             href="https://www.youtube.com/@S.O.A.S-ASD/videos"
             target="_blank"
             rel="noopener noreferrer"
-        >
-            <i class="fa-brands fa-youtube"></i>
-            <span>SOAS-ASD</span>
-        </a>
+            aria-label="YouTube SOAS"
+        ></a>
 
-        <div class="footer">
-            SOAS Air Soft Team
-        </div>
+
+        <!-- UNISCITI AL TEAM -->
+
+        <a
+            class="click-area join-team"
+            href="cv.html"
+            aria-label="Unisciti al team"
+        ></a>
 
     </main>
 
