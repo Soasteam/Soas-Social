@@ -9,792 +9,816 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #050505;
-    color: white;
-}
-
-.page {
-    min-height: 100vh;
-    padding: 25px 15px;
-    background:
-        linear-gradient(rgba(0,0,0,.72), rgba(0,0,0,.78)),
-        url("sfondo-cv.jpeg") center center / cover fixed;
-}
-
-.container {
-    max-width: 950px;
-    margin: auto;
-}
-
-.logo-title {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.logo-title h1 {
-    margin: 0;
-    font-size: 32px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-.logo-title p {
-    margin-top: 8px;
-    color: #aaa;
-    letter-spacing: 2px;
-}
-
-.form-box {
-    background: rgba(10,10,10,.94);
-    border: 1px solid #333;
-    border-radius: 14px;
-    padding: 22px;
-    box-shadow: 0 0 30px rgba(0,0,0,.7);
-}
-
-.section-title {
-    color: #69ff69;
-    border-bottom: 1px solid #333;
-    padding-bottom: 8px;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    font-size: 18px;
-    letter-spacing: 1px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-}
-
-.field.full {
-    grid-column: 1 / -1;
-}
-
-label {
-    font-size: 12px;
-    color: #aaa;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-}
-
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 12px;
-    border-radius: 7px;
-    border: 1px solid #444;
-    background: #111;
-    color: white;
-    outline: none;
-    font-size: 16px;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: #69ff69;
-}
-
-textarea {
-    min-height: 110px;
-    resize: vertical;
-}
-
-.roles {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-}
-
-.role {
-    background: #111;
-    border: 1px solid #333;
-    padding: 10px;
-    border-radius: 7px;
-}
-
-.role label {
-    margin: 0;
-    color: white;
-    cursor: pointer;
-}
-
-.role input {
-    width: auto;
-    margin-right: 7px;
-}
-
-.photo-box {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.photo-preview {
-    width: 150px;
-    height: 180px;
-    border: 2px dashed #555;
-    border-radius: 8px;
-    margin: 10px auto 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #111;
-    color: #777;
-}
-
-.photo-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.photo-input {
-    display: block;
-    max-width: 100%;
-    margin: auto;
-}
-
-.main-button {
-    width: 100%;
-    padding: 16px;
-    margin-top: 25px;
-    background: #69ff69;
-    border: none;
-    border-radius: 8px;
-    color: #000;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    letter-spacing: 1px;
-}
-
-.main-button:hover {
-    background: #42e842;
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#020302;
+color:white;
 }
 
-.cv-result {
-    display: none;
-    margin-top: 30px;
-    background: white;
-    color: #111;
-    padding: 30px;
-    border-radius: 12px;
+.page{
+min-height:100vh;
+padding:18px 12px;
+background:
+linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.84)),
+url("sfondo-cv.jpeg") center/cover fixed;
 }
 
-.cv-header {
-    display: flex;
-    gap: 25px;
-    align-items: flex-start;
-    border-bottom: 3px solid #111;
-    padding-bottom: 20px;
+.container{
+max-width:980px;
+margin:auto;
 }
 
-.cv-photo {
-    width: 150px;
-    height: 180px;
-    object-fit: cover;
-    border: 2px solid #111;
-    display: block;
+.logo-title{
+position:relative;
+padding:18px 12px 20px;
+margin-bottom:18px;
+border:1px solid #263226;
+background:rgba(4,8,4,.72);
+box-shadow:0 0 30px rgba(0,0,0,.5);
+overflow:hidden;
+text-align:center;
 }
 
-.cv-photo-placeholder {
-    width: 150px;
-    height: 180px;
-    border: 2px solid #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #eee;
+.logo-title:before{
+content:"SOAS // OPERATOR REGISTRY";
+position:absolute;
+top:7px;
+left:12px;
+font-size:9px;
+letter-spacing:2px;
+color:#4d704d;
 }
 
-.cv-name {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 5px;
+.logo-title h1{
+margin:0;
+font-size:30px;
+letter-spacing:4px;
+text-shadow:0 0 12px rgba(105,255,105,.2);
 }
 
-.cv-nickname {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 15px;
+.logo-title p{
+font-size:11px;
+color:#69ff69;
+letter-spacing:4px;
+margin:8px 0 0;
 }
 
-.cv-section {
-    margin-top: 25px;
+.form-box{
+background:rgba(7,10,7,.95);
+border:1px solid #293529;
+border-radius:4px;
+padding:22px;
+box-shadow:0 15px 45px rgba(0,0,0,.65);
+position:relative;
 }
 
-.cv-section h3 {
-    background: #111;
-    color: white;
-    padding: 8px;
-    margin-bottom: 10px;
-    font-size: 15px;
+.form-box:after{
+content:"CLASSIFIED // SOAS ASD";
+position:absolute;
+right:14px;
+top:10px;
+font-size:8px;
+color:#405340;
+letter-spacing:2px;
 }
 
-.cv-section p {
-    margin: 7px 0;
-    white-space: pre-wrap;
+.section-title{
+color:#69ff69;
+border-bottom:1px solid #283828;
+padding:10px 0 8px;
+margin-top:26px;
+margin-bottom:15px;
+font-size:14px;
+letter-spacing:2px;
+position:relative;
 }
-
-.cv-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
-
-.actions {
-    display: none;
-    margin-top: 20px;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.action-button {
-    flex: 1;
-    min-width: 200px;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.pdf-button {
-    background: #222;
-    color: white;
-}
-
-.whatsapp-button {
-    background: #25D366;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.whatsapp-button:hover {
-    background: #1ebe5d;
-}
-
-.print-button {
-    background: #555;
-    color: white;
-}
-
-.status {
-    text-align: center;
-    margin-top: 15px;
-    color: #69ff69;
-}
-
-
-/* ===== SOAS V2 TACTICAL UI ===== */
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #020302;
+.section-title:before{
+content:"//";
+margin-right:8px;
+color:#3e8b3e;
 }
 
-.page {
-    padding: 18px 12px;
-    background:
-        linear-gradient(
-            rgba(0,0,0,.78),
-            rgba(0,0,0,.84)
-        ),
-        url("sfondo-cv.jpeg") center/cover fixed;
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
 }
 
-.container {
-    max-width: 980px;
+.field{
+display:flex;
+flex-direction:column;
 }
 
-.logo-title {
-    position: relative;
-    padding: 18px 12px 20px;
-    margin-bottom: 18px;
-    border: 1px solid #263226;
-    background: rgba(4,8,4,.72);
-    box-shadow: 0 0 30px rgba(0,0,0,.5);
-    overflow: hidden;
+.field.full{
+grid-column:1/-1;
 }
 
-.logo-title:before {
-    content: "SOAS // OPERATOR REGISTRY";
-    position: absolute;
-    top: 7px;
-    left: 12px;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: #4d704d;
+label{
+font-size:12px;
+color:#aaa;
+margin-bottom:6px;
+text-transform:uppercase;
 }
 
-.logo-title h1 {
-    font-size: 30px;
-    letter-spacing: 4px;
-    text-shadow: 0 0 12px rgba(105,255,105,.2);
+input,select,textarea{
+width:100%;
+padding:12px;
+border-radius:3px;
+border:1px solid #354235;
+background:#0b100b;
+color:white;
+outline:none;
+font-size:16px;
+transition:.2s;
 }
 
-.logo-title p {
-    font-size: 11px;
-    color: #69ff69;
-    letter-spacing: 4px;
-    margin-bottom: 0;
+input:focus,select:focus,textarea:focus{
+border-color:#69ff69;
+box-shadow:0 0 0 2px rgba(105,255,105,.08);
 }
 
-.form-box {
-    background: rgba(7,10,7,.95);
-    border: 1px solid #293529;
-    border-radius: 4px;
-    padding: 22px;
-    box-shadow: 0 15px 45px rgba(0,0,0,.65);
-    position: relative;
+textarea{
+min-height:110px;
+resize:vertical;
 }
 
-.form-box:after {
-    content: "CLASSIFIED // SOAS ASD";
-    position: absolute;
-    right: 14px;
-    top: 10px;
-    font-size: 8px;
-    color: #405340;
-    letter-spacing: 2px;
+.photo-box{
+text-align:center;
+margin-bottom:20px;
 }
 
-.section-title {
-    color: #69ff69;
-    border-bottom: 1px solid #283828;
-    padding: 10px 0 8px;
-    margin-top: 26px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    letter-spacing: 2px;
-    position: relative;
+.photo-preview{
+width:150px;
+height:180px;
+border:1px dashed #486048;
+border-radius:3px;
+margin:10px auto 15px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+background:#080c08;
+color:#777;
+box-shadow:inset 0 0 25px rgba(0,0,0,.7);
 }
 
-.section-title:before {
-    content: "//";
-    margin-right: 8px;
-    color: #3e8b3e;
+.photo-preview img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-input,
-select,
-textarea {
-    border-radius: 3px;
-    border: 1px solid #354235;
-    background: #0b100b;
-    transition: .2s;
+.photo-input{
+display:block;
+max-width:100%;
+margin:auto;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: #69ff69;
-    box-shadow: 0 0 0 2px rgba(105,255,105,.08);
+.roles{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px;
 }
 
-.role {
-    background: linear-gradient(135deg,#0b100b,#111711);
-    border: 1px solid #2c382c;
-    border-radius: 3px;
-    transition: .2s;
+.role{
+background:linear-gradient(135deg,#0b100b,#111711);
+border:1px solid #2c382c;
+border-radius:3px;
+padding:10px;
+transition:.2s;
 }
 
-.role:hover {
-    border-color: #69ff69;
-    transform: translateY(-1px);
+.role:hover{
+border-color:#69ff69;
+transform:translateY(-1px);
 }
 
-.role input {
-    accent-color: #69ff69;
+.role label{
+margin:0;
+color:white;
+cursor:pointer;
 }
 
-.photo-preview {
-    border: 1px dashed #486048;
-    border-radius: 3px;
-    background: #080c08;
-    box-shadow: inset 0 0 25px rgba(0,0,0,.7);
+.role input{
+width:auto;
+margin-right:7px;
+accent-color:#69ff69;
 }
 
-.main-button {
-    border-radius: 3px;
-    background: #69ff69;
-    box-shadow: 0 0 18px rgba(105,255,105,.15);
-    letter-spacing: 2px;
+.main-button{
+width:100%;
+padding:16px;
+margin-top:25px;
+background:#69ff69;
+border:none;
+border-radius:3px;
+color:#000;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+letter-spacing:2px;
+box-shadow:0 0 18px rgba(105,255,105,.15);
 }
 
-.main-button:hover {
-    box-shadow: 0 0 25px rgba(105,255,105,.3);
-    transform: translateY(-1px);
+.main-button:hover{
+box-shadow:0 0 25px rgba(105,255,105,.3);
+transform:translateY(-1px);
 }
 
 
-/* ===== GENERATED OPERATOR PROFILE ===== */
+/* =========================
+   CV GENERATO
+========================= */
 
-.cv-result {
-    position: relative;
-    background: #f4f5f2;
-    padding: 0;
-    border-radius: 3px;
-    overflow: hidden;
-    box-shadow: 0 18px 50px rgba(0,0,0,.7);
-    border: 1px solid #252b25;
+.cv-result{
+display:none;
+margin-top:30px;
+position:relative;
+background:#f4f5f2;
+color:#111;
+padding:0;
+border-radius:3px;
+overflow:hidden;
+box-shadow:0 18px 50px rgba(0,0,0,.7);
+border:1px solid #252b25;
 }
 
-.cv-result:before {
-    content: "SOAS ASD // OPERATOR PROFILE";
-    display: block;
-    background: #101510;
-    color: #69ff69;
-    font-size: 10px;
-    letter-spacing: 3px;
-    padding: 9px 16px;
-    border-bottom: 3px solid #69ff69;
+.cv-result:before{
+content:"SOAS ASD // OPERATOR PROFILE";
+display:block;
+background:#101510;
+color:#69ff69;
+font-size:10px;
+letter-spacing:3px;
+padding:9px 16px;
+border-bottom:3px solid #69ff69;
 }
 
-.cv-header {
-    position: relative;
-    padding: 24px;
-    background: linear-gradient(135deg,#f8faf7,#e7ebe6);
-    border-bottom: 3px solid #111;
-    gap: 22px;
+.cv-header{
+position:relative;
+padding:24px;
+background:linear-gradient(135deg,#f8faf7,#e7ebe6);
+border-bottom:3px solid #111;
+display:flex;
+gap:22px;
+align-items:flex-start;
 }
 
-.cv-header:after {
-    content: "OPERATOR";
-    position: absolute;
-    right: 18px;
-    bottom: 12px;
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: #9ba49b;
+.cv-header:after{
+content:"OPERATOR";
+position:absolute;
+right:18px;
+bottom:12px;
+font-size:9px;
+letter-spacing:3px;
+color:#9ba49b;
 }
 
 .cv-photo,
-.cv-photo-placeholder {
-    width: 145px;
-    height: 175px;
-    border: 3px solid #111;
-    box-shadow: 5px 5px 0 #69ff69;
-    object-fit: cover;
+.cv-photo-placeholder{
+width:145px;
+height:175px;
+border:3px solid #111;
+box-shadow:5px 5px 0 #69ff69;
+object-fit:cover;
 }
 
-.cv-name {
-    font-size: 30px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+.cv-photo-placeholder{
+display:flex;
+align-items:center;
+justify-content:center;
+background:#eee;
+color:#555;
+font-size:30px;
 }
 
-.cv-nickname {
-    font-size: 16px;
-    color: #3d4a3d;
-    font-weight: bold;
+.cv-name{
+font-size:30px;
+letter-spacing:1px;
+text-transform:uppercase;
+font-weight:bold;
+margin-bottom:5px;
 }
 
-.operator-id {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    margin-top: 8px;
-    padding: 6px 9px;
-    background: #101510;
-    color: #69ff69;
-    font: 700 11px monospace;
-    letter-spacing: 1px;
+.cv-nickname{
+font-size:16px;
+color:#3d4a3d;
+font-weight:bold;
 }
 
-.operator-status {
-    display: inline-flex;
-    margin: 8px 0 0 7px;
-    padding: 6px 9px;
-    background: #dff4df;
-    color: #1f6b2a;
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    border: 1px solid #b9d9b9;
+.operator-id{
+display:inline-flex;
+align-items:center;
+margin-top:8px;
+padding:6px 9px;
+background:#101510;
+color:#69ff69;
+font:700 11px monospace;
+letter-spacing:1px;
 }
 
-.cv-meta-grid {
-    display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 6px 16px;
-    margin-top: 12px;
-    font-size: 12px;
+.operator-status{
+display:inline-flex;
+margin:8px 0 0 7px;
+padding:6px 9px;
+background:#dff4df;
+color:#1f6b2a;
+font-size:10px;
+font-weight:bold;
+letter-spacing:1px;
+border:1px solid #b9d9b9;
 }
 
-.cv-meta-grid p {
-    margin: 0;
+.cv-meta-grid{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:6px 16px;
+margin-top:12px;
+font-size:12px;
 }
 
-.cv-section {
-    margin: 0;
-    padding: 18px 24px;
-    border-bottom: 1px solid #d7dbd6;
+.cv-meta-grid p{
+margin:0;
 }
 
-.cv-section h3 {
-    background: #111711;
-    color: #fff;
-    border-left: 5px solid #69ff69;
-    padding: 9px 11px;
-    margin: 0 0 12px;
-    font-size: 12px;
-    letter-spacing: 2px;
+.cv-section{
+margin:0;
+padding:18px 24px;
+border-bottom:1px solid #d7dbd6;
 }
 
-.role-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
+.cv-section h3{
+background:#111711;
+color:#fff;
+border-left:5px solid #69ff69;
+padding:9px 11px;
+margin:0 0 12px;
+font-size:12px;
+letter-spacing:2px;
 }
 
-.role-badge {
-    background: #151b15;
-    color: #fff;
-    padding: 7px 10px;
-    border: 1px solid #303c30;
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    box-shadow: 2px 2px 0 #69ff69;
+.cv-section p{
+margin:7px 0;
+white-space:pre-wrap;
 }
 
-.skill-grid {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 13px 24px;
+.cv-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
 }
 
-.skill-card {
-    font-size: 11px;
+.role-badges{
+display:flex;
+flex-wrap:wrap;
+gap:7px;
 }
 
-.skill-head {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.skill-level {
-    color: #486048;
-}
-
-.skill-track {
-    height: 8px;
-    background: #dce1dc;
-    border: 1px solid #c5ccc5;
-    overflow: hidden;
-}
-
-.skill-fill {
-    height: 100%;
-    width: 0;
-    background: linear-gradient(90deg,#1f8f1f,#69ff69);
-    position: relative;
-    transition: width 1.2s cubic-bezier(.22,1,.36,1);
-    box-shadow: 0 0 8px rgba(105,255,105,.35);
-}
-
-.skill-fill:after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: #d9ffd9;
-    box-shadow: 0 0 8px #69ff69;
-}
-
-.availability-grid {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 10px;
-}
-
-.availability-card {
-    border: 1px solid #cbd1ca;
-    padding: 11px;
-    background: #f8faf7;
-}
-
-.availability-card strong {
-    display: block;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: #687168;
-    margin-bottom: 4px;
-}
-
-.availability-value {
-    font-weight: bold;
-}
-
-.final-profile {
-    margin-top: 18px;
-    padding: 18px;
-    border: 1px solid #2e3d2e;
-    background: linear-gradient(135deg,#0b100b,#111711);
-    color: #fff;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,.35);
-}
-
-.final-profile .created {
-    color: #69ff69;
-    font-size: 10px;
-    letter-spacing: 3px;
-    font-weight: bold;
-}
-
-.final-profile .profile-id {
-    font: 700 24px monospace;
-    letter-spacing: 3px;
-    margin: 6px 0 12px;
-}
-
-.final-profile .ready {
-    display: inline-block;
-    padding: 6px 12px;
-    border: 1px solid #69ff69;
-    color: #69ff69;
-    font-size: 10px;
-    letter-spacing: 2px;
-}
-
-.actions {
-    gap: 8px;
-}
-
-.action-button {
-    border-radius: 3px;
-    transition: .2s;
-}
-
-.action-button:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.08);
-}
-
-.pdf-warning {
-    border: 1px solid #5b5b33!important;
-    background: #16160d!important;
-    border-radius: 3px!important;
+.role-badge{
+background:#151b15;
+color:#fff;
+padding:7px 10px;
+border:1px solid #303c30;
+font-size:10px;
+font-weight:bold;
+letter-spacing:1px;
+box-shadow:2px 2px 0 #69ff69;
 }
 
 
-/* ===== MOBILE ===== */
+/* =========================
+   SKILL BAR
+========================= */
 
-@media(max-width:700px) {
+.skill-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:13px 24px;
+}
 
-    .page {
-        padding: 10px 7px;
-        background-attachment: scroll;
-    }
+.skill-card{
+font-size:11px;
+}
 
-    .form-box {
-        padding: 15px;
-    }
+.skill-head{
+display:flex;
+justify-content:space-between;
+margin-bottom:5px;
+font-weight:bold;
+text-transform:uppercase;
+}
 
-    .logo-title h1 {
-        font-size: 21px;
-        letter-spacing: 2px;
-    }
+.skill-level{
+color:#486048;
+}
 
-    .logo-title p {
-        font-size: 9px;
-        letter-spacing: 2px;
-    }
+.skill-track{
+height:8px;
+background:#dce1dc;
+border:1px solid #c5ccc5;
+overflow:hidden;
+}
 
-    .cv-header {
-        padding: 18px;
-        align-items: center;
-    }
+.skill-fill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#1f8f1f,#69ff69);
+position:relative;
+transition:width 1.2s cubic-bezier(.22,1,.36,1);
+box-shadow:0 0 8px rgba(105,255,105,.35);
+}
 
-    .cv-header > div:last-child {
-        text-align: center;
-        width: 100%;
-    }
-
-    .cv-meta-grid,
-    .skill-grid,
-    .availability-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .cv-section {
-        padding: 15px;
-    }
-
-    .cv-name {
-        font-size: 24px;
-    }
-
-    .cv-photo,
-    .cv-photo-placeholder {
-        width: 135px;
-        height: 165px;
-    }
-
-    .role-badges {
-        justify-content: center;
-    }
-
-    .actions .action-button {
-        min-width: 100%;
-    }
+.skill-fill:after{
+content:"";
+position:absolute;
+right:0;
+top:0;
+bottom:0;
+width:3px;
+background:#d9ffd9;
+box-shadow:0 0 8px #69ff69;
 }
 
 
-/* ===== STAMPA ===== */
+/* =========================
+   DISPONIBILITÀ
+========================= */
 
-@media print {
+.availability-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
 
-    .cv-result:before {
-        background: #111;
-        color: #111;
-    }
+.availability-card{
+border:1px solid #cbd1ca;
+padding:11px;
+background:#f8faf7;
+}
 
-    .final-profile {
-        display: none;
-    }
+.availability-card strong{
+display:block;
+font-size:9px;
+letter-spacing:2px;
+color:#687168;
+margin-bottom:4px;
+}
 
-    .operator-status {
-        color: #111;
-        background: #eee;
-    }
+.availability-value{
+font-weight:bold;
+}
 
-    .skill-fill {
-        background: #333!important;
-        box-shadow: none;
-    }
+
+/* =========================
+   FINAL PROFILE
+========================= */
+
+.final-profile{
+margin:18px 24px;
+padding:18px;
+border:1px solid #2e3d2e;
+background:linear-gradient(135deg,#0b100b,#111711);
+color:#fff;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+.final-profile .created{
+color:#69ff69;
+font-size:10px;
+letter-spacing:3px;
+font-weight:bold;
+}
+
+.final-profile .profile-id{
+font:700 24px monospace;
+letter-spacing:3px;
+margin:6px 0 12px;
+}
+
+.final-profile .ready{
+display:inline-block;
+padding:6px 12px;
+border:1px solid #69ff69;
+color:#69ff69;
+font-size:10px;
+letter-spacing:2px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.actions{
+display:none;
+gap:8px;
+margin-top:20px;
+flex-wrap:wrap;
+}
+
+.action-button{
+flex:1;
+min-width:200px;
+padding:14px;
+border:none;
+border-radius:3px;
+font-weight:bold;
+cursor:pointer;
+font-size:15px;
+transition:.2s;
+}
+
+.action-button:hover{
+transform:translateY(-1px);
+filter:brightness(1.08);
+}
+
+.pdf-button{
+background:#222;
+color:white;
+}
+
+.whatsapp-button{
+background:#25D366;
+color:white;
+text-decoration:none;
+text-align:center;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.whatsapp-button:hover{
+background:#1ebe5d;
+}
+
+.print-button{
+background:#555;
+color:white;
+}
+
+.status{
+text-align:center;
+margin-top:15px;
+color:#69ff69;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+.page{
+padding:10px 7px;
+background-attachment:scroll;
+}
+
+.form-box{
+padding:15px;
+}
+
+.logo-title h1{
+font-size:21px;
+letter-spacing:2px;
+}
+
+.logo-title p{
+font-size:9px;
+letter-spacing:2px;
+}
+
+.grid,
+.skill-grid,
+.availability-grid{
+grid-template-columns:1fr;
+}
+
+.roles{
+grid-template-columns:repeat(2,1fr);
+}
+
+.cv-header{
+padding:18px;
+align-items:center;
+flex-direction:column;
+text-align:center;
+}
+
+.cv-header>div:last-child{
+text-align:center;
+width:100%;
+}
+
+.cv-section{
+padding:15px;
+}
+
+.cv-name{
+font-size:24px;
+}
+
+.cv-photo,
+.cv-photo-placeholder{
+width:135px;
+height:165px;
+}
+
+.role-badges{
+justify-content:center;
+}
+
+.actions .action-button{
+min-width:100%;
+}
+
+.final-profile{
+margin:15px;
+}
 
 }
 
+
+/* =========================
+   STAMPA A4 - UNA PAGINA
+========================= */
+
+@media print{
+
+@page{
+size:A4 portrait;
+margin:0;
+}
+
+html,
+body{
+width:210mm;
+height:297mm;
+margin:0!important;
+padding:0!important;
+background:#fff!important;
+}
+
+body{
+-webkit-print-color-adjust:exact!important;
+print-color-adjust:exact!important;
+}
+
+.page{
+width:210mm;
+height:297mm;
+min-height:297mm;
+padding:0!important;
+background:#fff!important;
+}
+
+.container{
+width:210mm;
+max-width:none;
+margin:0;
+}
+
+.logo-title,
+.form-box,
+.actions,
+.status{
+display:none!important;
+}
+
+.cv-result{
+display:block!important;
+width:210mm;
+height:297mm;
+margin:0!important;
+border:none!important;
+border-radius:0!important;
+box-shadow:none!important;
+overflow:hidden!important;
+background:#f4f5f2!important;
+}
+
+.cv-result:before{
+height:10mm;
+padding:3mm 6mm;
+background:#101510!important;
+color:#69ff69!important;
+border-bottom:1mm solid #69ff69!important;
+font-size:7pt;
+}
+
+.cv-header{
+height:47mm;
+padding:7mm 7mm;
+gap:6mm;
+background:#f4f5f2!important;
+}
+
+.cv-photo,
+.cv-photo-placeholder{
+width:30mm;
+height:36mm;
+box-shadow:2mm 2mm 0 #69ff69!important;
+}
+
+.cv-name{
+font-size:20pt;
+}
+
+.cv-nickname{
+font-size:10pt;
+}
+
+.operator-id,
+.operator-status{
+font-size:6pt;
+padding:1.5mm 2mm;
+}
+
+.cv-meta-grid{
+font-size:7pt;
+margin-top:3mm;
+}
+
+.cv-section{
+padding:4mm 7mm;
+}
+
+.cv-section h3{
+font-size:7pt;
+padding:2mm 2.5mm;
+margin-bottom:3mm;
+}
+
+.cv-section p{
+font-size:7pt;
+margin:1.5mm 0;
+}
+
+.role-badge{
+font-size:6pt;
+padding:1.5mm 2mm;
+box-shadow:1mm 1mm 0 #69ff69!important;
+}
+
+.skill-grid{
+gap:3mm 8mm;
+}
+
+.skill-card{
+font-size:6.5pt;
+}
+
+.skill-head{
+margin-bottom:1.5mm;
+}
+
+.skill-track{
+height:2.5mm;
+}
+
+.skill-fill{
+background:#35b535!important;
+box-shadow:none!important;
+}
+
+.skill-fill:after{
+display:none;
+}
+
+.availability-grid{
+gap:3mm;
+}
+
+.availability-card{
+padding:2.5mm;
+}
+
+.final-profile{
+margin:4mm 7mm;
+padding:4mm;
+}
+
+.final-profile .created{
+font-size:6pt;
+}
+
+.final-profile .profile-id{
+font-size:13pt;
+margin:1mm 0 2mm;
+}
+
+.final-profile .ready{
+font-size:6pt;
+padding:1.5mm 3mm;
+}
+
+}
 </style>
 </head>
 
@@ -805,35 +829,34 @@ textarea:focus {
 <div class="container">
 
 <div class="logo-title">
-    <h1>SOAS AIR SOFT TEAM</h1>
-    <p>TACTICAL OPERATOR CV</p>
+<h1>SOAS AIR SOFT TEAM</h1>
+<p>TACTICAL OPERATOR CV</p>
 </div>
-
 
 <div class="form-box">
 
 <div class="section-title">
-    FOTO OPERATORE
+FOTO OPERATORE
 </div>
 
 <div class="photo-box">
 
-    <div class="photo-preview" id="photoPreview">
-        📷 FOTO OPERATORE
-    </div>
+<div class="photo-preview" id="photoPreview">
+📷 FOTO OPERATORE
+</div>
 
-    <input
-        class="photo-input"
-        type="file"
-        id="foto"
-        accept="image/*"
-    >
+<input
+class="photo-input"
+type="file"
+id="foto"
+accept="image/*"
+>
 
 </div>
 
 
 <div class="section-title">
-    DATI PERSONALI
+DATI PERSONALI
 </div>
 
 <div class="grid">
@@ -877,7 +900,7 @@ textarea:focus {
 
 
 <div class="section-title">
-    ESPERIENZA
+ESPERIENZA
 </div>
 
 <div class="grid">
@@ -901,79 +924,52 @@ textarea:focus {
 
 
 <div class="section-title">
-    RUOLI OPERATIVI
+RUOLI OPERATIVI
 </div>
 
 <div class="roles">
 
 <div class="role">
-<label>
-<input type="checkbox" value="Fuciliere">
-Fuciliere
-</label>
+<label><input type="checkbox" value="Fuciliere">Fuciliere</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Assaltatore">
-Assaltatore
-</label>
+<label><input type="checkbox" value="Assaltatore">Assaltatore</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Supporto">
-Supporto
-</label>
+<label><input type="checkbox" value="Supporto">Supporto</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Sniper">
-Sniper
-</label>
+<label><input type="checkbox" value="Sniper">Sniper</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Scout">
-Scout
-</label>
+<label><input type="checkbox" value="Scout">Scout</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Medico">
-Medico
-</label>
+<label><input type="checkbox" value="Medico">Medico</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Artificiere">
-Artificiere
-</label>
+<label><input type="checkbox" value="Artificiere">Artificiere</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="CQB">
-CQB
-</label>
+<label><input type="checkbox" value="CQB">CQB</label>
 </div>
 
 <div class="role">
-<label>
-<input type="checkbox" value="Comandante">
-Comandante
-</label>
+<label><input type="checkbox" value="Comandante">Comandante</label>
 </div>
 
 </div>
 
 
 <div class="section-title">
-    COMPETENZE
+COMPETENZE
 </div>
 
 <div class="grid">
@@ -1042,7 +1038,7 @@ Comandante
 
 
 <div class="section-title">
-    EQUIPAGGIAMENTO
+EQUIPAGGIAMENTO
 </div>
 
 <textarea
@@ -1052,7 +1048,7 @@ placeholder="Inserisci il tuo equipaggiamento..."
 
 
 <div class="section-title">
-    DISPONIBILITÀ
+DISPONIBILITÀ
 </div>
 
 <div class="grid">
@@ -1080,7 +1076,7 @@ placeholder="Inserisci il tuo equipaggiamento..."
 
 
 <div class="section-title">
-    PRESENTAZIONE
+PRESENTAZIONE
 </div>
 
 <textarea
@@ -1100,18 +1096,12 @@ GENERA IL MIO CV
 </div>
 
 
-<!-- =========================
-     CV GENERATO
-========================= -->
-
 <div class="cv-result" id="cvResult">
 
 <div class="cv-header">
 
 <div id="cvPhotoContainer">
-    <div class="cv-photo-placeholder">
-        📷
-    </div>
+<div class="cv-photo-placeholder">📷</div>
 </div>
 
 <div>
@@ -1131,9 +1121,11 @@ SOAS-0000
 </div>
 
 <div class="cv-meta-grid">
+
 <p id="cvLocalita"></p>
 <p id="cvEta"></p>
 <p id="cvWhatsapp"></p>
+
 </div>
 
 </div>
@@ -1252,7 +1244,7 @@ SOAS-0000
 
 <h3>EQUIPAGGIAMENTO</h3>
 
-<p id="cvEquipaggiamento" class="cv-text"></p>
+<p id="cvEquipaggiamento"></p>
 
 </div>
 
@@ -1278,9 +1270,7 @@ SOAS-0000
 
 <h3>PRESENTAZIONE PERSONALE</h3>
 
-<p id="cvPresentazione" class="cv-text"></p>
-
-</div>
+<p id="cvPresentazione"></p>
 
 </div>
 
@@ -1301,6 +1291,8 @@ SOAS-0000
 
 </div>
 
+</div>
+
 
 <div class="actions" id="actions">
 
@@ -1315,7 +1307,6 @@ Da smartphone: il pulsante apre il menu del telefono
 per salvare o condividere il PDF.
 </div>
 
-
 <button
 type="button"
 class="action-button pdf-button"
@@ -1324,16 +1315,13 @@ id="pdfButton"
 📄 CONDIVIDI / SALVA PDF
 </button>
 
-
 <a
 class="action-button whatsapp-button"
 id="whatsappButton"
 href="https://wa.me/393501077763?text=Salve%2C%20ho%20generato%20il%20mio%20CV%20Operatore%20SOAS."
-aria-label="Apri la chat WhatsApp SOAS"
 >
 💬 APRI CHAT WHATSAPP SOAS
 </a>
-
 
 <button
 type="button"
@@ -1345,7 +1333,6 @@ id="printButton"
 
 </div>
 
-
 <div
 class="status"
 id="status"
@@ -1353,7 +1340,6 @@ aria-live="polite"
 ></div>
 
 </div>
-
 </div>
 
 
@@ -1361,1996 +1347,1843 @@ aria-live="polite"
 
 "use strict";
 
-
-/* =========================================
-   VARIABILI
-========================================= */
-
-let fotoBase64 = "";
-let fotoMimeType = "image/jpeg";
+let fotoBase64="";
+let fotoMimeType="image/jpeg";
 
 
 function getOperatorId(){
 
-    let id =
-        localStorage.getItem("soas_operator_id");
+let id=localStorage.getItem("soas_operator_id");
 
-    if(!id){
+if(!id){
 
-        id =
-            "SOAS-" +
-            Math.random()
-                .toString(36)
-                .substring(2,6)
-                .toUpperCase();
+id=
+"SOAS-"+
+Math.random()
+.toString(36)
+.substring(2,6)
+.toUpperCase();
 
-        localStorage.setItem(
-            "soas_operator_id",
-            id
-        );
-    }
+localStorage.setItem(
+"soas_operator_id",
+id
+);
 
-    return id;
+}
+
+return id;
+
 }
 
 
-const skillMap = {
-    Base:25,
-    Buono:50,
-    Avanzato:75,
-    Esperto:100
+const skillMap={
+Base:25,
+Buono:50,
+Avanzato:75,
+Esperto:100
 };
 
 
-/* =========================================
-   ELEMENTI
-========================================= */
+const fotoInput=
+document.getElementById("foto");
 
-const fotoInput =
-    document.getElementById("foto");
+const photoPreview=
+document.getElementById("photoPreview");
 
-const photoPreview =
-    document.getElementById("photoPreview");
+const generateButton=
+document.getElementById("generateButton");
 
-const generateButton =
-    document.getElementById("generateButton");
+const pdfButton=
+document.getElementById("pdfButton");
 
-const pdfButton =
-    document.getElementById("pdfButton");
-
-const printButton =
-    document.getElementById("printButton");
+const printButton=
+document.getElementById("printButton");
 
 
-/* =========================================
+/* =========================
    FOTO
-========================================= */
+========================= */
 
 fotoInput.addEventListener(
-    "change",
-    function(event){
+"change",
+function(event){
 
-        const file =
-            event.target.files &&
-            event.target.files[0];
+const file=
+event.target.files &&
+event.target.files[0];
 
-        if(!file){
-            return;
-        }
+if(!file){
+return;
+}
 
-        if(!file.type.startsWith("image/")){
+if(!file.type.startsWith("image/")){
 
-            alert(
-                "Seleziona una foto valida."
-            );
+alert(
+"Seleziona una foto valida."
+);
 
-            fotoInput.value = "";
+fotoInput.value="";
 
-            return;
-        }
+return;
 
+}
 
-        const reader =
-            new FileReader();
 
+const reader=
+new FileReader();
 
-        reader.onload =
-            function(e){
 
-                const tempImg =
-                    new Image();
+reader.onload=
+function(e){
 
+const tempImg=
+new Image();
 
-                tempImg.onload =
-                    function(){
 
-                        const maxSize = 1400;
+tempImg.onload=
+function(){
 
-                        let width =
-                            tempImg.naturalWidth;
+const maxSize=1400;
 
-                        let height =
-                            tempImg.naturalHeight;
+let width=
+tempImg.naturalWidth;
 
+let height=
+tempImg.naturalHeight;
 
-                        if(
-                            width > maxSize ||
-                            height > maxSize
-                        ){
 
-                            const ratio =
-                                Math.min(
-                                    maxSize / width,
-                                    maxSize / height
-                                );
+if(
+width>maxSize ||
+height>maxSize
+){
 
-                            width =
-                                Math.round(
-                                    width * ratio
-                                );
+const ratio=
+Math.min(
+maxSize/width,
+maxSize/height
+);
 
-                            height =
-                                Math.round(
-                                    height * ratio
-                                );
-                        }
+width=
+Math.round(width*ratio);
 
+height=
+Math.round(height*ratio);
 
-                        const canvas =
-                            document.createElement(
-                                "canvas"
-                            );
+}
 
-                        canvas.width =
-                            width;
 
-                        canvas.height =
-                            height;
+const canvas=
+document.createElement("canvas");
 
+canvas.width=width;
+canvas.height=height;
 
-                        const ctx =
-                            canvas.getContext(
-                                "2d"
-                            );
 
+const ctx=
+canvas.getContext("2d");
 
-                        if(!ctx){
+if(!ctx){
 
-                            alert(
-                                "Impossibile preparare la foto."
-                            );
+alert(
+"Impossibile preparare la foto."
+);
 
-                            return;
-                        }
+return;
 
+}
 
-                        ctx.fillStyle =
-                            "#ffffff";
 
-                        ctx.fillRect(
-                            0,
-                            0,
-                            width,
-                            height
-                        );
+ctx.fillStyle="#ffffff";
 
-
-                        ctx.drawImage(
-                            tempImg,
-                            0,
-                            0,
-                            width,
-                            height
-                        );
-
-
-                        fotoBase64 =
-                            canvas.toDataURL(
-                                "image/jpeg",
-                                0.88
-                            );
-
-                        fotoMimeType =
-                            "image/jpeg";
-
-
-                        photoPreview.innerHTML =
-                            "";
-
-
-                        const img =
-                            document.createElement(
-                                "img"
-                            );
-
-                        img.src =
-                            fotoBase64;
-
-                        img.alt =
-                            "Foto operatore";
-
-
-                        photoPreview.appendChild(
-                            img
-                        );
-
-                    };
-
-
-                tempImg.onerror =
-                    function(){
-
-                        fotoBase64 = "";
-
-                        alert(
-                            "Non è stato possibile caricare la foto."
-                        );
-
-                    };
-
-
-                tempImg.src =
-                    e.target.result;
-
-            };
-
-
-        reader.onerror =
-            function(){
-
-                fotoBase64 = "";
-
-                alert(
-                    "Non è stato possibile leggere la foto."
-                );
-
-            };
-
-
-        reader.readAsDataURL(file);
-
-    }
+ctx.fillRect(
+0,
+0,
+width,
+height
 );
 
 
-/* =========================================
-   FUNZIONE TESTO
-========================================= */
+ctx.drawImage(
+tempImg,
+0,
+0,
+width,
+height
+);
+
+
+fotoBase64=
+canvas.toDataURL(
+"image/jpeg",
+0.88
+);
+
+fotoMimeType=
+"image/jpeg";
+
+
+photoPreview.innerHTML="";
+
+
+const img=
+document.createElement("img");
+
+img.src=
+fotoBase64;
+
+img.alt=
+"Foto operatore";
+
+photoPreview.appendChild(img);
+
+};
+
+
+tempImg.onerror=
+function(){
+
+fotoBase64="";
+
+alert(
+"Non è stato possibile caricare la foto."
+);
+
+};
+
+
+tempImg.src=
+e.target.result;
+
+};
+
+
+reader.onerror=
+function(){
+
+fotoBase64="";
+
+alert(
+"Non è stato possibile leggere la foto."
+);
+
+};
+
+
+reader.readAsDataURL(file);
+
+}
+);
+
+
+/* =========================
+   VALORE
+========================= */
 
 function valore(id){
 
-    const element =
-        document.getElementById(id);
+const element=
+document.getElementById(id);
 
-    if(!element){
-        return "";
-    }
+if(!element){
+return "";
+}
 
-    return element.value.trim();
+return element.value.trim();
 
 }
 
 
-/* =========================================
+/* =========================
    GENERA CV
-========================================= */
+========================= */
 
 generateButton.addEventListener(
-    "click",
-    function(){
+"click",
+function(){
 
-        const nome =
-            valore("nome");
+const nome=
+valore("nome");
 
-        const cognome =
-            valore("cognome");
+const cognome=
+valore("cognome");
 
 
-        if(!nome || !cognome){
+if(!nome || !cognome){
 
-            alert(
-                "Inserisci almeno Nome e Cognome."
-            );
+alert(
+"Inserisci almeno Nome e Cognome."
+);
 
-            return;
-        }
+return;
 
+}
 
-        document.getElementById(
-            "cvNome"
-        ).textContent =
-            nome + " " + cognome;
 
+document.getElementById("cvNome")
+.textContent=
+nome+" "+cognome;
 
-        const nickname =
-            valore("nickname");
 
+const nickname=
+valore("nickname");
 
-        document.getElementById(
-            "cvNickname"
-        ).textContent =
-            nickname
-                ? '"' + nickname + '"'
-                : "";
 
+document.getElementById("cvNickname")
+.textContent=
+nickname
+? '"'+nickname+'"'
+: "";
 
-        const citta =
-            valore("citta");
 
-        const provincia =
-            valore("provincia");
+const citta=
+valore("citta");
 
+const provincia=
+valore("provincia");
 
-        document.getElementById(
-            "cvLocalita"
-        ).textContent =
-            [citta, provincia]
-                .filter(Boolean)
-                .join(" - ");
 
+document.getElementById("cvLocalita")
+.textContent=
+[citta,provincia]
+.filter(Boolean)
+.join(" - ");
 
-        const eta =
-            valore("eta");
 
+const eta=
+valore("eta");
 
-        document.getElementById(
-            "cvEta"
-        ).textContent =
-            eta
-                ? "Età: " + eta
-                : "";
 
+document.getElementById("cvEta")
+.textContent=
+eta
+? "Età: "+eta
+: "";
 
-        const numero =
-            valore("whatsapp");
 
+const numero=
+valore("whatsapp");
 
-        document.getElementById(
-            "cvWhatsapp"
-        ).textContent =
-            numero
-                ? "WhatsApp: " + numero
-                : "";
 
+document.getElementById("cvWhatsapp")
+.textContent=
+numero
+? "WhatsApp: "+numero
+: "";
 
-        /* RUOLI */
 
-        const roles = [];
+/* RUOLI */
 
+const roles=[];
 
-        document
-            .querySelectorAll(
-                '.role input[type="checkbox"]:checked'
-            )
-            .forEach(
-                function(item){
-
-                    roles.push(
-                        item.value
-                    );
-
-                }
-            );
-
-
-        const rolesBox =
-            document.getElementById(
-                "cvRuoli"
-            );
-
-
-        rolesBox.innerHTML = "";
-
-
-        if(roles.length){
-
-            roles.forEach(
-                function(role){
-
-                    const badge =
-                        document.createElement(
-                            "span"
-                        );
-
-                    badge.className =
-                        "role-badge";
-
-                    badge.textContent =
-                        role.toUpperCase();
-
-                    rolesBox.appendChild(
-                        badge
-                    );
-
-                }
-            );
-
-        } else {
-
-            rolesBox.textContent =
-                "NESSUN RUOLO SELEZIONATO";
-
-        }
-
-
-        /* ESPERIENZA */
-
-        document.getElementById(
-            "cvEsperienza"
-        ).textContent =
-            valore("esperienza") || "-";
-
-
-        document.getElementById(
-            "cvSquadra"
-        ).textContent =
-            valore("squadra") || "-";
-
-
-        document.getElementById(
-            "cvEsperienze"
-        ).textContent =
-            valore("esperienze") || "-";
-
-
-        /* COMPETENZE */
-
-        document.getElementById(
-            "cvTiro"
-        ).textContent =
-            valore("tiro");
-
-
-        document.getElementById(
-            "cvMovimento"
-        ).textContent =
-            valore("movimento");
-
-
-        document.getElementById(
-            "cvCQB"
-        ).textContent =
-            valore("cqb");
-
-
-        document.getElementById(
-            "cvRadio"
-        ).textContent =
-            valore("radio");
-
-
-        document.getElementById(
-            "cvNavigazione"
-        ).textContent =
-            valore("navigazione");
-
-
-        document.getElementById(
-            "cvSoccorso"
-        ).textContent =
-            valore("soccorso");
-
-
-        const operatorId =
-            getOperatorId();
-
-
-        document.getElementById(
-            "cvOperatorId"
-        ).textContent =
-            operatorId;
-
-
-        document.getElementById(
-            "finalOperatorId"
-        ).textContent =
-            operatorId;
-
-
-        const skills = [
-            {
-                key:"Tiro",
-                id:"tiro",
-                bar:"barTiro"
-            },
-            {
-                key:"Movimento",
-                id:"movimento",
-                bar:"barMovimento"
-            },
-            {
-                key:"CQB",
-                id:"cqb",
-                bar:"barCQB"
-            },
-            {
-                key:"Radio",
-                id:"radio",
-                bar:"barRadio"
-            },
-            {
-                key:"Navigazione",
-                id:"navigazione",
-                bar:"barNavigazione"
-            },
-            {
-                key:"Soccorso",
-                id:"soccorso",
-                bar:"barSoccorso"
-            }
-        ];
-
-
-        skills.forEach(
-            function(skill){
-
-                const bar =
-                    document.getElementById(
-                        skill.bar
-                    );
-
-                if(bar){
-
-                    bar.style.width =
-                        "0%";
-
-                    const level =
-                        skillMap[
-                            valore(skill.id)
-                        ] || 25;
-
-
-                    requestAnimationFrame(
-                        function(){
-
-                            setTimeout(
-                                function(){
-
-                                    bar.style.width =
-                                        level + "%";
-
-                                },
-                                80
-                            );
-
-                        }
-                    );
-                }
-
-            }
-        );
-
-
-        /* EQUIPAGGIAMENTO */
-
-        document.getElementById(
-            "cvEquipaggiamento"
-        ).textContent =
-            valore("equipaggiamento") || "-";
-
-
-        /* DISPONIBILITÀ */
-
-        document.getElementById(
-            "cvDisponibilita"
-        ).textContent =
-            valore("disponibilita");
-
-
-        document.getElementById(
-            "cvTrasferte"
-        ).textContent =
-            valore("trasferte");
-
-
-        /* PRESENTAZIONE */
-
-        document.getElementById(
-            "cvPresentazione"
-        ).textContent =
-            valore("presentazione") || "-";
-
-
-        /* FOTO */
-
-        const photoContainer =
-            document.getElementById(
-                "cvPhotoContainer"
-            );
-
-
-        if(fotoBase64){
-
-            photoContainer.innerHTML =
-                "";
-
-
-            const img =
-                document.createElement(
-                    "img"
-                );
-
-
-            img.className =
-                "cv-photo";
-
-
-            img.src =
-                fotoBase64;
-
-
-            img.alt =
-                "Foto operatore";
-
-
-            photoContainer.appendChild(
-                img
-            );
-
-        } else {
-
-            photoContainer.innerHTML =
-                '<div class="cv-photo-placeholder">📷</div>';
-
-        }
-
-
-        /* MOSTRA CV */
-
-        const cvResult =
-            document.getElementById(
-                "cvResult"
-            );
-
-
-        cvResult.style.display =
-            "block";
-
-
-        /* Animazione barre */
-
-        document
-            .querySelectorAll(
-                ".skill-fill"
-            )
-            .forEach(
-                function(bar){
-
-                    bar.style.transition =
-                        "none";
-
-                    bar.style.width =
-                        "0%";
-
-                }
-            );
-
-
-        requestAnimationFrame(
-            function(){
-
-                requestAnimationFrame(
-                    function(){
-
-                        skills.forEach(
-                            function(skill){
-
-                                const bar =
-                                    document.getElementById(
-                                        skill.bar
-                                    );
-
-                                if(bar){
-
-                                    bar.style.transition =
-                                        "width 1.2s cubic-bezier(.22,1,.36,1)";
-
-
-                                    bar.style.width =
-                                        (
-                                            skillMap[
-                                                valore(skill.id)
-                                            ] || 25
-                                        ) + "%";
-
-                                }
-
-                            }
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-        document.getElementById(
-            "actions"
-        ).style.display =
-            "flex";
-
-
-        document.getElementById(
-            "status"
-        ).textContent =
-            "✓ CV generato correttamente";
-
-
-        cvResult.scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-        });
-
-    }
+document
+.querySelectorAll(
+'.role input[type="checkbox"]:checked'
+)
+.forEach(
+function(item){
+roles.push(item.value);
+}
 );
 
 
-/* =========================================
+const rolesBox=
+document.getElementById("cvRuoli");
+
+rolesBox.innerHTML="";
+
+
+if(roles.length){
+
+roles.forEach(
+function(role){
+
+const badge=
+document.createElement("span");
+
+badge.className=
+"role-badge";
+
+badge.textContent=
+role.toUpperCase();
+
+rolesBox.appendChild(badge);
+
+}
+);
+
+}
+else{
+
+rolesBox.textContent=
+"NESSUN RUOLO SELEZIONATO";
+
+}
+
+
+/* ESPERIENZA */
+
+document.getElementById(
+"cvEsperienza"
+).textContent=
+valore("esperienza") || "-";
+
+
+document.getElementById(
+"cvSquadra"
+).textContent=
+valore("squadra") || "-";
+
+
+document.getElementById(
+"cvEsperienze"
+).textContent=
+valore("esperienze") || "-";
+
+
+/* COMPETENZE */
+
+document.getElementById(
+"cvTiro"
+).textContent=
+valore("tiro");
+
+
+document.getElementById(
+"cvMovimento"
+).textContent=
+valore("movimento");
+
+
+document.getElementById(
+"cvCQB"
+).textContent=
+valore("cqb");
+
+
+document.getElementById(
+"cvRadio"
+).textContent=
+valore("radio");
+
+
+document.getElementById(
+"cvNavigazione"
+).textContent=
+valore("navigazione");
+
+
+document.getElementById(
+"cvSoccorso"
+).textContent=
+valore("soccorso");
+
+
+/* ID */
+
+const operatorId=
+getOperatorId();
+
+
+document.getElementById(
+"cvOperatorId"
+).textContent=
+operatorId;
+
+
+document.getElementById(
+"finalOperatorId"
+).textContent=
+operatorId;
+
+
+/* BARRE */
+
+const skills=[
+{
+id:"tiro",
+bar:"barTiro"
+},
+{
+id:"movimento",
+bar:"barMovimento"
+},
+{
+id:"cqb",
+bar:"barCQB"
+},
+{
+id:"radio",
+bar:"barRadio"
+},
+{
+id:"navigazione",
+bar:"barNavigazione"
+},
+{
+id:"soccorso",
+bar:"barSoccorso"
+}
+];
+
+
+document
+.querySelectorAll(".skill-fill")
+.forEach(
+function(bar){
+
+bar.style.transition="none";
+bar.style.width="0%";
+
+}
+);
+
+
+requestAnimationFrame(
+function(){
+
+requestAnimationFrame(
+function(){
+
+skills.forEach(
+function(skill){
+
+const bar=
+document.getElementById(
+skill.bar
+);
+
+if(bar){
+
+const level=
+skillMap[
+valore(skill.id)
+] || 25;
+
+bar.style.transition=
+"width 1.2s cubic-bezier(.22,1,.36,1)";
+
+bar.style.width=
+level+"%";
+
+}
+
+}
+);
+
+}
+);
+
+}
+);
+
+
+/* FOTO */
+
+const photoContainer=
+document.getElementById(
+"cvPhotoContainer"
+);
+
+
+if(fotoBase64){
+
+photoContainer.innerHTML="";
+
+
+const img=
+document.createElement("img");
+
+img.className=
+"cv-photo";
+
+img.src=
+fotoBase64;
+
+img.alt=
+"Foto operatore";
+
+
+photoContainer.appendChild(img);
+
+}
+else{
+
+photoContainer.innerHTML=
+'<div class="cv-photo-placeholder">📷</div>';
+
+}
+
+
+/* ALTRI DATI */
+
+document.getElementById(
+"cvEquipaggiamento"
+).textContent=
+valore("equipaggiamento") || "-";
+
+
+document.getElementById(
+"cvDisponibilita"
+).textContent=
+valore("disponibilita");
+
+
+document.getElementById(
+"cvTrasferte"
+).textContent=
+valore("trasferte");
+
+
+document.getElementById(
+"cvPresentazione"
+).textContent=
+valore("presentazione") || "-";
+
+
+/* MOSTRA */
+
+document.getElementById(
+"cvResult"
+).style.display=
+"block";
+
+
+document.getElementById(
+"actions"
+).style.display=
+"flex";
+
+
+document.getElementById(
+"status"
+).textContent=
+"✓ CV generato correttamente";
+
+
+document.getElementById(
+"cvResult"
+).scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+);
+
+
+/* =========================
    PDF
-========================================= */
+========================= */
 
 function creaPDF(){
 
-    if(
-        !document.getElementById("cvResult") ||
-        document.getElementById("cvResult").style.display === "none"
-    ){
-
-        throw new Error(
-            "Genera prima il CV."
-        );
-
-    }
-
-
-    const jsPDF =
-        window.jspdf &&
-        window.jspdf.jsPDF;
-
-
-    if(!jsPDF){
-
-        throw new Error(
-            "Libreria PDF non caricata."
-        );
-
-    }
-
-
-    const pdf =
-        new jsPDF({
-            orientation:"portrait",
-            unit:"mm",
-            format:"a4"
-        });
-
-
-    const cleanText =
-        function(text){
-
-            return String(text || "")
-                .replace(/\s+/g," ")
-                .trim();
-
-        };
-
-
-    const nome =
-        cleanText(
-            document.getElementById(
-                "cvNome"
-            )?.textContent
-        ) || "OPERATORE";
-
-
-    const nickname =
-        cleanText(
-            document.getElementById(
-                "cvNickname"
-            )?.textContent
-        );
-
-
-    const localita =
-        cleanText(
-            document.getElementById(
-                "cvLocalita"
-            )?.textContent
-        );
-
-
-    const eta =
-        cleanText(
-            document.getElementById(
-                "cvEta"
-            )?.textContent
-        );
-
-
-    const whatsapp =
-        cleanText(
-            document.getElementById(
-                "cvWhatsapp"
-            )?.textContent
-        );
-
-
-    const operatorId =
-        getOperatorId();
-
-
-    const dark =
-        [16,21,16];
-
-
-    const green =
-        [105,255,105];
-
-
-    const lightGreen =
-        [223,244,223];
-
-
-    const grey =
-        [100,110,100];
-
-
-    const line =
-        [210,215,210];
-
-
-    function sectionTitle(
-        title,
-        x,
-        y,
-        width
-    ){
-
-        pdf.setFillColor(
-            dark[0],
-            dark[1],
-            dark[2]
-        );
-
-        pdf.rect(
-            x,
-            y,
-            width,
-            6,
-            "F"
-        );
-
-
-        pdf.setFillColor(
-            green[0],
-            green[1],
-            green[2]
-        );
-
-        pdf.rect(
-            x,
-            y,
-            2,
-            6,
-            "F"
-        );
-
-
-        pdf.setFont(
-            "helvetica",
-            "bold"
-        );
-
-        pdf.setFontSize(7);
-
-        pdf.setTextColor(
-            255,
-            255,
-            255
-        );
-
-        pdf.text(
-            title.toUpperCase(),
-            x + 5,
-            y + 4.1
-        );
-
-    }
-
-
-    function drawSkill(
-        label,
-        elementId,
-        x,
-        y,
-        width
-    ){
-
-        const level =
-            cleanText(
-                document.getElementById(
-                    elementId
-                )?.textContent
-            ) || "Base";
-
-
-        const percent =
-            skillMap[level] || 25;
-
-
-        pdf.setFont(
-            "helvetica",
-            "bold"
-        );
-
-        pdf.setFontSize(7);
-
-        pdf.setTextColor(
-            dark[0],
-            dark[1],
-            dark[2]
-        );
-
-
-        pdf.text(
-            label.toUpperCase(),
-            x,
-            y
-        );
-
-
-        pdf.setFont(
-            "helvetica",
-            "normal"
-        );
-
-        pdf.setTextColor(
-            grey[0],
-            grey[1],
-            grey[2]
-        );
-
-
-        pdf.text(
-            level.toUpperCase(),
-            x + width,
-            y,
-            {
-                align:"right"
-            }
-        );
-
-
-        const trackY =
-            y + 2.5;
-
-
-        pdf.setFillColor(
-            225,
-            230,
-            225
-        );
-
-
-        pdf.roundedRect(
-            x,
-            trackY,
-            width,
-            2.5,
-            .8,
-            .8,
-            "F"
-        );
-
-
-        /* BARRA VERDE NEL PDF */
-
-        pdf.setFillColor(
-            green[0],
-            green[1],
-            green[2]
-        );
-
-
-        pdf.roundedRect(
-            x,
-            trackY,
-            width * percent / 100,
-            2.5,
-            .8,
-            .8,
-            "F"
-        );
-
-
-        pdf.setDrawColor(
-            190,
-            195,
-            190
-        );
-
-        pdf.setLineWidth(.2);
-
-
-        pdf.roundedRect(
-            x,
-            trackY,
-            width,
-            2.5,
-            .8,
-            .8,
-            "S"
-        );
-
-    }
-
-
-    /* =========================================
-       HEADER
-    ========================================= */
-
-    pdf.setFillColor(
-        dark[0],
-        dark[1],
-        dark[2]
-    );
-
-    pdf.rect(
-        0,
-        0,
-        210,
-        31,
-        "F"
-    );
-
-
-    pdf.setFillColor(
-        green[0],
-        green[1],
-        green[2]
-    );
-
-    pdf.rect(
-        0,
-        29,
-        210,
-        2,
-        "F"
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(17);
-
-    pdf.setTextColor(
-        255,
-        255,
-        255
-    );
-
-    pdf.text(
-        "SOAS AIR SOFT TEAM",
-        16,
-        12
-    );
-
-
-    pdf.setFontSize(8);
-
-    pdf.setTextColor(
-        180,
-        180,
-        180
-    );
-
-    pdf.text(
-        "TACTICAL OPERATOR CV",
-        16,
-        19
-    );
-
-
-    pdf.setFontSize(7);
-
-    pdf.setTextColor(
-        green[0],
-        green[1],
-        green[2]
-    );
-
-    pdf.text(
-        operatorId,
-        16,
-        25
-    );
-
-
-    pdf.setTextColor(
-        220,
-        220,
-        220
-    );
-
-    pdf.text(
-        "● PROFILE READY",
-        52,
-        25
-    );
-
-
-    /* FOTO OPERATORE */
-
-    if(fotoBase64){
-
-        try{
-
-            pdf.addImage(
-                fotoBase64,
-                "JPEG",
-                156,
-                5,
-                38,
-                22
-            );
-
-
-            pdf.setDrawColor(
-                green[0],
-                green[1],
-                green[2]
-            );
-
-            pdf.setLineWidth(.8);
-
-
-            pdf.rect(
-                155.5,
-                4.5,
-                39,
-                23
-            );
-
-        }
-        catch(error){
-
-            console.warn(
-                "Impossibile inserire la foto nel PDF:",
-                error
-            );
-
-        }
-
-    }
-
-
-    /* =========================================
-       DATI PERSONALI
-    ========================================= */
-
-    let y = 40;
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(18);
-
-    pdf.setTextColor(
-        dark[0],
-        dark[1],
-        dark[2]
-    );
-
-
-    pdf.text(
-        nome,
-        16,
-        y
-    );
-
-
-    y += 5;
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(8.5);
-
-    pdf.setTextColor(
-        grey[0],
-        grey[1],
-        grey[2]
-    );
-
-
-    if(nickname){
-
-        pdf.text(
-            nickname,
-            16,
-            y
-        );
-
-        y += 4;
-
-    }
-
-
-    if(localita){
-
-        pdf.text(
-            localita,
-            16,
-            y
-        );
-
-        y += 4;
-
-    }
-
-
-    if(eta){
-
-        pdf.text(
-            eta,
-            16,
-            y
-        );
-
-        y += 4;
-
-    }
-
-
-    if(whatsapp){
-
-        pdf.text(
-            whatsapp,
-            16,
-            y
-        );
-
-    }
-
-
-    y = 64;
-
-
-    /* =========================================
-       RUOLI
-    ========================================= */
-
-    sectionTitle(
-        "Ruoli operativi",
-        16,
-        y,
-        178
-    );
-
-
-    y += 8;
-
-
-    const ruoli =
-        cleanText(
-            document.getElementById(
-                "cvRuoli"
-            )?.textContent
-        );
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(8.5);
-
-    pdf.setTextColor(
-        dark[0],
-        dark[1],
-        dark[2]
-    );
-
-
-    const ruoloRighe =
-        pdf.splitTextToSize(
-            ruoli,
-            178
-        );
-
-
-    pdf.text(
-        ruoloRighe,
-        16,
-        y
-    );
-
-
-    y += Math.max(
-        7,
-        ruoloRighe.length * 4.2
-    );
-
-
-    /* =========================================
-       ESPERIENZA + COMPETENZE
-    ========================================= */
-
-    sectionTitle(
-        "Esperienza",
-        16,
-        y,
-        82
-    );
-
-
-    sectionTitle(
-        "Competenze",
-        106,
-        y,
-        88
-    );
-
-
-    y += 8;
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(8);
-
-    pdf.setTextColor(
-        dark[0],
-        dark[1],
-        dark[2]
-    );
-
-
-    const esperienza =
-        cleanText(
-            document.getElementById(
-                "cvEsperienza"
-            )?.textContent
-        );
-
-
-    const squadra =
-        cleanText(
-            document.getElementById(
-                "cvSquadra"
-            )?.textContent
-        );
-
-
-    const precedenti =
-        cleanText(
-            document.getElementById(
-                "cvEsperienze"
-            )?.textContent
-        );
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.text(
-        "Anni di esperienza:",
-        16,
-        y
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.text(
-        esperienza,
-        16,
-        y + 4
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.text(
-        "Squadra attuale:",
-        16,
-        y + 11
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.text(
-        squadra,
-        16,
-        y + 15
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.text(
-        "Esperienze precedenti:",
-        16,
-        y + 22
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-
-    const precRighe =
-        pdf.splitTextToSize(
-            precedenti,
-            78
-        );
-
-
-    pdf.text(
-        precRighe,
-        16,
-        y + 26
-    );
-
-
-    drawSkill(
-        "Tiro",
-        "cvTiro",
-        106,
-        y,
-        88
-    );
-
-
-    drawSkill(
-        "Movimento tattico",
-        "cvMovimento",
-        106,
-        y + 12,
-        88
-    );
-
-
-    drawSkill(
-        "CQB",
-        "cvCQB",
-        106,
-        y + 24,
-        88
-    );
-
-
-    drawSkill(
-        "Comunicazioni radio",
-        "cvRadio",
-        106,
-        y + 36,
-        88
-    );
-
-
-    drawSkill(
-        "Navigazione",
-        "cvNavigazione",
-        106,
-        y + 48,
-        88
-    );
-
-
-    drawSkill(
-        "Primo soccorso",
-        "cvSoccorso",
-        106,
-        y + 60,
-        88
-    );
-
-
-    y += 76;
-
-
-    /* =========================================
-       EQUIPAGGIAMENTO + DISPONIBILITÀ
-    ========================================= */
-
-    sectionTitle(
-        "Equipaggiamento",
-        16,
-        y,
-        82
-    );
-
-
-    sectionTitle(
-        "Disponibilità",
-        106,
-        y,
-        88
-    );
-
-
-    y += 8;
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(8);
-
-    pdf.setTextColor(
-        dark[0],
-        dark[1],
-        dark[2]
-    );
-
-
-    const equipaggiamento =
-        cleanText(
-            document.getElementById(
-                "cvEquipaggiamento"
-            )?.textContent
-        );
-
-
-    const disponibilita =
-        cleanText(
-            document.getElementById(
-                "cvDisponibilita"
-            )?.textContent
-        );
-
-
-    const trasferte =
-        cleanText(
-            document.getElementById(
-                "cvTrasferte"
-            )?.textContent
-        );
-
-
-    const equipRighe =
-        pdf.splitTextToSize(
-            equipaggiamento,
-            82
-        );
-
-
-    pdf.text(
-        equipRighe,
-        16,
-        y
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.text(
-        "Disponibilità:",
-        106,
-        y
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.text(
-        disponibilita,
-        106,
-        y + 4
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.text(
-        "Trasferte:",
-        106,
-        y + 11
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-
-    const trasfRighe =
-        pdf.splitTextToSize(
-            trasferte,
-            82
-        );
-
-
-    pdf.text(
-        trasfRighe,
-        106,
-        y + 15
-    );
-
-
-    y += Math.max(
-        equipRighe.length * 4,
-        trasfRighe.length * 4 + 15,
-        22
-    );
-
-
-    /* =========================================
-       PRESENTAZIONE
-    ========================================= */
-
-    sectionTitle(
-        "Presentazione personale",
-        16,
-        y,
-        178
-    );
-
-
-    y += 8;
-
-
-    const presentazione =
-        cleanText(
-            document.getElementById(
-                "cvPresentazione"
-            )?.textContent
-        );
-
-
-    const presRighe =
-        pdf.splitTextToSize(
-            presentazione,
-            178
-        );
-
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(8.5);
-
-    pdf.setTextColor(
-        dark[0],
-        dark[1],
-        dark[2]
-    );
-
-
-    pdf.text(
-        presRighe.slice(0,7),
-        16,
-        y
-    );
-
-
-    /* =========================================
-       FOOTER
-    ========================================= */
-
-    pdf.setDrawColor(
-        line[0],
-        line[1],
-        line[2]
-    );
-
-    pdf.setLineWidth(.3);
-
-
-    pdf.line(
-        16,
-        285,
-        194,
-        285
-    );
-
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(6.5);
-
-    pdf.setTextColor(
-        grey[0],
-        grey[1],
-        grey[2]
-    );
-
-
-    pdf.text(
-        "SOAS ASD // OPERATOR PROFILE",
-        16,
-        290
-    );
-
-
-    pdf.text(
-        operatorId,
-        194,
-        290,
-        {
-            align:"right"
-        }
-    );
-
-
-    const blob =
-        pdf.output("blob");
-
-
-    return {
-        blob: blob,
-        filename:
-            "CV_SOAS_" +
-            nome
-                .replace(/\s+/g,"_")
-                .replace(
-                    /[^a-zA-Z0-9_-]/g,
-                    ""
-                ) +
-            ".pdf"
-    };
+if(
+!document.getElementById("cvResult") ||
+document.getElementById("cvResult").style.display==="none"
+){
+
+throw new Error(
+"Genera prima il CV."
+);
 
 }
-    /* =========================================
+
+
+const jsPDF=
+window.jspdf &&
+window.jspdf.jsPDF;
+
+
+if(!jsPDF){
+
+throw new Error(
+"Libreria PDF non caricata."
+);
+
+}
+
+
+const pdf=
+new jsPDF({
+orientation:"portrait",
+unit:"mm",
+format:"a4"
+});
+
+
+const cleanText=
+function(text){
+
+return String(text || "")
+.replace(/\s+/g," ")
+.trim();
+
+};
+
+
+const nome=
+cleanText(
+document.getElementById(
+"cvNome"
+)?.textContent
+)||"OPERATORE";
+
+
+const nickname=
+cleanText(
+document.getElementById(
+"cvNickname"
+)?.textContent
+);
+
+
+const localita=
+cleanText(
+document.getElementById(
+"cvLocalita"
+)?.textContent
+);
+
+
+const eta=
+cleanText(
+document.getElementById(
+"cvEta"
+)?.textContent
+);
+
+
+const whatsapp=
+cleanText(
+document.getElementById(
+"cvWhatsapp"
+)?.textContent
+);
+
+
+const operatorId=
+getOperatorId();
+
+
+const dark=[16,21,16];
+const green=[105,255,105];
+const grey=[100,110,100];
+const line=[210,215,210];
+
+
+function sectionTitle(
+title,
+x,
+y,
+width
+){
+
+pdf.setFillColor(
+dark[0],
+dark[1],
+dark[2]
+);
+
+pdf.rect(
+x,
+y,
+width,
+6,
+"F"
+);
+
+
+pdf.setFillColor(
+green[0],
+green[1],
+green[2]
+);
+
+pdf.rect(
+x,
+y,
+2,
+6,
+"F"
+);
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.setFontSize(7);
+
+pdf.setTextColor(
+255,
+255,
+255
+);
+
+pdf.text(
+title.toUpperCase(),
+x+5,
+y+4.1
+);
+
+}
+
+
+/* =========================
+   BARRA COMPETENZA PDF
+========================= */
+
+function drawSkill(
+label,
+elementId,
+x,
+y,
+width
+){
+
+const level=
+cleanText(
+document.getElementById(
+elementId
+)?.textContent
+)||"Base";
+
+
+const percent=
+skillMap[level] || 25;
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.setFontSize(7);
+
+pdf.setTextColor(
+dark[0],
+dark[1],
+dark[2]
+);
+
+pdf.text(
+label.toUpperCase(),
+x,
+y
+);
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+pdf.setTextColor(
+grey[0],
+grey[1],
+grey[2]
+);
+
+pdf.text(
+level.toUpperCase(),
+x+width,
+y,
+{
+align:"right"
+}
+);
+
+
+const trackY=
+y+2.5;
+
+
+pdf.setFillColor(
+225,
+230,
+225
+);
+
+
+pdf.roundedRect(
+x,
+trackY,
+width,
+2.5,
+.8,
+.8,
+"F"
+);
+
+
+/* VERDE */
+
+pdf.setFillColor(
+53,
+181,
+53
+);
+
+
+pdf.roundedRect(
+x,
+trackY,
+width*percent/100,
+2.5,
+.8,
+.8,
+"F"
+);
+
+
+pdf.setDrawColor(
+190,
+195,
+190
+);
+
+pdf.setLineWidth(.2);
+
+
+pdf.roundedRect(
+x,
+trackY,
+width,
+2.5,
+.8,
+.8,
+"S"
+);
+
+}
+
+
+/* =========================
+   HEADER PDF
+========================= */
+
+pdf.setFillColor(
+dark[0],
+dark[1],
+dark[2]
+);
+
+pdf.rect(
+0,
+0,
+210,
+31,
+"F"
+);
+
+
+pdf.setFillColor(
+green[0],
+green[1],
+green[2]
+);
+
+pdf.rect(
+0,
+29,
+210,
+2,
+"F"
+);
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.setFontSize(17);
+
+pdf.setTextColor(
+255,
+255,
+255
+);
+
+pdf.text(
+"SOAS AIR SOFT TEAM",
+16,
+12
+);
+
+
+pdf.setFontSize(8);
+
+pdf.setTextColor(
+180,
+180,
+180
+);
+
+pdf.text(
+"TACTICAL OPERATOR CV",
+16,
+19
+);
+
+
+pdf.setFontSize(7);
+
+pdf.setTextColor(
+green[0],
+green[1],
+green[2]
+);
+
+pdf.text(
+operatorId,
+16,
+25
+);
+
+
+pdf.setTextColor(
+220,
+220,
+220
+);
+
+pdf.text(
+"● PROFILE READY",
+52,
+25
+);
+
+
+/* FOTO */
+
+if(fotoBase64){
+
+try{
+
+pdf.addImage(
+fotoBase64,
+"JPEG",
+156,
+5,
+38,
+22
+);
+
+pdf.setDrawColor(
+green[0],
+green[1],
+green[2]
+);
+
+pdf.setLineWidth(.8);
+
+pdf.rect(
+155.5,
+4.5,
+39,
+23
+);
+
+}
+catch(error){
+
+console.warn(
+"Impossibile inserire la foto nel PDF:",
+error
+);
+
+}
+
+}
+
+
+/* =========================
+   DATI
+========================= */
+
+let y=40;
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.setFontSize(18);
+
+pdf.setTextColor(
+dark[0],
+dark[1],
+dark[2]
+);
+
+pdf.text(
+nome,
+16,
+y
+);
+
+
+y+=5;
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+pdf.setFontSize(8.5);
+
+pdf.setTextColor(
+grey[0],
+grey[1],
+grey[2]
+);
+
+
+if(nickname){
+
+pdf.text(
+nickname,
+16,
+y
+);
+
+y+=4;
+
+}
+
+
+if(localita){
+
+pdf.text(
+localita,
+16,
+y
+);
+
+y+=4;
+
+}
+
+
+if(eta){
+
+pdf.text(
+eta,
+16,
+y
+);
+
+y+=4;
+
+}
+
+
+if(whatsapp){
+
+pdf.text(
+whatsapp,
+16,
+y
+);
+
+}
+
+
+y=64;
+
+
+/* =========================
+   RUOLI
+========================= */
+
+sectionTitle(
+"Ruoli operativi",
+16,
+y,
+178
+);
+
+
+y+=8;
+
+
+const ruoli=
+cleanText(
+document.getElementById(
+"cvRuoli"
+)?.textContent
+);
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.setFontSize(8.5);
+
+pdf.setTextColor(
+dark[0],
+dark[1],
+dark[2]
+);
+
+
+const ruoloRighe=
+pdf.splitTextToSize(
+ruoli,
+178
+);
+
+
+pdf.text(
+ruoloRighe,
+16,
+y
+);
+
+
+y+=Math.max(
+7,
+ruoloRighe.length*4.2
+);
+
+
+/* =========================
+   ESPERIENZA + SKILL
+========================= */
+
+sectionTitle(
+"Esperienza",
+16,
+y,
+82
+);
+
+
+sectionTitle(
+"Competenze",
+106,
+y,
+88
+);
+
+
+y+=8;
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+pdf.setFontSize(8);
+
+pdf.setTextColor(
+dark[0],
+dark[1],
+dark[2]
+);
+
+
+const esperienza=
+cleanText(
+document.getElementById(
+"cvEsperienza"
+)?.textContent
+);
+
+
+const squadra=
+cleanText(
+document.getElementById(
+"cvSquadra"
+)?.textContent
+);
+
+
+const precedenti=
+cleanText(
+document.getElementById(
+"cvEsperienze"
+)?.textContent
+);
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.text(
+"Anni di esperienza:",
+16,
+y
+);
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+pdf.text(
+esperienza,
+16,
+y+4
+);
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.text(
+"Squadra attuale:",
+16,
+y+11
+);
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+pdf.text(
+squadra,
+16,
+y+15
+);
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.text(
+"Esperienze precedenti:",
+16,
+y+22
+);
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+
+const precRighe=
+pdf.splitTextToSize(
+precedenti,
+78
+);
+
+
+pdf.text(
+precRighe,
+16,
+y+26
+);
+
+
+/* SKILL */
+
+drawSkill(
+"Tiro",
+"cvTiro",
+106,
+y,
+88
+);
+
+drawSkill(
+"Movimento tattico",
+"cvMovimento",
+106,
+y+12,
+88
+);
+
+drawSkill(
+"CQB",
+"cvCQB",
+106,
+y+24,
+88
+);
+
+drawSkill(
+"Comunicazioni radio",
+"cvRadio",
+106,
+y+36,
+88
+);
+
+drawSkill(
+"Navigazione",
+"cvNavigazione",
+106,
+y+48,
+88
+);
+
+drawSkill(
+"Primo soccorso",
+"cvSoccorso",
+106,
+y+60,
+88
+);
+
+
+y+=76;
+
+
+/* =========================
+   EQUIPAGGIAMENTO
+========================= */
+
+sectionTitle(
+"Equipaggiamento",
+16,
+y,
+82
+);
+
+sectionTitle(
+"Disponibilità",
+106,
+y,
+88
+);
+
+
+y+=8;
+
+
+const equipaggiamento=
+cleanText(
+document.getElementById(
+"cvEquipaggiamento"
+)?.textContent
+);
+
+
+const disponibilita=
+cleanText(
+document.getElementById(
+"cvDisponibilita"
+)?.textContent
+);
+
+
+const trasferte=
+cleanText(
+document.getElementById(
+"cvTrasferte"
+)?.textContent
+);
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+pdf.setFontSize(8);
+
+pdf.setTextColor(
+dark[0],
+dark[1],
+dark[2]
+);
+
+
+const equipRighe=
+pdf.splitTextToSize(
+equipaggiamento,
+82
+);
+
+
+pdf.text(
+equipRighe,
+16,
+y
+);
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.text(
+"Disponibilità:",
+106,
+y
+);
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+pdf.text(
+disponibilita,
+106,
+y+4
+);
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.text(
+"Trasferte:",
+106,
+y+11
+);
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+
+const trasfRighe=
+pdf.splitTextToSize(
+trasferte,
+82
+);
+
+
+pdf.text(
+trasfRighe,
+106,
+y+15
+);
+
+
+y+=Math.max(
+equipRighe.length*4,
+trasfRighe.length*4+15,
+22
+);
+
+
+/* =========================
+   PRESENTAZIONE
+========================= */
+
+sectionTitle(
+"Presentazione personale",
+16,
+y,
+178
+);
+
+
+y+=8;
+
+
+const presentazione=
+cleanText(
+document.getElementById(
+"cvPresentazione"
+)?.textContent
+);
+
+
+const presRighe=
+pdf.splitTextToSize(
+presentazione,
+178
+);
+
+
+pdf.setFont(
+"helvetica",
+"normal"
+);
+
+pdf.setFontSize(8.5);
+
+pdf.setTextColor(
+dark[0],
+dark[1],
+dark[2]
+);
+
+
+pdf.text(
+presRighe.slice(0,7),
+16,
+y
+);
+
+
+/* FOOTER */
+
+pdf.setDrawColor(
+line[0],
+line[1],
+line[2]
+);
+
+pdf.setLineWidth(.3);
+
+pdf.line(
+16,
+285,
+194,
+285
+);
+
+
+pdf.setFont(
+"helvetica",
+"bold"
+);
+
+pdf.setFontSize(6.5);
+
+pdf.setTextColor(
+grey[0],
+grey[1],
+grey[2]
+);
+
+pdf.text(
+"SOAS ASD // OPERATOR PROFILE",
+16,
+290
+);
+
+pdf.text(
+operatorId,
+194,
+290,
+{
+align:"right"
+}
+);
+
+
+const blob=
+pdf.output("blob");
+
+
+return{
+blob:blob,
+filename:
+"CV_SOAS_"+
+nome
+.replace(/\s+/g,"_")
+.replace(/[^a-zA-Z0-9_-]/g,"")+
+".pdf"
+};
+
+}
+    /* =========================
    CONDIVIDI / SALVA PDF
-========================================= */
+========================= */
 
 pdfButton.addEventListener(
-    "click",
-    async function(){
+"click",
+async function(){
 
-        let objectUrl = "";
+let objectUrl="";
 
-        try{
+try{
 
-            const status =
-                document.getElementById(
-                    "status"
-                );
+const status=
+document.getElementById("status");
 
-
-            status.textContent =
-                "⏳ Preparazione PDF...";
+status.textContent=
+"⏳ Preparazione PDF...";
 
 
-            const result =
-                creaPDF();
+const result=
+creaPDF();
 
 
-            /*
-             * Su smartphone proviamo prima il menu
-             * Condividi del sistema.
-             */
+if(
+navigator.share &&
+navigator.canShare
+){
 
-            if(
-                navigator.share &&
-                navigator.canShare
-            ){
-
-                const pdfFile =
-                    new File(
-                        [result.blob],
-                        result.filename,
-                        {
-                            type:
-                                "application/pdf"
-                        }
-                    );
-
-
-                if(
-                    navigator.canShare({
-                        files:[pdfFile]
-                    })
-                ){
-
-                    status.textContent =
-                        "📤 Apri il menu Condividi...";
-
-
-                    try{
-
-                        await navigator.share({
-                            title:
-                                "CV Operatore SOAS",
-                            text:
-                                "CV Operatore SOAS",
-                            files:[
-                                pdfFile
-                            ]
-                        });
-
-
-                        status.textContent =
-                            "✓ PDF pronto per essere salvato o condiviso";
-
-
-                        return;
-
-                    }
-                    catch(error){
-
-                        if(
-                            error &&
-                            error.name ===
-                            "AbortError"
-                        ){
-
-                            status.textContent =
-                                "PDF pronto. Condivisione annullata.";
-
-                            return;
-
-                        }
-
-                        console.warn(
-                            "Condivisione file non riuscita:",
-                            error
-                        );
-
-                    }
-
-                }
-
-            }
-
-
-            /*
-             * Fallback per browser senza
-             * condivisione file.
-             */
-
-            objectUrl =
-                URL.createObjectURL(
-                    result.blob
-                );
-
-
-            const newWindow =
-                window.open(
-                    objectUrl,
-                    "_blank"
-                );
-
-
-            if(!newWindow){
-
-                window.location.href =
-                    objectUrl;
-
-            }
-
-
-            status.textContent =
-                "✓ PDF aperto. Usa Condividi o Salva dal telefono.";
-
-
-            setTimeout(
-                function(){
-
-                    if(objectUrl){
-
-                        URL.revokeObjectURL(
-                            objectUrl
-                        );
-
-                    }
-
-                },
-                60000
-            );
-
-        }
-
-
-        catch(error){
-
-            console.error(error);
-
-
-            if(
-                error &&
-                error.name ===
-                "AbortError"
-            ){
-
-                document.getElementById(
-                    "status"
-                ).textContent =
-                    "PDF pronto. Condivisione annullata.";
-
-                return;
-
-            }
-
-
-            document.getElementById(
-                "status"
-            ).textContent =
-                "❌ Errore nella generazione del PDF";
-
-
-            alert(
-                "Non è stato possibile preparare il PDF. Riprova."
-            );
-
-        }
-
-    }
+const pdfFile=
+new File(
+[result.blob],
+result.filename,
+{
+type:"application/pdf"
+}
 );
 
 
-/* =========================================
+if(
+navigator.canShare({
+files:[pdfFile]
+})
+){
+
+status.textContent=
+"📤 Apri il menu Condividi...";
+
+
+try{
+
+await navigator.share({
+title:"CV Operatore SOAS",
+text:"CV Operatore SOAS",
+files:[pdfFile]
+});
+
+
+status.textContent=
+"✓ PDF pronto per essere salvato o condiviso";
+
+return;
+
+}
+catch(error){
+
+if(
+error &&
+error.name==="AbortError"
+){
+
+status.textContent=
+"PDF pronto. Condivisione annullata.";
+
+return;
+
+}
+
+console.warn(
+"Condivisione file non riuscita:",
+error
+);
+
+}
+
+}
+
+}
+
+
+/* FALLBACK */
+
+objectUrl=
+URL.createObjectURL(
+result.blob
+);
+
+
+const newWindow=
+window.open(
+objectUrl,
+"_blank"
+);
+
+
+if(!newWindow){
+
+window.location.href=
+objectUrl;
+
+}
+
+
+status.textContent=
+"✓ PDF aperto. Usa Condividi o Salva dal telefono.";
+
+
+setTimeout(
+function(){
+
+if(objectUrl){
+
+URL.revokeObjectURL(
+objectUrl
+);
+
+}
+
+},
+60000
+);
+
+}
+
+catch(error){
+
+console.error(error);
+
+
+if(
+error &&
+error.name==="AbortError"
+){
+
+document.getElementById(
+"status"
+).textContent=
+"PDF pronto. Condivisione annullata.";
+
+return;
+
+}
+
+
+document.getElementById(
+"status"
+).textContent=
+"❌ Errore nella generazione del PDF";
+
+
+alert(
+"Non è stato possibile preparare il PDF. Riprova."
+);
+
+}
+
+}
+);
+
+
+/* =========================
    STAMPA
-========================================= */
+========================= */
 
 printButton.addEventListener(
-    "click",
-    function(){
+"click",
+function(){
 
-        window.print();
+window.print();
 
-    }
+}
 );
 
 
-/* =========================================
-   WHATSAPP
-========================================= */
-
-/*
-    È un normale link HTTPS Click to Chat.
-    Apre direttamente la chat WhatsApp SOAS.
-*/
+/* =========================
+   FINE
+========================= */
 
 </script>
 
