@@ -2,10 +2,16 @@
 <html lang="it">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>SOAS - CV Operatore</title>
+
+    <!-- Libreria per creare il PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 
     <style>
 
@@ -15,13 +21,23 @@
             box-sizing: border-box;
         }
 
+
         body {
+
             min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #fff;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color: white;
 
             background:
-                linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.88)),
+                linear-gradient(
+                    rgba(0,0,0,0.72),
+                    rgba(0,0,0,0.90)
+                ),
                 url("ingresso.jpeg");
 
             background-size: cover;
@@ -29,182 +45,316 @@
             background-attachment: fixed;
 
             padding: 25px 15px;
+
         }
+
 
         .container {
+
             width: 100%;
             max-width: 900px;
+
             margin: auto;
+
         }
 
-        /* HEADER */
+
+        /* =========================
+           HEADER
+        ========================= */
 
         .header {
+
             text-align: center;
+
             margin-bottom: 25px;
+
         }
+
 
         .header h1 {
+
             font-size: 32px;
+
             letter-spacing: 4px;
+
             font-weight: 900;
+
         }
+
 
         .header h2 {
+
             margin-top: 8px;
+
             font-size: 15px;
+
             letter-spacing: 3px;
+
             color: #aaa;
+
         }
+
 
         .line {
+
             width: 100px;
+
             height: 3px;
+
             background: #6d8f45;
+
             margin: 15px auto;
+
         }
 
-        /* BOX */
+
+        /* =========================
+           BOX
+        ========================= */
 
         .box {
-            background: rgba(15,15,15,0.88);
-            border: 1px solid rgba(120,140,100,0.35);
+
+            background:
+                rgba(15,15,15,0.90);
+
+            border:
+                1px solid
+                rgba(120,140,100,0.35);
+
             border-radius: 15px;
+
             padding: 25px;
+
             margin-bottom: 20px;
 
             box-shadow:
-                0 10px 35px rgba(0,0,0,0.5),
-                inset 0 0 20px rgba(255,255,255,0.02);
+
+                0 10px 35px
+                rgba(0,0,0,0.5),
+
+                inset 0 0 20px
+                rgba(255,255,255,0.02);
+
         }
+
 
         .box h3 {
+
             font-size: 17px;
+
             letter-spacing: 2px;
+
             margin-bottom: 20px;
+
             color: #9dbb70;
+
         }
 
-        /* GRID */
+
+        /* =========================
+           GRID
+        ========================= */
 
         .grid {
+
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 15px;
+
         }
+
 
         .field {
+
             display: flex;
+
             flex-direction: column;
+
         }
+
 
         .field.full {
-            grid-column: 1 / -1;
+
+            grid-column:
+                1 / -1;
+
         }
 
+
         label {
+
             font-size: 12px;
+
             color: #aaa;
+
             margin-bottom: 7px;
+
             letter-spacing: 1px;
+
         }
+
 
         input,
         select,
         textarea {
+
             width: 100%;
+
             padding: 13px;
 
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.15);
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.15);
+
             border-radius: 8px;
 
             color: white;
+
             outline: none;
 
             font-size: 14px;
 
             transition: 0.2s;
+
         }
+
 
         input:focus,
         select:focus,
         textarea:focus {
-            border-color: #8daa64;
+
+            border-color:
+                #8daa64;
 
             box-shadow:
-                0 0 10px rgba(120,160,80,0.25);
+                0 0 10px
+                rgba(120,160,80,0.25);
+
         }
+
 
         select option {
+
             background: #171717;
+
             color: white;
+
         }
+
 
         textarea {
+
             min-height: 120px;
+
             resize: vertical;
+
         }
 
-        /* FOTO */
+
+        /* =========================
+           FOTO
+        ========================= */
 
         .photo-area {
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             margin-bottom: 25px;
+
         }
 
+
         #photoPreview {
+
             width: 150px;
+
             height: 150px;
 
             object-fit: cover;
 
             border-radius: 50%;
 
-            border: 3px solid #708b4c;
+            border:
+                3px solid
+                #708b4c;
 
             background: #111;
 
             margin-bottom: 15px;
 
             box-shadow:
-                0 0 25px rgba(100,140,60,0.25);
+                0 0 25px
+                rgba(100,140,60,0.25);
+
         }
+
 
         input[type="file"] {
+
             max-width: 300px;
+
         }
 
-        /* CHECKBOX RUOLI */
+
+        /* =========================
+           RUOLI
+        ========================= */
 
         .roles {
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 10px;
+
         }
+
 
         .role {
+
             position: relative;
+
         }
+
 
         .role input {
+
             position: absolute;
+
             opacity: 0;
+
             pointer-events: none;
+
         }
 
+
         .role label {
+
             display: block;
 
             padding: 12px 8px;
 
             text-align: center;
 
-            background: rgba(255,255,255,0.04);
+            background:
+                rgba(255,255,255,0.04);
 
-            border: 1px solid rgba(255,255,255,0.12);
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
 
             border-radius: 8px;
 
@@ -213,36 +363,52 @@
             transition: 0.2s;
 
             color: #ccc;
+
         }
 
+
         .role input:checked + label {
-            background: rgba(100,140,60,0.25);
-            border-color: #8daa64;
+
+            background:
+                rgba(100,140,60,0.25);
+
+            border-color:
+                #8daa64;
+
             color: white;
 
             box-shadow:
-                0 0 12px rgba(100,140,60,0.25);
+                0 0 12px
+                rgba(100,140,60,0.25);
+
         }
 
-        /* BOTTONE */
+
+        /* =========================
+           BOTTONE GENERA
+        ========================= */
 
         .generate {
+
             width: 100%;
 
             padding: 17px;
 
             border: none;
+
             border-radius: 10px;
 
-            background: linear-gradient(
-                135deg,
-                #51683a,
-                #819e58
-            );
+            background:
+                linear-gradient(
+                    135deg,
+                    #51683a,
+                    #819e58
+                );
 
             color: white;
 
             font-size: 16px;
+
             font-weight: bold;
 
             letter-spacing: 2px;
@@ -250,33 +416,58 @@
             cursor: pointer;
 
             transition: 0.25s;
+
         }
+
 
         .generate:hover {
-            transform: translateY(-2px);
+
+            transform:
+                translateY(-2px);
 
             box-shadow:
-                0 0 25px rgba(130,170,90,0.35);
+                0 0 25px
+                rgba(130,170,90,0.35);
+
         }
+
 
         .generate:active {
-            transform: scale(0.98);
+
+            transform:
+                scale(0.98);
+
         }
 
-        /* CV GENERATO */
+
+        /* =========================
+           CV GENERATO
+        ========================= */
 
         #generatedCV {
+
             display: none;
+
         }
+
 
         .cv-card {
+
             background: #111;
-            border: 1px solid #566b3e;
+
+            border:
+                1px solid
+                #566b3e;
+
             border-radius: 15px;
+
             overflow: hidden;
+
         }
 
+
         .cv-header {
+
             padding: 25px;
 
             background:
@@ -287,100 +478,252 @@
                 );
 
             display: flex;
+
             align-items: center;
+
             gap: 20px;
+
         }
 
+
         .cv-photo {
+
             width: 110px;
+
             height: 110px;
 
             border-radius: 10px;
 
             object-fit: cover;
 
-            border: 2px solid #8daa64;
+            border:
+                2px solid
+                #8daa64;
+
         }
+
 
         .cv-header h2 {
+
             font-size: 25px;
+
             letter-spacing: 2px;
+
         }
+
 
         .nickname {
-            color: #9dbb70;
+
+            color:
+                #9dbb70;
+
             margin-top: 6px;
+
         }
+
 
         .cv-body {
+
             padding: 25px;
+
         }
+
 
         .cv-section {
+
             margin-bottom: 25px;
+
         }
+
 
         .cv-section h4 {
-            color: #9dbb70;
+
+            color:
+                #9dbb70;
+
             font-size: 13px;
+
             letter-spacing: 2px;
+
             margin-bottom: 10px;
 
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.1);
 
             padding-bottom: 8px;
+
         }
+
 
         .cv-section p {
+
             color: #ddd;
+
             line-height: 1.6;
+
             font-size: 14px;
+
         }
 
+
         .tag {
+
             display: inline-block;
 
             padding: 7px 10px;
 
             margin: 4px;
 
-            background: rgba(100,140,60,0.18);
+            background:
+                rgba(100,140,60,0.18);
 
-            border: 1px solid rgba(130,170,90,0.35);
+            border:
+                1px solid
+                rgba(130,170,90,0.35);
 
             border-radius: 20px;
 
             font-size: 12px;
+
         }
 
-        /* MOBILE */
+
+        /* =========================
+           PULSANTE PDF
+        ========================= */
+
+        .pdf-area {
+
+            padding: 20px;
+
+            text-align: center;
+
+            background: #111;
+
+        }
+
+
+        .pdf-button {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #333,
+                    #777
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+        }
+
+
+        .pdf-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 0 20px
+                rgba(255,255,255,0.2);
+
+        }
+
+
+        .pdf-button:active {
+
+            transform:
+                scale(0.98);
+
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 650px) {
 
             .grid {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
+
             }
+
 
             .field.full {
+
                 grid-column: auto;
+
             }
+
 
             .roles {
-                grid-template-columns: repeat(2, 1fr);
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
             }
+
 
             .box {
+
                 padding: 18px;
+
             }
+
 
             .header h1 {
+
                 font-size: 25px;
+
             }
 
+
             .cv-header {
+
                 flex-direction: column;
+
                 text-align: center;
+
             }
+
+        }
+
+
+        /* =========================
+           STAMPA / PDF
+        ========================= */
+
+        @media print {
+
+            body {
+
+                background: white;
+
+                color: black;
+
+            }
+
         }
 
     </style>
@@ -390,196 +733,411 @@
 
 <body>
 
+
 <div class="container">
 
-    <!-- HEADER -->
+
+    <!-- =========================
+         HEADER
+    ========================= -->
 
     <div class="header">
 
-        <h1>SOAS AIR SOFT TEAM</h1>
+        <h1>
+            SOAS AIR SOFT TEAM
+        </h1>
 
         <div class="line"></div>
 
-        <h2>OPERATOR CV</h2>
+        <h2>
+            OPERATOR CV
+        </h2>
 
     </div>
 
 
-    <!-- IDENTITÀ -->
+    <!-- =========================
+         IDENTITÀ
+    ========================= -->
 
     <div class="box">
 
-        <h3>01 — IDENTITÀ OPERATORE</h3>
+        <h3>
+            01 — IDENTITÀ OPERATORE
+        </h3>
+
 
         <div class="photo-area">
 
             <img
                 id="photoPreview"
-                src="https://via.placeholder.com/150"
-                alt="Foto operatore">
+                src="ingresso.jpeg"
+                alt="Foto operatore"
+            >
+
 
             <input
                 type="file"
                 id="photo"
-                accept="image/*">
+                accept="image/*"
+            >
 
         </div>
 
 
         <div class="grid">
 
-            <div class="field">
-                <label>NOME</label>
-                <input type="text" id="nome" placeholder="Nome">
-            </div>
 
             <div class="field">
-                <label>COGNOME</label>
-                <input type="text" id="cognome" placeholder="Cognome">
+
+                <label>
+                    NOME
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Nome"
+                >
+
             </div>
 
-            <div class="field">
-                <label>NICKNAME</label>
-                <input type="text" id="nickname" placeholder="Nickname">
-            </div>
 
             <div class="field">
-                <label>ETÀ</label>
-                <input type="number" id="eta" placeholder="Età">
+
+                <label>
+                    COGNOME
+                </label>
+
+                <input
+                    type="text"
+                    id="cognome"
+                    placeholder="Cognome"
+                >
+
             </div>
 
-            <div class="field">
-                <label>PROVINCIA</label>
-                <input type="text" id="provincia" placeholder="Provincia">
-            </div>
 
             <div class="field">
-                <label>CITTÀ</label>
-                <input type="text" id="citta" placeholder="Città">
+
+                <label>
+                    NICKNAME
+                </label>
+
+                <input
+                    type="text"
+                    id="nickname"
+                    placeholder="Nickname"
+                >
+
             </div>
+
+
+            <div class="field">
+
+                <label>
+                    ETÀ
+                </label>
+
+                <input
+                    type="number"
+                    id="eta"
+                    placeholder="Età"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    PROVINCIA
+                </label>
+
+                <input
+                    type="text"
+                    id="provincia"
+                    placeholder="Provincia"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    CITTÀ
+                </label>
+
+                <input
+                    type="text"
+                    id="citta"
+                    placeholder="Città"
+                >
+
+            </div>
+
 
         </div>
 
     </div>
 
 
-    <!-- ESPERIENZA -->
+    <!-- =========================
+         ESPERIENZA
+    ========================= -->
 
     <div class="box">
 
-        <h3>02 — ESPERIENZA</h3>
+        <h3>
+            02 — ESPERIENZA
+        </h3>
+
 
         <div class="grid">
 
+
             <div class="field">
-                <label>ANNI DI ESPERIENZA</label>
+
+                <label>
+                    ANNI DI ESPERIENZA
+                </label>
 
                 <input
                     type="number"
                     id="esperienza"
                     min="0"
-                    placeholder="Es. 5">
+                    placeholder="Es. 5"
+                >
+
             </div>
 
+
             <div class="field">
-                <label>SQUADRA ATTUALE</label>
+
+                <label>
+                    SQUADRA ATTUALE
+                </label>
 
                 <input
                     type="text"
                     id="squadra"
-                    placeholder="Nome squadra">
+                    placeholder="Nome squadra"
+                >
+
             </div>
+
 
             <div class="field full">
 
-                <label>ESPERIENZE PRECEDENTI</label>
+                <label>
+                    ESPERIENZE PRECEDENTI
+                </label>
 
                 <textarea
                     id="precedenti"
-                    placeholder="Squadre precedenti, eventi, tornei, milsim..."></textarea>
+                    placeholder="Squadre precedenti, eventi, tornei, milsim..."
+                ></textarea>
 
             </div>
+
 
         </div>
 
     </div>
 
 
-    <!-- RUOLI -->
+    <!-- =========================
+         RUOLI
+    ========================= -->
 
     <div class="box">
 
-        <h3>03 — RUOLO OPERATIVO</h3>
+        <h3>
+            03 — RUOLO OPERATIVO
+        </h3>
+
 
         <div class="roles">
 
-            <div class="role">
-                <input type="checkbox" id="fuciliere" value="Fuciliere">
-                <label for="fuciliere">Fuciliere</label>
-            </div>
 
             <div class="role">
-                <input type="checkbox" id="assaltatore" value="Assaltatore">
-                <label for="assaltatore">Assaltatore</label>
+
+                <input
+                    type="checkbox"
+                    id="fuciliere"
+                    value="Fuciliere"
+                >
+
+                <label for="fuciliere">
+                    Fuciliere
+                </label>
+
             </div>
 
-            <div class="role">
-                <input type="checkbox" id="supporto" value="Supporto">
-                <label for="supporto">Supporto</label>
-            </div>
 
             <div class="role">
-                <input type="checkbox" id="sniper" value="Sniper">
-                <label for="sniper">Sniper</label>
+
+                <input
+                    type="checkbox"
+                    id="assaltatore"
+                    value="Assaltatore"
+                >
+
+                <label for="assaltatore">
+                    Assaltatore
+                </label>
+
             </div>
 
-            <div class="role">
-                <input type="checkbox" id="scout" value="Scout">
-                <label for="scout">Scout</label>
-            </div>
 
             <div class="role">
-                <input type="checkbox" id="medico" value="Medico">
-                <label for="medico">Medico</label>
+
+                <input
+                    type="checkbox"
+                    id="supporto"
+                    value="Supporto"
+                >
+
+                <label for="supporto">
+                    Supporto
+                </label>
+
             </div>
 
-            <div class="role">
-                <input type="checkbox" id="artificiere" value="Artificiere">
-                <label for="artificiere">Artificiere</label>
-            </div>
 
             <div class="role">
-                <input type="checkbox" id="cqb" value="CQB">
-                <label for="cqb">CQB</label>
+
+                <input
+                    type="checkbox"
+                    id="sniper"
+                    value="Sniper"
+                >
+
+                <label for="sniper">
+                    Sniper
+                </label>
+
             </div>
 
+
             <div class="role">
-                <input type="checkbox" id="comandante" value="Comandante">
-                <label for="comandante">Comandante</label>
+
+                <input
+                    type="checkbox"
+                    id="scout"
+                    value="Scout"
+                >
+
+                <label for="scout">
+                    Scout
+                </label>
+
             </div>
+
+
+            <div class="role">
+
+                <input
+                    type="checkbox"
+                    id="medico"
+                    value="Medico"
+                >
+
+                <label for="medico">
+                    Medico
+                </label>
+
+            </div>
+
+
+            <div class="role">
+
+                <input
+                    type="checkbox"
+                    id="artificiere"
+                    value="Artificiere"
+                >
+
+                <label for="artificiere">
+                    Artificiere
+                </label>
+
+            </div>
+
+
+            <div class="role">
+
+                <input
+                    type="checkbox"
+                    id="cqb"
+                    value="CQB"
+                >
+
+                <label for="cqb">
+                    CQB
+                </label>
+
+            </div>
+
+
+            <div class="role">
+
+                <input
+                    type="checkbox"
+                    id="comandante"
+                    value="Comandante"
+                >
+
+                <label for="comandante">
+                    Comandante
+                </label>
+
+            </div>
+
 
         </div>
 
     </div>
 
 
-    <!-- COMPETENZE -->
+    <!-- =========================
+         COMPETENZE
+    ========================= -->
 
     <div class="box">
 
-        <h3>04 — COMPETENZE</h3>
+        <h3>
+            04 — COMPETENZE
+        </h3>
+
 
         <div class="grid">
 
+
             <div class="field">
-                <label>TIRO</label>
+
+                <label>
+                    TIRO
+                </label>
 
                 <select id="tiro">
 
-                    <option value="">Seleziona</option>
-                    <option>Base</option>
-                    <option>Intermedio</option>
-                    <option>Avanzato</option>
+                    <option value="">
+                        Seleziona
+                    </option>
+
+                    <option>
+                        Base
+                    </option>
+
+                    <option>
+                        Intermedio
+                    </option>
+
+                    <option>
+                        Avanzato
+                    </option>
 
                 </select>
 
@@ -587,14 +1145,28 @@
 
 
             <div class="field">
-                <label>MOVIMENTO TATTICO</label>
+
+                <label>
+                    MOVIMENTO TATTICO
+                </label>
 
                 <select id="movimento">
 
-                    <option value="">Seleziona</option>
-                    <option>Base</option>
-                    <option>Intermedio</option>
-                    <option>Avanzato</option>
+                    <option value="">
+                        Seleziona
+                    </option>
+
+                    <option>
+                        Base
+                    </option>
+
+                    <option>
+                        Intermedio
+                    </option>
+
+                    <option>
+                        Avanzato
+                    </option>
 
                 </select>
 
@@ -602,14 +1174,28 @@
 
 
             <div class="field">
-                <label>CQB</label>
+
+                <label>
+                    CQB
+                </label>
 
                 <select id="competenzaCqb">
 
-                    <option value="">Seleziona</option>
-                    <option>Base</option>
-                    <option>Intermedio</option>
-                    <option>Avanzato</option>
+                    <option value="">
+                        Seleziona
+                    </option>
+
+                    <option>
+                        Base
+                    </option>
+
+                    <option>
+                        Intermedio
+                    </option>
+
+                    <option>
+                        Avanzato
+                    </option>
 
                 </select>
 
@@ -617,14 +1203,28 @@
 
 
             <div class="field">
-                <label>COMUNICAZIONI RADIO</label>
+
+                <label>
+                    COMUNICAZIONI RADIO
+                </label>
 
                 <select id="radio">
 
-                    <option value="">Seleziona</option>
-                    <option>Base</option>
-                    <option>Intermedio</option>
-                    <option>Avanzato</option>
+                    <option value="">
+                        Seleziona
+                    </option>
+
+                    <option>
+                        Base
+                    </option>
+
+                    <option>
+                        Intermedio
+                    </option>
+
+                    <option>
+                        Avanzato
+                    </option>
 
                 </select>
 
@@ -632,14 +1232,28 @@
 
 
             <div class="field">
-                <label>NAVIGAZIONE</label>
+
+                <label>
+                    NAVIGAZIONE
+                </label>
 
                 <select id="navigazione">
 
-                    <option value="">Seleziona</option>
-                    <option>Base</option>
-                    <option>Intermedio</option>
-                    <option>Avanzato</option>
+                    <option value="">
+                        Seleziona
+                    </option>
+
+                    <option>
+                        Base
+                    </option>
+
+                    <option>
+                        Intermedio
+                    </option>
+
+                    <option>
+                        Avanzato
+                    </option>
 
                 </select>
 
@@ -647,119 +1261,188 @@
 
 
             <div class="field">
-                <label>PRIMO SOCCORSO</label>
+
+                <label>
+                    PRIMO SOCCORSO
+                </label>
 
                 <select id="soccorso">
 
-                    <option value="">Seleziona</option>
-                    <option>Base</option>
-                    <option>Intermedio</option>
-                    <option>Avanzato</option>
+                    <option value="">
+                        Seleziona
+                    </option>
+
+                    <option>
+                        Base
+                    </option>
+
+                    <option>
+                        Intermedio
+                    </option>
+
+                    <option>
+                        Avanzato
+                    </option>
 
                 </select>
 
             </div>
+
 
         </div>
 
     </div>
 
 
-    <!-- EQUIPAGGIAMENTO -->
+    <!-- =========================
+         EQUIPAGGIAMENTO
+    ========================= -->
 
     <div class="box">
 
-        <h3>05 — EQUIPAGGIAMENTO</h3>
+        <h3>
+            05 — EQUIPAGGIAMENTO
+        </h3>
+
 
         <textarea
             id="equipaggiamento"
-            placeholder="Descrivi il tuo equipaggiamento, repliche, radio, ottiche, protezioni, ecc."></textarea>
+            placeholder="Descrivi il tuo equipaggiamento, repliche, radio, ottiche, protezioni, ecc."
+        ></textarea>
 
     </div>
 
 
-    <!-- DISPONIBILITÀ -->
+    <!-- =========================
+         DISPONIBILITÀ
+    ========================= -->
 
     <div class="box">
 
-        <h3>06 — DISPONIBILITÀ</h3>
+        <h3>
+            06 — DISPONIBILITÀ
+        </h3>
+
 
         <div class="grid">
 
+
             <div class="field">
 
-                <label>DISPONIBILITÀ</label>
+                <label>
+                    DISPONIBILITÀ
+                </label>
 
                 <select id="disponibilita">
 
-                    <option>Weekend</option>
-                    <option>Sabato</option>
-                    <option>Domenica</option>
-                    <option>Su richiesta</option>
+                    <option>
+                        Weekend
+                    </option>
+
+                    <option>
+                        Sabato
+                    </option>
+
+                    <option>
+                        Domenica
+                    </option>
+
+                    <option>
+                        Su richiesta
+                    </option>
 
                 </select>
 
             </div>
+
 
             <div class="field">
 
-                <label>TRASFERTE</label>
+                <label>
+                    TRASFERTE
+                </label>
 
                 <select id="trasferte">
 
-                    <option>Sì</option>
-                    <option>No</option>
-                    <option>Da valutare</option>
+                    <option>
+                        Sì
+                    </option>
+
+                    <option>
+                        No
+                    </option>
+
+                    <option>
+                        Da valutare
+                    </option>
 
                 </select>
 
             </div>
+
 
         </div>
 
     </div>
 
 
-    <!-- PRESENTAZIONE -->
+    <!-- =========================
+         PRESENTAZIONE
+    ========================= -->
 
     <div class="box">
 
-        <h3>07 — PRESENTAZIONE PERSONALE</h3>
+        <h3>
+            07 — PRESENTAZIONE PERSONALE
+        </h3>
+
 
         <textarea
             id="presentazione"
-            placeholder="Raccontaci qualcosa di te, del tuo modo di giocare e di cosa cerchi in una squadra..."></textarea>
+            placeholder="Raccontaci qualcosa di te, del tuo modo di giocare e di cosa cerchi in una squadra..."
+        ></textarea>
 
     </div>
 
 
-    <!-- WHATSAPP -->
+    <!-- =========================
+         WHATSAPP
+    ========================= -->
 
     <div class="box">
 
-        <h3>08 — CONTATTO</h3>
+        <h3>
+            08 — CONTATTO
+        </h3>
+
 
         <div class="field">
 
-            <label>NUMERO WHATSAPP</label>
+            <label>
+                NUMERO WHATSAPP
+            </label>
 
             <input
                 type="tel"
                 id="whatsapp"
-                placeholder="+39 333 1234567">
+                placeholder="+39 333 1234567"
+            >
 
         </div>
 
     </div>
 
 
-    <!-- GENERA -->
+    <!-- =========================
+         GENERA CV
+    ========================= -->
 
     <div class="box">
 
         <button
             class="generate"
-            onclick="generaCV()">
+            onclick="generaCV()"
+        >
 
             ⚡ GENERA IL MIO CV
 
@@ -768,19 +1451,28 @@
     </div>
 
 
-    <!-- CV GENERATO -->
+    <!-- =========================
+         CV GENERATO
+    ========================= -->
 
     <div id="generatedCV">
 
+
         <div class="cv-card">
 
+
+            <!-- HEADER CV -->
+
             <div class="cv-header">
+
 
                 <img
                     id="cvPhoto"
                     class="cv-photo"
                     src=""
-                    alt="Foto">
+                    alt="Foto"
+                >
+
 
                 <div>
 
@@ -793,14 +1485,20 @@
 
                 </div>
 
+
             </div>
 
 
+            <!-- CORPO CV -->
+
             <div class="cv-body">
+
 
                 <div class="cv-section">
 
-                    <h4>DATI OPERATORE</h4>
+                    <h4>
+                        DATI OPERATORE
+                    </h4>
 
                     <p id="cvData"></p>
 
@@ -809,7 +1507,9 @@
 
                 <div class="cv-section">
 
-                    <h4>RUOLO OPERATIVO</h4>
+                    <h4>
+                        RUOLO OPERATIVO
+                    </h4>
 
                     <div id="cvRoles"></div>
 
@@ -818,7 +1518,9 @@
 
                 <div class="cv-section">
 
-                    <h4>ESPERIENZA</h4>
+                    <h4>
+                        ESPERIENZA
+                    </h4>
 
                     <p id="cvExperience"></p>
 
@@ -827,7 +1529,9 @@
 
                 <div class="cv-section">
 
-                    <h4>COMPETENZE</h4>
+                    <h4>
+                        COMPETENZE
+                    </h4>
 
                     <div id="cvSkills"></div>
 
@@ -836,7 +1540,9 @@
 
                 <div class="cv-section">
 
-                    <h4>EQUIPAGGIAMENTO</h4>
+                    <h4>
+                        EQUIPAGGIAMENTO
+                    </h4>
 
                     <p id="cvEquipment"></p>
 
@@ -845,7 +1551,9 @@
 
                 <div class="cv-section">
 
-                    <h4>DISPONIBILITÀ</h4>
+                    <h4>
+                        DISPONIBILITÀ
+                    </h4>
 
                     <p id="cvAvailability"></p>
 
@@ -854,111 +1562,171 @@
 
                 <div class="cv-section">
 
-                    <h4>PRESENTAZIONE</h4>
+                    <h4>
+                        PRESENTAZIONE
+                    </h4>
 
                     <p id="cvPresentation"></p>
 
                 </div>
 
+
             </div>
+
+
+            <!-- PULSANTE PDF -->
+
+            <div class="pdf-area">
+
+                <button
+                    class="pdf-button"
+                    onclick="scaricaPDF()"
+                >
+
+                    📄 SCARICA IL CV IN PDF
+
+                </button>
+
+            </div>
+
 
         </div>
 
+
     </div>
+
 
 </div>
 
 
+
 <script>
 
+
     /* =========================
-       FOTO PREVIEW
+       FOTO
     ========================= */
 
-    const photoInput = document.getElementById("photo");
+    const photoInput =
+        document.getElementById("photo");
 
-    const photoPreview = document.getElementById("photoPreview");
+
+    const photoPreview =
+        document.getElementById("photoPreview");
+
 
     let photoData = "";
 
 
-    photoInput.addEventListener("change", function () {
+    photoInput.addEventListener(
+        "change",
+        function () {
 
-        const file = this.files[0];
+            const file =
+                this.files[0];
 
-        if (!file) return;
 
-        const reader = new FileReader();
+            if (!file) return;
 
-        reader.onload = function (e) {
 
-            photoData = e.target.result;
+            const reader =
+                new FileReader();
 
-            photoPreview.src = photoData;
 
-        };
+            reader.onload =
+                function (e) {
 
-        reader.readAsDataURL(file);
+                    photoData =
+                        e.target.result;
 
-    });
+                    photoPreview.src =
+                        photoData;
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
 
 
     /* =========================
-       GENERAZIONE CV
+       GENERA CV
     ========================= */
 
     function generaCV() {
 
+
         const nome =
             document.getElementById("nome").value;
+
 
         const cognome =
             document.getElementById("cognome").value;
 
+
         const nickname =
             document.getElementById("nickname").value;
+
 
         const eta =
             document.getElementById("eta").value;
 
+
         const provincia =
             document.getElementById("provincia").value;
+
 
         const citta =
             document.getElementById("citta").value;
 
+
         const esperienza =
             document.getElementById("esperienza").value;
+
 
         const squadra =
             document.getElementById("squadra").value;
 
+
         const precedenti =
             document.getElementById("precedenti").value;
+
 
         const equipaggiamento =
             document.getElementById("equipaggiamento").value;
 
+
         const disponibilita =
             document.getElementById("disponibilita").value;
 
+
         const trasferte =
             document.getElementById("trasferte").value;
+
 
         const presentazione =
             document.getElementById("presentazione").value;
 
 
+
         /* NOME */
 
         document.getElementById("cvName").textContent =
-            nome + " " + cognome;
+            (nome + " " + cognome).trim()
+            || "OPERATORE SOAS";
+
 
 
         /* NICKNAME */
 
         document.getElementById("cvNickname").textContent =
-            nickname ? '"' + nickname + '"' : "";
+            nickname
+                ? '"' + nickname + '"'
+                : "";
+
 
 
         /* FOTO */
@@ -976,13 +1744,24 @@
         }
 
 
+
         /* DATI */
 
         document.getElementById("cvData").innerHTML =
-            "<strong>Età:</strong> " + eta +
-            "<br><strong>Città:</strong> " + citta +
-            " (" + provincia + ")" +
-            "<br><strong>Squadra:</strong> " + squadra;
+
+            "<strong>Età:</strong> " +
+            (eta || "-") +
+
+            "<br><strong>Città:</strong> " +
+            (citta || "-") +
+
+            " (" +
+            (provincia || "-") +
+            ")" +
+
+            "<br><strong>Squadra:</strong> " +
+            (squadra || "-");
+
 
 
         /* RUOLI */
@@ -992,29 +1771,50 @@
                 '.role input:checked'
             );
 
+
         let roles = "";
 
-        roleInputs.forEach(function (role) {
 
-            roles +=
-                '<span class="tag">' +
-                role.value +
-                '</span>';
+        roleInputs.forEach(
+            function (role) {
 
-        });
+                roles +=
+
+                    '<span class="tag">' +
+
+                    role.value +
+
+                    '</span>';
+
+            }
+        );
+
 
         document.getElementById("cvRoles").innerHTML =
-            roles || "Nessun ruolo selezionato";
+
+            roles ||
+
+            "Nessun ruolo selezionato";
+
 
 
         /* ESPERIENZA */
 
         document.getElementById("cvExperience").innerHTML =
+
             "<strong>Anni di esperienza:</strong> " +
-            esperienza +
+
+            (esperienza || "-") +
+
             "<br><br>" +
+
             "<strong>Esperienze precedenti:</strong><br>" +
-            (precedenti || "Nessuna esperienza inserita");
+
+            (
+                precedenti ||
+                "Nessuna esperienza inserita"
+            );
+
 
 
         /* COMPETENZE */
@@ -1022,10 +1822,15 @@
         const skills = [
 
             ["Tiro", "tiro"],
+
             ["Movimento tattico", "movimento"],
+
             ["CQB", "competenzaCqb"],
+
             ["Radio", "radio"],
+
             ["Navigazione", "navigazione"],
+
             ["Primo soccorso", "soccorso"]
 
         ];
@@ -1033,69 +1838,215 @@
 
         let skillsHTML = "";
 
-        skills.forEach(function (skill) {
 
-            const value =
-                document.getElementById(skill[1]).value;
+        skills.forEach(
+            function (skill) {
 
-            if (value) {
 
-                skillsHTML +=
-                    '<span class="tag">' +
-                    skill[0] +
-                    ': ' +
-                    value +
-                    '</span>';
+                const value =
+                    document.getElementById(
+                        skill[1]
+                    ).value;
+
+
+                if (value) {
+
+                    skillsHTML +=
+
+                        '<span class="tag">' +
+
+                        skill[0] +
+
+                        ": " +
+
+                        value +
+
+                        '</span>';
+
+                }
 
             }
-
-        });
+        );
 
 
         document.getElementById("cvSkills").innerHTML =
-            skillsHTML || "Nessuna competenza inserita";
+
+            skillsHTML ||
+
+            "Nessuna competenza inserita";
+
 
 
         /* EQUIPAGGIAMENTO */
 
-        document.getElementById("cvEquipment").textContent =
+        document.getElementById(
+            "cvEquipment"
+        ).textContent =
+
             equipaggiamento ||
+
             "Nessun equipaggiamento inserito";
+
 
 
         /* DISPONIBILITÀ */
 
-        document.getElementById("cvAvailability").innerHTML =
+        document.getElementById(
+            "cvAvailability"
+        ).innerHTML =
+
             "<strong>Disponibilità:</strong> " +
+
             disponibilita +
+
             "<br><strong>Trasferte:</strong> " +
+
             trasferte;
+
 
 
         /* PRESENTAZIONE */
 
-        document.getElementById("cvPresentation").textContent =
+        document.getElementById(
+            "cvPresentation"
+        ).textContent =
+
             presentazione ||
+
             "Nessuna presentazione inserita";
+
 
 
         /* MOSTRA CV */
 
         const generated =
-            document.getElementById("generatedCV");
+            document.getElementById(
+                "generatedCV"
+            );
 
-        generated.style.display = "block";
+
+        generated.style.display =
+            "block";
+
 
 
         /* SCROLL */
 
         generated.scrollIntoView({
+
             behavior: "smooth"
+
         });
 
     }
 
+
+
+    /* =========================
+       SCARICA PDF
+    ========================= */
+
+    function scaricaPDF() {
+
+
+        const elemento =
+            document.querySelector(
+                ".cv-card"
+            );
+
+
+        const nome =
+            document.getElementById(
+                "nome"
+            ).value
+            || "Operatore";
+
+
+        const nickname =
+            document.getElementById(
+                "nickname"
+            ).value
+            || "";
+
+
+        let nomeFile =
+            "CV_SOAS_" +
+            nome;
+
+
+        if (nickname) {
+
+            nomeFile +=
+                "_" +
+                nickname;
+
+        }
+
+
+        nomeFile +=
+            ".pdf";
+
+
+
+        const opzioni = {
+
+
+            margin: 8,
+
+
+            filename:
+                nomeFile,
+
+
+            image: {
+
+                type: "jpeg",
+
+                quality: 0.95
+
+            },
+
+
+            html2canvas: {
+
+                scale: 2,
+
+                useCORS: true,
+
+                backgroundColor:
+                    "#111111"
+
+            },
+
+
+            jsPDF: {
+
+                unit: "mm",
+
+                format: "a4",
+
+                orientation:
+                    "portrait"
+
+            }
+
+        };
+
+
+
+        html2pdf()
+
+            .set(opzioni)
+
+            .from(elemento)
+
+            .save();
+
+    }
+
+
 </script>
+
 
 </body>
 
