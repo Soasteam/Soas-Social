@@ -307,537 +307,490 @@ textarea {
     color: #69ff69;
 }
 
-@media(max-width: 700px) {
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .roles {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .cv-header {
-        flex-direction: column;
-    }
-
-    .cv-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .cv-result {
-        padding: 20px;
-    }
-
-    .logo-title h1 {
-        font-size: 24px;
-    }
-
-}
-
-@media print {
-
-    body {
-        background: white;
-    }
-
-    .page {
-        background: white;
-        padding: 0;
-    }
-
-    .form-box,
-    .logo-title,
-    .actions,
-    .status {
-        display: none !important;
-    }
-
-    .cv-result {
-        display: block !important;
-        margin: 0;
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-}
-
 
 /* ===== SOAS V2 TACTICAL UI ===== */
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#020302
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #020302;
 }
 
-.page{
-    padding:18px 12px;
+.page {
+    padding: 18px 12px;
     background:
-        linear-gradient(rgba(0,0,0,.78),rgba(0,0,0,.84)),
-        url("sfondo-cv.jpeg") center/cover fixed
+        linear-gradient(
+            rgba(0,0,0,.78),
+            rgba(0,0,0,.84)
+        ),
+        url("sfondo-cv.jpeg") center/cover fixed;
 }
 
-.container{
-    max-width:980px
+.container {
+    max-width: 980px;
 }
 
-.logo-title{
-    position:relative;
-    padding:18px 12px 20px;
-    margin-bottom:18px;
-    border:1px solid #263226;
-    background:rgba(4,8,4,.72);
-    box-shadow:0 0 30px rgba(0,0,0,.5);
-    overflow:hidden
+.logo-title {
+    position: relative;
+    padding: 18px 12px 20px;
+    margin-bottom: 18px;
+    border: 1px solid #263226;
+    background: rgba(4,8,4,.72);
+    box-shadow: 0 0 30px rgba(0,0,0,.5);
+    overflow: hidden;
 }
 
-.logo-title:before{
-    content:"SOAS // OPERATOR REGISTRY";
-    position:absolute;
-    top:7px;
-    left:12px;
-    font-size:9px;
-    letter-spacing:2px;
-    color:#4d704d
+.logo-title:before {
+    content: "SOAS // OPERATOR REGISTRY";
+    position: absolute;
+    top: 7px;
+    left: 12px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #4d704d;
 }
 
-.logo-title h1{
-    font-size:30px;
-    letter-spacing:4px;
-    text-shadow:0 0 12px rgba(105,255,105,.2)
+.logo-title h1 {
+    font-size: 30px;
+    letter-spacing: 4px;
+    text-shadow: 0 0 12px rgba(105,255,105,.2);
 }
 
-.logo-title p{
-    font-size:11px;
-    color:#69ff69;
-    letter-spacing:4px;
-    margin-bottom:0
+.logo-title p {
+    font-size: 11px;
+    color: #69ff69;
+    letter-spacing: 4px;
+    margin-bottom: 0;
 }
 
-.form-box{
-    background:rgba(7,10,7,.95);
-    border:1px solid #293529;
-    border-radius:4px;
-    padding:22px;
-    box-shadow:0 15px 45px rgba(0,0,0,.65);
-    position:relative
+.form-box {
+    background: rgba(7,10,7,.95);
+    border: 1px solid #293529;
+    border-radius: 4px;
+    padding: 22px;
+    box-shadow: 0 15px 45px rgba(0,0,0,.65);
+    position: relative;
 }
 
-.form-box:after{
-    content:"CLASSIFIED // SOAS ASD";
-    position:absolute;
-    right:14px;
-    top:10px;
-    font-size:8px;
-    color:#405340;
-    letter-spacing:2px
+.form-box:after {
+    content: "CLASSIFIED // SOAS ASD";
+    position: absolute;
+    right: 14px;
+    top: 10px;
+    font-size: 8px;
+    color: #405340;
+    letter-spacing: 2px;
 }
 
-.section-title{
-    color:#69ff69;
-    border-bottom:1px solid #283828;
-    padding:10px 0 8px;
-    margin-top:26px;
-    margin-bottom:15px;
-    font-size:14px;
-    letter-spacing:2px;
-    position:relative
+.section-title {
+    color: #69ff69;
+    border-bottom: 1px solid #283828;
+    padding: 10px 0 8px;
+    margin-top: 26px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    position: relative;
 }
 
-.section-title:before{
-    content:"//";
-    margin-right:8px;
-    color:#3e8b3e
+.section-title:before {
+    content: "//";
+    margin-right: 8px;
+    color: #3e8b3e;
 }
 
-input,select,textarea{
-    border-radius:3px;
-    border:1px solid #354235;
-    background:#0b100b;
-    transition:.2s
+input,
+select,
+textarea {
+    border-radius: 3px;
+    border: 1px solid #354235;
+    background: #0b100b;
+    transition: .2s;
 }
 
-input:focus,select:focus,textarea:focus{
-    border-color:#69ff69;
-    box-shadow:0 0 0 2px rgba(105,255,105,.08)
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #69ff69;
+    box-shadow: 0 0 0 2px rgba(105,255,105,.08);
 }
 
-.role{
-    background:linear-gradient(135deg,#0b100b,#111711);
-    border:1px solid #2c382c;
-    border-radius:3px;
-    transition:.2s
+.role {
+    background: linear-gradient(135deg,#0b100b,#111711);
+    border: 1px solid #2c382c;
+    border-radius: 3px;
+    transition: .2s;
 }
 
-.role:hover{
-    border-color:#69ff69;
-    transform:translateY(-1px)
+.role:hover {
+    border-color: #69ff69;
+    transform: translateY(-1px);
 }
 
-.role input{
-    accent-color:#69ff69
+.role input {
+    accent-color: #69ff69;
 }
 
-.photo-preview{
-    border:1px dashed #486048;
-    border-radius:3px;
-    background:#080c08;
-    box-shadow:inset 0 0 25px rgba(0,0,0,.7)
+.photo-preview {
+    border: 1px dashed #486048;
+    border-radius: 3px;
+    background: #080c08;
+    box-shadow: inset 0 0 25px rgba(0,0,0,.7);
 }
 
-.main-button{
-    border-radius:3px;
-    background:#69ff69;
-    box-shadow:0 0 18px rgba(105,255,105,.15);
-    letter-spacing:2px
+.main-button {
+    border-radius: 3px;
+    background: #69ff69;
+    box-shadow: 0 0 18px rgba(105,255,105,.15);
+    letter-spacing: 2px;
 }
 
-.main-button:hover{
-    box-shadow:0 0 25px rgba(105,255,105,.3);
-    transform:translateY(-1px)
+.main-button:hover {
+    box-shadow: 0 0 25px rgba(105,255,105,.3);
+    transform: translateY(-1px);
 }
 
 
-/* GENERATED OPERATOR PROFILE */
+/* ===== GENERATED OPERATOR PROFILE ===== */
 
-.cv-result{
-    position:relative;
-    background:#f4f5f2;
-    padding:0;
-    border-radius:3px;
-    overflow:hidden;
-    box-shadow:0 18px 50px rgba(0,0,0,.7);
-    border:1px solid #252b25
+.cv-result {
+    position: relative;
+    background: #f4f5f2;
+    padding: 0;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 18px 50px rgba(0,0,0,.7);
+    border: 1px solid #252b25;
 }
 
-.cv-result:before{
-    content:"SOAS ASD // OPERATOR PROFILE";
-    display:block;
-    background:#101510;
-    color:#69ff69;
-    font-size:10px;
-    letter-spacing:3px;
-    padding:9px 16px;
-    border-bottom:3px solid #69ff69
+.cv-result:before {
+    content: "SOAS ASD // OPERATOR PROFILE";
+    display: block;
+    background: #101510;
+    color: #69ff69;
+    font-size: 10px;
+    letter-spacing: 3px;
+    padding: 9px 16px;
+    border-bottom: 3px solid #69ff69;
 }
 
-.cv-header{
-    position:relative;
-    padding:24px;
-    background:linear-gradient(135deg,#f8faf7,#e7ebe6);
-    border-bottom:3px solid #111;
-    gap:22px
+.cv-header {
+    position: relative;
+    padding: 24px;
+    background: linear-gradient(135deg,#f8faf7,#e7ebe6);
+    border-bottom: 3px solid #111;
+    gap: 22px;
 }
 
-.cv-header:after{
-    content:"OPERATOR";
-    position:absolute;
-    right:18px;
-    bottom:12px;
-    font-size:9px;
-    letter-spacing:3px;
-    color:#9ba49b
+.cv-header:after {
+    content: "OPERATOR";
+    position: absolute;
+    right: 18px;
+    bottom: 12px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #9ba49b;
 }
 
-.cv-photo,.cv-photo-placeholder{
-    width:145px;
-    height:175px;
-    border:3px solid #111;
-    box-shadow:5px 5px 0 #69ff69;
-    object-fit:cover
+.cv-photo,
+.cv-photo-placeholder {
+    width: 145px;
+    height: 175px;
+    border: 3px solid #111;
+    box-shadow: 5px 5px 0 #69ff69;
+    object-fit: cover;
 }
 
-.cv-name{
-    font-size:30px;
-    letter-spacing:1px;
-    text-transform:uppercase
+.cv-name {
+    font-size: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.cv-nickname{
-    font-size:16px;
-    color:#3d4a3d;
-    font-weight:bold
+.cv-nickname {
+    font-size: 16px;
+    color: #3d4a3d;
+    font-weight: bold;
 }
 
-.operator-id{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
-    margin-top:8px;
-    padding:6px 9px;
-    background:#101510;
-    color:#69ff69;
-    font:700 11px monospace;
-    letter-spacing:1px
+.operator-id {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 8px;
+    padding: 6px 9px;
+    background: #101510;
+    color: #69ff69;
+    font: 700 11px monospace;
+    letter-spacing: 1px;
 }
 
-.operator-status{
-    display:inline-flex;
-    margin:8px 0 0 7px;
-    padding:6px 9px;
-    background:#dff4df;
-    color:#1f6b2a;
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:1px;
-    border:1px solid #b9d9b9
+.operator-status {
+    display: inline-flex;
+    margin: 8px 0 0 7px;
+    padding: 6px 9px;
+    background: #dff4df;
+    color: #1f6b2a;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 1px solid #b9d9b9;
 }
 
-.cv-meta-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:6px 16px;
-    margin-top:12px;
-    font-size:12px
+.cv-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 6px 16px;
+    margin-top: 12px;
+    font-size: 12px;
 }
 
-.cv-meta-grid p{
-    margin:0
+.cv-meta-grid p {
+    margin: 0;
 }
 
-.cv-section{
-    margin:0;
-    padding:18px 24px;
-    border-bottom:1px solid #d7dbd6
+.cv-section {
+    margin: 0;
+    padding: 18px 24px;
+    border-bottom: 1px solid #d7dbd6;
 }
 
-.cv-section h3{
-    background:#111711;
-    color:#fff;
-    border-left:5px solid #69ff69;
-    padding:9px 11px;
-    margin:0 0 12px;
-    font-size:12px;
-    letter-spacing:2px
+.cv-section h3 {
+    background: #111711;
+    color: #fff;
+    border-left: 5px solid #69ff69;
+    padding: 9px 11px;
+    margin: 0 0 12px;
+    font-size: 12px;
+    letter-spacing: 2px;
 }
 
-.role-badges{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px
+.role-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
 }
 
-.role-badge{
-    background:#151b15;
-    color:#fff;
-    padding:7px 10px;
-    border:1px solid #303c30;
-    font-size:10px;
-    font-weight:bold;
-    letter-spacing:1px;
-    box-shadow:2px 2px 0 #69ff69
+.role-badge {
+    background: #151b15;
+    color: #fff;
+    padding: 7px 10px;
+    border: 1px solid #303c30;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 2px 2px 0 #69ff69;
 }
 
-.skill-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:13px 24px
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 13px 24px;
 }
 
-.skill-card{
-    font-size:11px
+.skill-card {
+    font-size: 11px;
 }
 
-.skill-head{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:5px;
-    font-weight:bold;
-    text-transform:uppercase
+.skill-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-.skill-level{
-    color:#486048
+.skill-level {
+    color: #486048;
 }
 
-.skill-track{
-    height:8px;
-    background:#dce1dc;
-    border:1px solid #c5ccc5;
-    overflow:hidden
+.skill-track {
+    height: 8px;
+    background: #dce1dc;
+    border: 1px solid #c5ccc5;
+    overflow: hidden;
 }
 
-.skill-fill{
-    height:100%;
-    width:0;
-    background:linear-gradient(90deg,#1f8f1f,#69ff69);
-    position:relative;
-    transition:width 1.2s cubic-bezier(.22,1,.36,1);
-    box-shadow:0 0 8px rgba(105,255,105,.35)
+.skill-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg,#1f8f1f,#69ff69);
+    position: relative;
+    transition: width 1.2s cubic-bezier(.22,1,.36,1);
+    box-shadow: 0 0 8px rgba(105,255,105,.35);
 }
 
-.skill-fill:after{
-    content:"";
-    position:absolute;
-    right:0;
-    top:0;
-    bottom:0;
-    width:3px;
-    background:#d9ffd9;
-    box-shadow:0 0 8px #69ff69
+.skill-fill:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #d9ffd9;
+    box-shadow: 0 0 8px #69ff69;
 }
 
-.cv-text{
-    white-space:pre-wrap;
-    line-height:1.55
+.availability-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
 }
 
-.availability-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px
+.availability-card {
+    border: 1px solid #cbd1ca;
+    padding: 11px;
+    background: #f8faf7;
 }
 
-.availability-card{
-    border:1px solid #cbd1ca;
-    padding:11px;
-    background:#f8faf7
+.availability-card strong {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #687168;
+    margin-bottom: 4px;
 }
 
-.availability-card strong{
-    display:block;
-    font-size:9px;
-    letter-spacing:2px;
-    color:#687168;
-    margin-bottom:4px
+.availability-value {
+    font-weight: bold;
 }
 
-.availability-value{
-    font-weight:bold
+.final-profile {
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid #2e3d2e;
+    background: linear-gradient(135deg,#0b100b,#111711);
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 
-.final-profile{
-    margin-top:18px;
-    padding:18px;
-    border:1px solid #2e3d2e;
-    background:linear-gradient(135deg,#0b100b,#111711);
-    color:#fff;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.35)
+.final-profile .created {
+    color: #69ff69;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: bold;
 }
 
-.final-profile .created{
-    color:#69ff69;
-    font-size:10px;
-    letter-spacing:3px;
-    font-weight:bold
+.final-profile .profile-id {
+    font: 700 24px monospace;
+    letter-spacing: 3px;
+    margin: 6px 0 12px;
 }
 
-.final-profile .profile-id{
-    font:700 24px monospace;
-    letter-spacing:3px;
-    margin:6px 0 12px
+.final-profile .ready {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid #69ff69;
+    color: #69ff69;
+    font-size: 10px;
+    letter-spacing: 2px;
 }
 
-.final-profile .ready{
-    display:inline-block;
-    padding:6px 12px;
-    border:1px solid #69ff69;
-    color:#69ff69;
-    font-size:10px;
-    letter-spacing:2px
+.actions {
+    gap: 8px;
 }
 
-.actions{
-    gap:8px
+.action-button {
+    border-radius: 3px;
+    transition: .2s;
 }
 
-.action-button{
-    border-radius:3px;
-    transition:.2s
+.action-button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
 }
 
-.action-button:hover{
-    transform:translateY(-1px);
-    filter:brightness(1.08)
+.pdf-warning {
+    border: 1px solid #5b5b33!important;
+    background: #16160d!important;
+    border-radius: 3px!important;
 }
 
-.pdf-warning{
-    border:1px solid #5b5b33!important;
-    background:#16160d!important;
-    border-radius:3px!important
-}
 
-@media(max-width:700px){
+/* ===== MOBILE ===== */
 
-    .page{
-        padding:10px 7px;
-        background-attachment:scroll
+@media(max-width:700px) {
+
+    .page {
+        padding: 10px 7px;
+        background-attachment: scroll;
     }
 
-    .form-box{
-        padding:15px
+    .form-box {
+        padding: 15px;
     }
 
-    .logo-title h1{
-        font-size:21px;
-        letter-spacing:2px
+    .logo-title h1 {
+        font-size: 21px;
+        letter-spacing: 2px;
     }
 
-    .logo-title p{
-        font-size:9px;
-        letter-spacing:2px
+    .logo-title p {
+        font-size: 9px;
+        letter-spacing: 2px;
     }
 
-    .cv-header{
-        padding:18px;
-        align-items:center
+    .cv-header {
+        padding: 18px;
+        align-items: center;
     }
 
-    .cv-header>div:last-child{
-        text-align:center;
-        width:100%
+    .cv-header > div:last-child {
+        text-align: center;
+        width: 100%;
     }
 
     .cv-meta-grid,
     .skill-grid,
-    .availability-grid{
-        grid-template-columns:1fr
+    .availability-grid {
+        grid-template-columns: 1fr;
     }
 
-    .cv-section{
-        padding:15px
+    .cv-section {
+        padding: 15px;
     }
 
-    .cv-name{
-        font-size:24px
+    .cv-name {
+        font-size: 24px;
     }
 
     .cv-photo,
-    .cv-photo-placeholder{
-        width:135px;
-        height:165px
+    .cv-photo-placeholder {
+        width: 135px;
+        height: 165px;
     }
 
-    .role-badges{
-        justify-content:center
+    .role-badges {
+        justify-content: center;
     }
 
-    .actions .action-button{
-        min-width:100%
+    .actions .action-button {
+        min-width: 100%;
     }
-
 }
 
-@media print{
 
-    .cv-result:before{
-        background:#111;
-        color:#111
+/* ===== STAMPA ===== */
+
+@media print {
+
+    .cv-result:before {
+        background: #111;
+        color: #111;
     }
 
-    .final-profile{
-        display:none
+    .final-profile {
+        display: none;
     }
 
-    .operator-status{
-        color:#111;
-        background:#eee
+    .operator-status {
+        color: #111;
+        background: #eee;
     }
 
-    .skill-fill{
-        background:#333!important;
-        box-shadow:none
+    .skill-fill {
+        background: #333!important;
+        box-shadow: none;
     }
 
 }
@@ -855,6 +808,7 @@ input:focus,select:focus,textarea:focus{
     <h1>SOAS AIR SOFT TEAM</h1>
     <p>TACTICAL OPERATOR CV</p>
 </div>
+
 
 <div class="form-box">
 
@@ -876,6 +830,7 @@ input:focus,select:focus,textarea:focus{
     >
 
 </div>
+
 
 <div class="section-title">
     DATI PERSONALI
@@ -920,6 +875,7 @@ input:focus,select:focus,textarea:focus{
 
 </div>
 
+
 <div class="section-title">
     ESPERIENZA
 </div>
@@ -942,6 +898,7 @@ input:focus,select:focus,textarea:focus{
 </div>
 
 </div>
+
 
 <div class="section-title">
     RUOLI OPERATIVI
@@ -1014,6 +971,7 @@ Comandante
 
 </div>
 
+
 <div class="section-title">
     COMPETENZE
 </div>
@@ -1082,6 +1040,7 @@ Comandante
 
 </div>
 
+
 <div class="section-title">
     EQUIPAGGIAMENTO
 </div>
@@ -1090,6 +1049,7 @@ Comandante
 id="equipaggiamento"
 placeholder="Inserisci il tuo equipaggiamento..."
 ></textarea>
+
 
 <div class="section-title">
     DISPONIBILITÀ
@@ -1118,6 +1078,7 @@ placeholder="Inserisci il tuo equipaggiamento..."
 
 </div>
 
+
 <div class="section-title">
     PRESENTAZIONE
 </div>
@@ -1126,6 +1087,7 @@ placeholder="Inserisci il tuo equipaggiamento..."
 id="presentazione"
 placeholder="Parlaci di te, delle tue esperienze e del tuo modo di giocare..."
 ></textarea>
+
 
 <button
 type="button"
@@ -1136,6 +1098,7 @@ GENERA IL MIO CV
 </button>
 
 </div>
+
 
 <!-- =========================
      CV GENERATO
@@ -1158,8 +1121,13 @@ GENERA IL MIO CV
 <div class="cv-nickname" id="cvNickname"></div>
 
 <div>
-<span class="operator-id" id="cvOperatorId">SOAS-0000</span>
-<span class="operator-status">● PROFILE READY</span>
+<span class="operator-id" id="cvOperatorId">
+SOAS-0000
+</span>
+
+<span class="operator-status">
+● PROFILE READY
+</span>
 </div>
 
 <div class="cv-meta-grid">
@@ -1172,6 +1140,7 @@ GENERA IL MIO CV
 
 </div>
 
+
 <div class="cv-section">
 
 <h3>RUOLI OPERATIVI</h3>
@@ -1179,6 +1148,7 @@ GENERA IL MIO CV
 <div class="role-badges" id="cvRuoli"></div>
 
 </div>
+
 
 <div class="cv-section">
 
@@ -1205,6 +1175,7 @@ GENERA IL MIO CV
 <p id="cvEsperienze"></p>
 
 </div>
+
 
 <div class="cv-section">
 
@@ -1276,6 +1247,7 @@ GENERA IL MIO CV
 
 </div>
 
+
 <div class="cv-section">
 
 <h3>EQUIPAGGIAMENTO</h3>
@@ -1283,6 +1255,7 @@ GENERA IL MIO CV
 <p id="cvEquipaggiamento" class="cv-text"></p>
 
 </div>
+
 
 <div class="cv-section">
 
@@ -1300,6 +1273,7 @@ GENERA IL MIO CV
 
 </div>
 
+
 <div class="cv-section">
 
 <h3>PRESENTAZIONE PERSONALE</h3>
@@ -1309,6 +1283,7 @@ GENERA IL MIO CV
 </div>
 
 </div>
+
 
 <div class="final-profile" id="finalProfile">
 
@@ -1326,11 +1301,20 @@ SOAS-0000
 
 </div>
 
+
 <div class="actions" id="actions">
 
-<div style="width:100%; text-align:center; font-size:12px; color:#888; margin-bottom:2px;">
-Da smartphone: il pulsante apre il menu del telefono per salvare o condividere il PDF.
+<div style="
+width:100%;
+text-align:center;
+font-size:12px;
+color:#888;
+margin-bottom:2px;
+">
+Da smartphone: il pulsante apre il menu del telefono
+per salvare o condividere il PDF.
 </div>
+
 
 <button
 type="button"
@@ -1340,6 +1324,7 @@ id="pdfButton"
 📄 CONDIVIDI / SALVA PDF
 </button>
 
+
 <a
 class="action-button whatsapp-button"
 id="whatsappButton"
@@ -1348,6 +1333,7 @@ aria-label="Apri la chat WhatsApp SOAS"
 >
 💬 APRI CHAT WHATSAPP SOAS
 </a>
+
 
 <button
 type="button"
@@ -1359,6 +1345,7 @@ id="printButton"
 
 </div>
 
+
 <div
 class="status"
 id="status"
@@ -1366,11 +1353,14 @@ aria-live="polite"
 ></div>
 
 </div>
+
 </div>
+
 
 <script>
 
 "use strict";
+
 
 /* =========================================
    VARIABILI
@@ -1379,9 +1369,11 @@ aria-live="polite"
 let fotoBase64 = "";
 let fotoMimeType = "image/jpeg";
 
+
 function getOperatorId(){
 
-    let id = localStorage.getItem("soas_operator_id");
+    let id =
+        localStorage.getItem("soas_operator_id");
 
     if(!id){
 
@@ -1400,6 +1392,7 @@ function getOperatorId(){
 
     return id;
 }
+
 
 const skillMap = {
     Base:25,
@@ -1433,158 +1426,208 @@ const printButton =
    FOTO
 ========================================= */
 
-fotoInput.addEventListener("change", function(event) {
+fotoInput.addEventListener(
+    "change",
+    function(event){
 
-    const file =
-        event.target.files &&
-        event.target.files[0];
+        const file =
+            event.target.files &&
+            event.target.files[0];
 
-    if (!file) {
-        return;
-    }
+        if(!file){
+            return;
+        }
 
-    if (!file.type.startsWith("image/")) {
-
-        alert("Seleziona una foto valida.");
-
-        fotoInput.value = "";
-
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-
-        const tempImg = new Image();
-
-        tempImg.onload = function() {
-
-            const maxSize = 1400;
-
-            let width =
-                tempImg.naturalWidth;
-
-            let height =
-                tempImg.naturalHeight;
-
-            if (
-                width > maxSize ||
-                height > maxSize
-            ) {
-
-                const ratio =
-                    Math.min(
-                        maxSize / width,
-                        maxSize / height
-                    );
-
-                width =
-                    Math.round(width * ratio);
-
-                height =
-                    Math.round(height * ratio);
-            }
-
-            const canvas =
-                document.createElement("canvas");
-
-            canvas.width = width;
-            canvas.height = height;
-
-            const ctx =
-                canvas.getContext("2d");
-
-            if (!ctx) {
-
-                alert(
-                    "Impossibile preparare la foto."
-                );
-
-                return;
-            }
-
-            ctx.fillStyle = "#ffffff";
-
-            ctx.fillRect(
-                0,
-                0,
-                width,
-                height
-            );
-
-            ctx.drawImage(
-                tempImg,
-                0,
-                0,
-                width,
-                height
-            );
-
-            fotoBase64 =
-                canvas.toDataURL(
-                    "image/jpeg",
-                    0.88
-                );
-
-            fotoMimeType =
-                "image/jpeg";
-
-            photoPreview.innerHTML = "";
-
-            const img =
-                document.createElement("img");
-
-            img.src =
-                fotoBase64;
-
-            img.alt =
-                "Foto operatore";
-
-            photoPreview.appendChild(img);
-        };
-
-        tempImg.onerror = function() {
-
-            fotoBase64 = "";
+        if(!file.type.startsWith("image/")){
 
             alert(
-                "Non è stato possibile caricare la foto."
+                "Seleziona una foto valida."
             );
-        };
 
-        tempImg.src =
-            e.target.result;
-    };
+            fotoInput.value = "";
 
-    reader.onerror = function() {
+            return;
+        }
 
-        fotoBase64 = "";
 
-        alert(
-            "Non è stato possibile leggere la foto."
-        );
-    };
+        const reader =
+            new FileReader();
 
-    reader.readAsDataURL(file);
 
-});
+        reader.onload =
+            function(e){
+
+                const tempImg =
+                    new Image();
+
+
+                tempImg.onload =
+                    function(){
+
+                        const maxSize = 1400;
+
+                        let width =
+                            tempImg.naturalWidth;
+
+                        let height =
+                            tempImg.naturalHeight;
+
+
+                        if(
+                            width > maxSize ||
+                            height > maxSize
+                        ){
+
+                            const ratio =
+                                Math.min(
+                                    maxSize / width,
+                                    maxSize / height
+                                );
+
+                            width =
+                                Math.round(
+                                    width * ratio
+                                );
+
+                            height =
+                                Math.round(
+                                    height * ratio
+                                );
+                        }
+
+
+                        const canvas =
+                            document.createElement(
+                                "canvas"
+                            );
+
+                        canvas.width =
+                            width;
+
+                        canvas.height =
+                            height;
+
+
+                        const ctx =
+                            canvas.getContext(
+                                "2d"
+                            );
+
+
+                        if(!ctx){
+
+                            alert(
+                                "Impossibile preparare la foto."
+                            );
+
+                            return;
+                        }
+
+
+                        ctx.fillStyle =
+                            "#ffffff";
+
+                        ctx.fillRect(
+                            0,
+                            0,
+                            width,
+                            height
+                        );
+
+
+                        ctx.drawImage(
+                            tempImg,
+                            0,
+                            0,
+                            width,
+                            height
+                        );
+
+
+                        fotoBase64 =
+                            canvas.toDataURL(
+                                "image/jpeg",
+                                0.88
+                            );
+
+                        fotoMimeType =
+                            "image/jpeg";
+
+
+                        photoPreview.innerHTML =
+                            "";
+
+
+                        const img =
+                            document.createElement(
+                                "img"
+                            );
+
+                        img.src =
+                            fotoBase64;
+
+                        img.alt =
+                            "Foto operatore";
+
+
+                        photoPreview.appendChild(
+                            img
+                        );
+
+                    };
+
+
+                tempImg.onerror =
+                    function(){
+
+                        fotoBase64 = "";
+
+                        alert(
+                            "Non è stato possibile caricare la foto."
+                        );
+
+                    };
+
+
+                tempImg.src =
+                    e.target.result;
+
+            };
+
+
+        reader.onerror =
+            function(){
+
+                fotoBase64 = "";
+
+                alert(
+                    "Non è stato possibile leggere la foto."
+                );
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
 
 
 /* =========================================
    FUNZIONE TESTO
 ========================================= */
 
-function valore(id) {
+function valore(id){
 
     const element =
         document.getElementById(id);
 
-    if (!element) {
+    if(!element){
         return "";
     }
 
     return element.value.trim();
+
 }
 
 
@@ -1594,7 +1637,7 @@ function valore(id) {
 
 generateButton.addEventListener(
     "click",
-    function() {
+    function(){
 
         const nome =
             valore("nome");
@@ -1602,7 +1645,8 @@ generateButton.addEventListener(
         const cognome =
             valore("cognome");
 
-        if (!nome || !cognome) {
+
+        if(!nome || !cognome){
 
             alert(
                 "Inserisci almeno Nome e Cognome."
@@ -1611,13 +1655,16 @@ generateButton.addEventListener(
             return;
         }
 
+
         document.getElementById(
             "cvNome"
         ).textContent =
             nome + " " + cognome;
 
+
         const nickname =
             valore("nickname");
+
 
         document.getElementById(
             "cvNickname"
@@ -1626,11 +1673,13 @@ generateButton.addEventListener(
                 ? '"' + nickname + '"'
                 : "";
 
+
         const citta =
             valore("citta");
 
         const provincia =
             valore("provincia");
+
 
         document.getElementById(
             "cvLocalita"
@@ -1639,8 +1688,10 @@ generateButton.addEventListener(
                 .filter(Boolean)
                 .join(" - ");
 
+
         const eta =
             valore("eta");
+
 
         document.getElementById(
             "cvEta"
@@ -1649,8 +1700,10 @@ generateButton.addEventListener(
                 ? "Età: " + eta
                 : "";
 
+
         const numero =
             valore("whatsapp");
+
 
         document.getElementById(
             "cvWhatsapp"
@@ -1659,27 +1712,35 @@ generateButton.addEventListener(
                 ? "WhatsApp: " + numero
                 : "";
 
+
         /* RUOLI */
 
         const roles = [];
+
 
         document
             .querySelectorAll(
                 '.role input[type="checkbox"]:checked'
             )
-            .forEach(function(item) {
+            .forEach(
+                function(item){
 
-                roles.push(
-                    item.value
-                );
-            });
+                    roles.push(
+                        item.value
+                    );
+
+                }
+            );
+
 
         const rolesBox =
             document.getElementById(
                 "cvRuoli"
             );
 
+
         rolesBox.innerHTML = "";
+
 
         if(roles.length){
 
@@ -1700,6 +1761,7 @@ generateButton.addEventListener(
                     rolesBox.appendChild(
                         badge
                     );
+
                 }
             );
 
@@ -1707,6 +1769,7 @@ generateButton.addEventListener(
 
             rolesBox.textContent =
                 "NESSUN RUOLO SELEZIONATO";
+
         }
 
 
@@ -1717,10 +1780,12 @@ generateButton.addEventListener(
         ).textContent =
             valore("esperienza") || "-";
 
+
         document.getElementById(
             "cvSquadra"
         ).textContent =
             valore("squadra") || "-";
+
 
         document.getElementById(
             "cvEsperienze"
@@ -1735,25 +1800,30 @@ generateButton.addEventListener(
         ).textContent =
             valore("tiro");
 
+
         document.getElementById(
             "cvMovimento"
         ).textContent =
             valore("movimento");
+
 
         document.getElementById(
             "cvCQB"
         ).textContent =
             valore("cqb");
 
+
         document.getElementById(
             "cvRadio"
         ).textContent =
             valore("radio");
 
+
         document.getElementById(
             "cvNavigazione"
         ).textContent =
             valore("navigazione");
+
 
         document.getElementById(
             "cvSoccorso"
@@ -1764,10 +1834,12 @@ generateButton.addEventListener(
         const operatorId =
             getOperatorId();
 
+
         document.getElementById(
             "cvOperatorId"
         ).textContent =
             operatorId;
+
 
         document.getElementById(
             "finalOperatorId"
@@ -1775,28 +1847,46 @@ generateButton.addEventListener(
             operatorId;
 
 
-        [
-            "Tiro",
-            "Movimento",
-            "CQB",
-            "Radio",
-            "Navigazione",
-            "Soccorso"
-        ].forEach(
-            function(key){
+        const skills = [
+            {
+                key:"Tiro",
+                id:"tiro",
+                bar:"barTiro"
+            },
+            {
+                key:"Movimento",
+                id:"movimento",
+                bar:"barMovimento"
+            },
+            {
+                key:"CQB",
+                id:"cqb",
+                bar:"barCQB"
+            },
+            {
+                key:"Radio",
+                id:"radio",
+                bar:"barRadio"
+            },
+            {
+                key:"Navigazione",
+                id:"navigazione",
+                bar:"barNavigazione"
+            },
+            {
+                key:"Soccorso",
+                id:"soccorso",
+                bar:"barSoccorso"
+            }
+        ];
 
-                const map = {
-                    Tiro:"tiro",
-                    Movimento:"movimento",
-                    CQB:"cqb",
-                    Radio:"radio",
-                    Navigazione:"navigazione",
-                    Soccorso:"soccorso"
-                };
+
+        skills.forEach(
+            function(skill){
 
                 const bar =
                     document.getElementById(
-                        "bar" + key
+                        skill.bar
                     );
 
                 if(bar){
@@ -1806,10 +1896,9 @@ generateButton.addEventListener(
 
                     const level =
                         skillMap[
-                            valore(
-                                map[key]
-                            )
+                            valore(skill.id)
                         ] || 25;
+
 
                     requestAnimationFrame(
                         function(){
@@ -1827,6 +1916,7 @@ generateButton.addEventListener(
                         }
                     );
                 }
+
             }
         );
 
@@ -1845,6 +1935,7 @@ generateButton.addEventListener(
             "cvDisponibilita"
         ).textContent =
             valore("disponibilita");
+
 
         document.getElementById(
             "cvTrasferte"
@@ -1867,21 +1958,30 @@ generateButton.addEventListener(
                 "cvPhotoContainer"
             );
 
-        if (fotoBase64) {
 
-            photoContainer.innerHTML = "";
+        if(fotoBase64){
+
+            photoContainer.innerHTML =
+                "";
+
 
             const img =
-                document.createElement("img");
+                document.createElement(
+                    "img"
+                );
+
 
             img.className =
                 "cv-photo";
 
+
             img.src =
                 fotoBase64;
 
+
             img.alt =
                 "Foto operatore";
+
 
             photoContainer.appendChild(
                 img
@@ -1891,6 +1991,7 @@ generateButton.addEventListener(
 
             photoContainer.innerHTML =
                 '<div class="cv-photo-placeholder">📷</div>';
+
         }
 
 
@@ -1901,11 +2002,12 @@ generateButton.addEventListener(
                 "cvResult"
             );
 
+
         cvResult.style.display =
             "block";
 
 
-        /* Animazione barre competenze */
+        /* Animazione barre */
 
         document
             .querySelectorAll(
@@ -1919,8 +2021,10 @@ generateButton.addEventListener(
 
                     bar.style.width =
                         "0%";
+
                 }
             );
+
 
         requestAnimationFrame(
             function(){
@@ -1928,28 +2032,12 @@ generateButton.addEventListener(
                 requestAnimationFrame(
                     function(){
 
-                        [
-                            "Tiro",
-                            "Movimento",
-                            "CQB",
-                            "Radio",
-                            "Navigazione",
-                            "Soccorso"
-                        ].forEach(
-                            function(key){
-
-                                const map = {
-                                    Tiro:"tiro",
-                                    Movimento:"movimento",
-                                    CQB:"cqb",
-                                    Radio:"radio",
-                                    Navigazione:"navigazione",
-                                    Soccorso:"soccorso"
-                                };
+                        skills.forEach(
+                            function(skill){
 
                                 const bar =
                                     document.getElementById(
-                                        "bar" + key
+                                        skill.bar
                                     );
 
                                 if(bar){
@@ -1957,22 +2045,24 @@ generateButton.addEventListener(
                                     bar.style.transition =
                                         "width 1.2s cubic-bezier(.22,1,.36,1)";
 
+
                                     bar.style.width =
                                         (
                                             skillMap[
-                                                valore(
-                                                    map[key]
-                                                )
+                                                valore(skill.id)
                                             ] || 25
                                         ) + "%";
+
                                 }
+
                             }
                         );
 
                     }
                 );
 
-            });
+            }
+        );
 
 
         document.getElementById(
@@ -1980,10 +2070,12 @@ generateButton.addEventListener(
         ).style.display =
             "flex";
 
+
         document.getElementById(
             "status"
         ).textContent =
             "✓ CV generato correttamente";
+
 
         cvResult.scrollIntoView({
             behavior:"smooth",
@@ -1998,28 +2090,33 @@ generateButton.addEventListener(
    PDF
 ========================================= */
 
-function creaPDF() {
+function creaPDF(){
 
-    if (
+    if(
         !document.getElementById("cvResult") ||
         document.getElementById("cvResult").style.display === "none"
-    ) {
+    ){
 
         throw new Error(
             "Genera prima il CV."
         );
+
     }
+
 
     const jsPDF =
         window.jspdf &&
         window.jspdf.jsPDF;
 
-    if (!jsPDF) {
+
+    if(!jsPDF){
 
         throw new Error(
             "Libreria PDF non caricata."
         );
+
     }
+
 
     const pdf =
         new jsPDF({
@@ -2028,295 +2125,1009 @@ function creaPDF() {
             format:"a4"
         });
 
+
+    const cleanText =
+        function(text){
+
+            return String(text || "")
+                .replace(/\s+/g," ")
+                .trim();
+
+        };
+
+
     const nome =
-        document.getElementById(
-            "cvNome"
-        ).textContent;
+        cleanText(
+            document.getElementById(
+                "cvNome"
+            )?.textContent
+        ) || "OPERATORE";
 
-    let y = 18;
-
-
-    /* TITOLO */
-
-    pdf.setFont(
-        "helvetica",
-        "bold"
-    );
-
-    pdf.setFontSize(20);
-
-    pdf.text(
-        "SOAS AIR SOFT TEAM",
-        20,
-        y
-    );
-
-    y += 8;
-
-    pdf.setFontSize(12);
-
-    pdf.text(
-        "TACTICAL OPERATOR CV",
-        20,
-        y
-    );
-
-    y += 13;
-
-
-    /* FOTO */
-
-    if (fotoBase64) {
-
-        try {
-
-            pdf.addImage(
-                fotoBase64,
-                "JPEG",
-                145,
-                15,
-                45,
-                54
-            );
-
-        } catch(error) {
-
-            console.warn(
-                "Impossibile inserire la foto nel PDF:",
-                error
-            );
-        }
-    }
-
-
-    /* DATI */
-
-    pdf.setFontSize(18);
-
-    pdf.text(
-        nome,
-        20,
-        y
-    );
-
-    y += 7;
-
-    pdf.setFont(
-        "helvetica",
-        "normal"
-    );
-
-    pdf.setFontSize(10);
 
     const nickname =
-        document.getElementById(
-            "cvNickname"
-        ).textContent;
-
-    if (nickname) {
-
-        pdf.text(
-            nickname,
-            20,
-            y
+        cleanText(
+            document.getElementById(
+                "cvNickname"
+            )?.textContent
         );
 
-        y += 5;
-    }
 
     const localita =
-        document.getElementById(
-            "cvLocalita"
-        ).textContent;
-
-    if (localita) {
-
-        pdf.text(
-            localita,
-            20,
-            y
+        cleanText(
+            document.getElementById(
+                "cvLocalita"
+            )?.textContent
         );
 
-        y += 5;
-    }
 
     const eta =
-        document.getElementById(
-            "cvEta"
-        ).textContent;
-
-    if (eta) {
-
-        pdf.text(
-            eta,
-            20,
-            y
+        cleanText(
+            document.getElementById(
+                "cvEta"
+            )?.textContent
         );
 
-        y += 5;
-    }
 
     const whatsapp =
-        document.getElementById(
-            "cvWhatsapp"
-        ).textContent;
-
-    if (whatsapp) {
-
-        pdf.text(
-            whatsapp,
-            20,
-            y
+        cleanText(
+            document.getElementById(
+                "cvWhatsapp"
+            )?.textContent
         );
 
-        y += 5;
-    }
 
-    y += 8;
+    const operatorId =
+        getOperatorId();
 
 
-    /* SEZIONE PDF */
+    const dark =
+        [16,21,16];
 
-    function sezione(
-        titolo,
-        testo
-    ) {
 
-        if (y > 265) {
+    const green =
+        [105,255,105];
 
-            pdf.addPage();
 
-            y = 20;
-        }
+    const lightGreen =
+        [223,244,223];
+
+
+    const grey =
+        [100,110,100];
+
+
+    const line =
+        [210,215,210];
+
+
+    function sectionTitle(
+        title,
+        x,
+        y,
+        width
+    ){
+
+        pdf.setFillColor(
+            dark[0],
+            dark[1],
+            dark[2]
+        );
+
+        pdf.rect(
+            x,
+            y,
+            width,
+            6,
+            "F"
+        );
+
+
+        pdf.setFillColor(
+            green[0],
+            green[1],
+            green[2]
+        );
+
+        pdf.rect(
+            x,
+            y,
+            2,
+            6,
+            "F"
+        );
+
 
         pdf.setFont(
             "helvetica",
             "bold"
         );
 
-        pdf.setFontSize(12);
+        pdf.setFontSize(7);
+
+        pdf.setTextColor(
+            255,
+            255,
+            255
+        );
 
         pdf.text(
-            titolo,
-            20,
+            title.toUpperCase(),
+            x + 5,
+            y + 4.1
+        );
+
+    }
+
+
+    function drawSkill(
+        label,
+        elementId,
+        x,
+        y,
+        width
+    ){
+
+        const level =
+            cleanText(
+                document.getElementById(
+                    elementId
+                )?.textContent
+            ) || "Base";
+
+
+        const percent =
+            skillMap[level] || 25;
+
+
+        pdf.setFont(
+            "helvetica",
+            "bold"
+        );
+
+        pdf.setFontSize(7);
+
+        pdf.setTextColor(
+            dark[0],
+            dark[1],
+            dark[2]
+        );
+
+
+        pdf.text(
+            label.toUpperCase(),
+            x,
             y
         );
 
-        y += 6;
 
         pdf.setFont(
             "helvetica",
             "normal"
         );
 
-        pdf.setFontSize(10);
-
-        const righe =
-            pdf.splitTextToSize(
-                testo || "-",
-                170
-            );
-
-        pdf.text(
-            righe,
-            20,
-            y
+        pdf.setTextColor(
+            grey[0],
+            grey[1],
+            grey[2]
         );
 
-        y +=
-            righe.length * 5 +
-            8;
+
+        pdf.text(
+            level.toUpperCase(),
+            x + width,
+            y,
+            {
+                align:"right"
+            }
+        );
+
+
+        const trackY =
+            y + 2.5;
+
+
+        pdf.setFillColor(
+            225,
+            230,
+            225
+        );
+
+
+        pdf.roundedRect(
+            x,
+            trackY,
+            width,
+            2.5,
+            .8,
+            .8,
+            "F"
+        );
+
+
+        /* BARRA VERDE NEL PDF */
+
+        pdf.setFillColor(
+            green[0],
+            green[1],
+            green[2]
+        );
+
+
+        pdf.roundedRect(
+            x,
+            trackY,
+            width * percent / 100,
+            2.5,
+            .8,
+            .8,
+            "F"
+        );
+
+
+        pdf.setDrawColor(
+            190,
+            195,
+            190
+        );
+
+        pdf.setLineWidth(.2);
+
+
+        pdf.roundedRect(
+            x,
+            trackY,
+            width,
+            2.5,
+            .8,
+            .8,
+            "S"
+        );
+
     }
 
 
-    sezione(
-        "RUOLI OPERATIVI",
-        document.getElementById(
-            "cvRuoli"
-        ).textContent
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    pdf.setFillColor(
+        dark[0],
+        dark[1],
+        dark[2]
+    );
+
+    pdf.rect(
+        0,
+        0,
+        210,
+        31,
+        "F"
     );
 
 
-    sezione(
-        "ESPERIENZA",
-        "Anni di esperienza: " +
-        document.getElementById(
-            "cvEsperienza"
-        ).textContent +
-        "\nSquadra attuale: " +
-        document.getElementById(
-            "cvSquadra"
-        ).textContent +
-        "\nEsperienze precedenti: " +
-        document.getElementById(
-            "cvEsperienze"
-        ).textContent
+    pdf.setFillColor(
+        green[0],
+        green[1],
+        green[2]
+    );
+
+    pdf.rect(
+        0,
+        29,
+        210,
+        2,
+        "F"
     );
 
 
-    sezione(
-        "COMPETENZE",
-        "Tiro: " +
-        document.getElementById(
-            "cvTiro"
-        ).textContent +
-        "\nMovimento tattico: " +
-        document.getElementById(
-            "cvMovimento"
-        ).textContent +
-        "\nCQB: " +
-        document.getElementById(
-            "cvCQB"
-        ).textContent +
-        "\nComunicazioni radio: " +
-        document.getElementById(
-            "cvRadio"
-        ).textContent +
-        "\nNavigazione: " +
-        document.getElementById(
-            "cvNavigazione"
-        ).textContent +
-        "\nPrimo soccorso: " +
-        document.getElementById(
-            "cvSoccorso"
-        ).textContent
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.setFontSize(17);
+
+    pdf.setTextColor(
+        255,
+        255,
+        255
+    );
+
+    pdf.text(
+        "SOAS AIR SOFT TEAM",
+        16,
+        12
     );
 
 
-    sezione(
-        "EQUIPAGGIAMENTO",
-        document.getElementById(
-            "cvEquipaggiamento"
-        ).textContent
+    pdf.setFontSize(8);
+
+    pdf.setTextColor(
+        180,
+        180,
+        180
+    );
+
+    pdf.text(
+        "TACTICAL OPERATOR CV",
+        16,
+        19
     );
 
 
-    sezione(
-        "DISPONIBILITÀ",
-        "Disponibilità: " +
-        document.getElementById(
-            "cvDisponibilita"
-        ).textContent +
-        "\nTrasferte: " +
-        document.getElementById(
-            "cvTrasferte"
-        ).textContent
+    pdf.setFontSize(7);
+
+    pdf.setTextColor(
+        green[0],
+        green[1],
+        green[2]
+    );
+
+    pdf.text(
+        operatorId,
+        16,
+        25
     );
 
 
-    sezione(
-        "PRESENTAZIONE PERSONALE",
-        document.getElementById(
-            "cvPresentazione"
-        ).textContent
+    pdf.setTextColor(
+        220,
+        220,
+        220
+    );
+
+    pdf.text(
+        "● PROFILE READY",
+        52,
+        25
+    );
+
+
+    /* FOTO OPERATORE */
+
+    if(fotoBase64){
+
+        try{
+
+            pdf.addImage(
+                fotoBase64,
+                "JPEG",
+                156,
+                5,
+                38,
+                22
+            );
+
+
+            pdf.setDrawColor(
+                green[0],
+                green[1],
+                green[2]
+            );
+
+            pdf.setLineWidth(.8);
+
+
+            pdf.rect(
+                155.5,
+                4.5,
+                39,
+                23
+            );
+
+        }
+        catch(error){
+
+            console.warn(
+                "Impossibile inserire la foto nel PDF:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =========================================
+       DATI PERSONALI
+    ========================================= */
+
+    let y = 40;
+
+
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.setFontSize(18);
+
+    pdf.setTextColor(
+        dark[0],
+        dark[1],
+        dark[2]
+    );
+
+
+    pdf.text(
+        nome,
+        16,
+        y
+    );
+
+
+    y += 5;
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    pdf.setFontSize(8.5);
+
+    pdf.setTextColor(
+        grey[0],
+        grey[1],
+        grey[2]
+    );
+
+
+    if(nickname){
+
+        pdf.text(
+            nickname,
+            16,
+            y
+        );
+
+        y += 4;
+
+    }
+
+
+    if(localita){
+
+        pdf.text(
+            localita,
+            16,
+            y
+        );
+
+        y += 4;
+
+    }
+
+
+    if(eta){
+
+        pdf.text(
+            eta,
+            16,
+            y
+        );
+
+        y += 4;
+
+    }
+
+
+    if(whatsapp){
+
+        pdf.text(
+            whatsapp,
+            16,
+            y
+        );
+
+    }
+
+
+    y = 64;
+
+
+    /* =========================================
+       RUOLI
+    ========================================= */
+
+    sectionTitle(
+        "Ruoli operativi",
+        16,
+        y,
+        178
+    );
+
+
+    y += 8;
+
+
+    const ruoli =
+        cleanText(
+            document.getElementById(
+                "cvRuoli"
+            )?.textContent
+        );
+
+
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.setFontSize(8.5);
+
+    pdf.setTextColor(
+        dark[0],
+        dark[1],
+        dark[2]
+    );
+
+
+    const ruoloRighe =
+        pdf.splitTextToSize(
+            ruoli,
+            178
+        );
+
+
+    pdf.text(
+        ruoloRighe,
+        16,
+        y
+    );
+
+
+    y += Math.max(
+        7,
+        ruoloRighe.length * 4.2
+    );
+
+
+    /* =========================================
+       ESPERIENZA + COMPETENZE
+    ========================================= */
+
+    sectionTitle(
+        "Esperienza",
+        16,
+        y,
+        82
+    );
+
+
+    sectionTitle(
+        "Competenze",
+        106,
+        y,
+        88
+    );
+
+
+    y += 8;
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    pdf.setFontSize(8);
+
+    pdf.setTextColor(
+        dark[0],
+        dark[1],
+        dark[2]
+    );
+
+
+    const esperienza =
+        cleanText(
+            document.getElementById(
+                "cvEsperienza"
+            )?.textContent
+        );
+
+
+    const squadra =
+        cleanText(
+            document.getElementById(
+                "cvSquadra"
+            )?.textContent
+        );
+
+
+    const precedenti =
+        cleanText(
+            document.getElementById(
+                "cvEsperienze"
+            )?.textContent
+        );
+
+
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.text(
+        "Anni di esperienza:",
+        16,
+        y
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    pdf.text(
+        esperienza,
+        16,
+        y + 4
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.text(
+        "Squadra attuale:",
+        16,
+        y + 11
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    pdf.text(
+        squadra,
+        16,
+        y + 15
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.text(
+        "Esperienze precedenti:",
+        16,
+        y + 22
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    const precRighe =
+        pdf.splitTextToSize(
+            precedenti,
+            78
+        );
+
+
+    pdf.text(
+        precRighe,
+        16,
+        y + 26
+    );
+
+
+    drawSkill(
+        "Tiro",
+        "cvTiro",
+        106,
+        y,
+        88
+    );
+
+
+    drawSkill(
+        "Movimento tattico",
+        "cvMovimento",
+        106,
+        y + 12,
+        88
+    );
+
+
+    drawSkill(
+        "CQB",
+        "cvCQB",
+        106,
+        y + 24,
+        88
+    );
+
+
+    drawSkill(
+        "Comunicazioni radio",
+        "cvRadio",
+        106,
+        y + 36,
+        88
+    );
+
+
+    drawSkill(
+        "Navigazione",
+        "cvNavigazione",
+        106,
+        y + 48,
+        88
+    );
+
+
+    drawSkill(
+        "Primo soccorso",
+        "cvSoccorso",
+        106,
+        y + 60,
+        88
+    );
+
+
+    y += 76;
+
+
+    /* =========================================
+       EQUIPAGGIAMENTO + DISPONIBILITÀ
+    ========================================= */
+
+    sectionTitle(
+        "Equipaggiamento",
+        16,
+        y,
+        82
+    );
+
+
+    sectionTitle(
+        "Disponibilità",
+        106,
+        y,
+        88
+    );
+
+
+    y += 8;
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    pdf.setFontSize(8);
+
+    pdf.setTextColor(
+        dark[0],
+        dark[1],
+        dark[2]
+    );
+
+
+    const equipaggiamento =
+        cleanText(
+            document.getElementById(
+                "cvEquipaggiamento"
+            )?.textContent
+        );
+
+
+    const disponibilita =
+        cleanText(
+            document.getElementById(
+                "cvDisponibilita"
+            )?.textContent
+        );
+
+
+    const trasferte =
+        cleanText(
+            document.getElementById(
+                "cvTrasferte"
+            )?.textContent
+        );
+
+
+    const equipRighe =
+        pdf.splitTextToSize(
+            equipaggiamento,
+            82
+        );
+
+
+    pdf.text(
+        equipRighe,
+        16,
+        y
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.text(
+        "Disponibilità:",
+        106,
+        y
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    pdf.text(
+        disponibilita,
+        106,
+        y + 4
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.text(
+        "Trasferte:",
+        106,
+        y + 11
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    const trasfRighe =
+        pdf.splitTextToSize(
+            trasferte,
+            82
+        );
+
+
+    pdf.text(
+        trasfRighe,
+        106,
+        y + 15
+    );
+
+
+    y += Math.max(
+        equipRighe.length * 4,
+        trasfRighe.length * 4 + 15,
+        22
+    );
+
+
+    /* =========================================
+       PRESENTAZIONE
+    ========================================= */
+
+    sectionTitle(
+        "Presentazione personale",
+        16,
+        y,
+        178
+    );
+
+
+    y += 8;
+
+
+    const presentazione =
+        cleanText(
+            document.getElementById(
+                "cvPresentazione"
+            )?.textContent
+        );
+
+
+    const presRighe =
+        pdf.splitTextToSize(
+            presentazione,
+            178
+        );
+
+
+    pdf.setFont(
+        "helvetica",
+        "normal"
+    );
+
+    pdf.setFontSize(8.5);
+
+    pdf.setTextColor(
+        dark[0],
+        dark[1],
+        dark[2]
+    );
+
+
+    pdf.text(
+        presRighe.slice(0,7),
+        16,
+        y
+    );
+
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    pdf.setDrawColor(
+        line[0],
+        line[1],
+        line[2]
+    );
+
+    pdf.setLineWidth(.3);
+
+
+    pdf.line(
+        16,
+        285,
+        194,
+        285
+    );
+
+
+    pdf.setFont(
+        "helvetica",
+        "bold"
+    );
+
+    pdf.setFontSize(6.5);
+
+    pdf.setTextColor(
+        grey[0],
+        grey[1],
+        grey[2]
+    );
+
+
+    pdf.text(
+        "SOAS ASD // OPERATOR PROFILE",
+        16,
+        290
+    );
+
+
+    pdf.text(
+        operatorId,
+        194,
+        290,
+        {
+            align:"right"
+        }
     );
 
 
     const blob =
         pdf.output("blob");
 
+
     return {
-        blob:blob,
+        blob: blob,
         filename:
             "CV_SOAS_" +
             nome
@@ -2327,6 +3138,7 @@ function creaPDF() {
                 ) +
             ".pdf"
     };
+
 }
     /* =========================================
    CONDIVIDI / SALVA PDF
@@ -2334,69 +3146,101 @@ function creaPDF() {
 
 pdfButton.addEventListener(
     "click",
-    async function() {
+    async function(){
 
         let objectUrl = "";
 
-        try {
+        try{
 
             const status =
                 document.getElementById(
                     "status"
                 );
 
+
             status.textContent =
                 "⏳ Preparazione PDF...";
+
 
             const result =
                 creaPDF();
 
 
             /*
-             * Su smartphone proviamo prima
-             * il menu Condividi del sistema.
+             * Su smartphone proviamo prima il menu
+             * Condividi del sistema.
              */
 
-            if (
+            if(
                 navigator.share &&
                 navigator.canShare
-            ) {
+            ){
 
                 const pdfFile =
                     new File(
                         [result.blob],
                         result.filename,
                         {
-                            type:"application/pdf"
+                            type:
+                                "application/pdf"
                         }
                     );
 
-                if (
+
+                if(
                     navigator.canShare({
                         files:[pdfFile]
                     })
-                ) {
+                ){
 
                     status.textContent =
                         "📤 Apri il menu Condividi...";
 
-                    navigator.share({
-                        title:
-                            "CV Operatore SOAS",
 
-                        text:
-                            "CV Operatore SOAS",
+                    try{
 
-                        files:[
-                            pdfFile
-                        ]
-                    });
+                        await navigator.share({
+                            title:
+                                "CV Operatore SOAS",
+                            text:
+                                "CV Operatore SOAS",
+                            files:[
+                                pdfFile
+                            ]
+                        });
 
-                    status.textContent =
-                        "✓ PDF pronto per essere salvato o condiviso";
 
-                    return;
+                        status.textContent =
+                            "✓ PDF pronto per essere salvato o condiviso";
+
+
+                        return;
+
+                    }
+                    catch(error){
+
+                        if(
+                            error &&
+                            error.name ===
+                            "AbortError"
+                        ){
+
+                            status.textContent =
+                                "PDF pronto. Condivisione annullata.";
+
+                            return;
+
+                        }
+
+                        console.warn(
+                            "Condivisione file non riuscita:",
+                            error
+                        );
+
+                    }
+
                 }
+
             }
 
 
@@ -2410,20 +3254,25 @@ pdfButton.addEventListener(
                     result.blob
                 );
 
+
             const newWindow =
                 window.open(
                     objectUrl,
                     "_blank"
                 );
 
-            if (!newWindow) {
+
+            if(!newWindow){
 
                 window.location.href =
                     objectUrl;
+
             }
+
 
             status.textContent =
                 "✓ PDF aperto. Usa Condividi o Salva dal telefono.";
+
 
             setTimeout(
                 function(){
@@ -2433,6 +3282,7 @@ pdfButton.addEventListener(
                         URL.revokeObjectURL(
                             objectUrl
                         );
+
                     }
 
                 },
@@ -2441,14 +3291,17 @@ pdfButton.addEventListener(
 
         }
 
-        catch(error) {
+
+        catch(error){
 
             console.error(error);
 
-            if (
+
+            if(
                 error &&
-                error.name === "AbortError"
-            ) {
+                error.name ===
+                "AbortError"
+            ){
 
                 document.getElementById(
                     "status"
@@ -2456,16 +3309,20 @@ pdfButton.addEventListener(
                     "PDF pronto. Condivisione annullata.";
 
                 return;
+
             }
+
 
             document.getElementById(
                 "status"
             ).textContent =
                 "❌ Errore nella generazione del PDF";
 
+
             alert(
                 "Non è stato possibile preparare il PDF. Riprova."
             );
+
         }
 
     }
@@ -2478,7 +3335,7 @@ pdfButton.addEventListener(
 
 printButton.addEventListener(
     "click",
-    function() {
+    function(){
 
         window.print();
 
@@ -2491,13 +3348,9 @@ printButton.addEventListener(
 ========================================= */
 
 /*
-    WhatsApp utilizza un normale link HTTPS:
-
-    https://wa.me/393501077763
-
-    Questo apre direttamente la chat SOAS.
+    È un normale link HTTPS Click to Chat.
+    Apre direttamente la chat WhatsApp SOAS.
 */
-
 
 </script>
 
