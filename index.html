@@ -51,9 +51,7 @@
             position: absolute;
             display: block;
             z-index: 10;
-
             cursor: pointer;
-
             border-radius: 12px;
 
             transition:
@@ -234,6 +232,43 @@
 
 
         /* ========================= */
+        /* PULSANTE MUSICA */
+        /* ========================= */
+
+        .music-control {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            z-index: 1000;
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+
+            background: rgba(0, 0, 0, 0.78);
+            color: #fff;
+
+            padding: 9px 12px;
+
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+
+            letter-spacing: 0.4px;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(5px);
+
+            box-shadow:
+                0 3px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .music-control:active {
+            transform: scale(0.96);
+        }
+
+
+        /* ========================= */
         /* EFFETTO TOUCH MOBILE */
         /* ========================= */
 
@@ -241,6 +276,22 @@
 
             .click-area:active {
                 transform: scale(0.98);
+            }
+
+        }
+
+
+        /* ========================= */
+        /* MOBILE */
+        /* ========================= */
+
+        @media (max-width: 600px) {
+
+            .music-control {
+                right: 10px;
+                bottom: 10px;
+                padding: 8px 10px;
+                font-size: 11px;
             }
 
         }
@@ -304,6 +355,93 @@
         </a>
 
     </div>
+
+
+    <!-- ========================= -->
+    <!-- MUSICA -->
+    <!-- ========================= -->
+
+    <audio id="bgMusic" loop preload="metadata">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- PULSANTE MUSICA -->
+
+    <button
+        type="button"
+        class="music-control"
+        id="musicBtn">
+        🔇 MUSICA OFF
+    </button>
+
+
+    <script>
+
+        const music = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicBtn");
+
+        /* VOLUME 18% */
+
+        music.volume = 0.18;
+
+
+        /* ========================= */
+        /* PULSANTE ON / OFF */
+        /* ========================= */
+
+        musicBtn.addEventListener("click", async function () {
+
+            if (music.paused) {
+
+                try {
+
+                    await music.play();
+
+                    musicBtn.textContent = "🔊 MUSICA ON";
+
+                } catch (error) {
+
+                    musicBtn.textContent = "⚠️ AUDIO";
+
+                }
+
+            } else {
+
+                music.pause();
+
+                musicBtn.textContent = "🔇 MUSICA OFF";
+
+            }
+
+        });
+
+
+        /* ========================= */
+        /* AVVIO AL PRIMO TOCCO */
+        /* ========================= */
+
+        document.addEventListener("click", function () {
+
+            if (music.paused) {
+
+                music.play()
+                    .then(function () {
+
+                        musicBtn.textContent = "🔊 MUSICA ON";
+
+                    })
+                    .catch(function () {
+
+                        /* Il browser potrebbe bloccare l'autoplay */
+
+                    });
+
+            }
+
+        }, { once: true });
+
+    </script>
 
 </body>
 
