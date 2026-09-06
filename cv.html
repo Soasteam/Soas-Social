@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>SOAS - CV Operatore</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
+*{box-sizing:border-box}
 
-*{
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
     margin:0;
@@ -25,14 +18,9 @@ body{
     font-family:Arial,Helvetica,sans-serif;
     color:#fff;
     min-height:100vh;
-
     background-image:
-        linear-gradient(
-            rgba(0,0,0,.72),
-            rgba(0,0,0,.88)
-        ),
+        linear-gradient(rgba(0,0,0,.72),rgba(0,0,0,.88)),
         url("sfondo-cv.jpeg");
-
     background-size:cover;
     background-position:center center;
     background-repeat:no-repeat;
@@ -105,9 +93,7 @@ label{
     margin-bottom:7px;
 }
 
-input,
-select,
-textarea{
+input,select,textarea{
     width:100%;
     background:rgba(255,255,255,.07);
     color:#fff;
@@ -118,9 +104,7 @@ textarea{
     font-size:14px;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
+input:focus,select:focus,textarea:focus{
     border-color:#9b0000;
     box-shadow:0 0 0 2px rgba(155,0,0,.15);
 }
@@ -145,16 +129,12 @@ textarea{
 .photo-box{
     width:150px;
     height:190px;
-
     border:2px dashed rgba(255,255,255,.25);
     border-radius:10px;
-
     overflow:hidden;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     background:rgba(255,255,255,.04);
 }
 
@@ -204,12 +184,9 @@ textarea{
     margin:0;
     padding:12px;
     text-align:center;
-
     border:1px solid rgba(255,255,255,.15);
     border-radius:8px;
-
     background:rgba(255,255,255,.05);
-
     cursor:pointer;
     transition:.2s;
 }
@@ -228,11 +205,9 @@ button{
     border:none;
     border-radius:9px;
     padding:15px 25px;
-
     font-size:14px;
     font-weight:bold;
     letter-spacing:1px;
-
     cursor:pointer;
     transition:.2s;
 }
@@ -261,52 +236,32 @@ button{
     display:none;
 }
 
-
-/* =========================
-   CV GENERATO
-========================= */
-
 .cv-card{
-    background:#111111;
-    color:#ffffff;
-
+    background:#111;
+    color:#fff;
     border-radius:12px;
-
     padding:35px;
-
     max-width:850px;
-
     margin:30px auto;
-
     border:1px solid #333;
-
-    box-shadow:none;
 }
 
 .cv-header{
     display:flex;
     align-items:center;
     gap:25px;
-
     padding-bottom:25px;
-
     border-bottom:1px solid #444;
 }
 
 .cv-photo{
     width:130px;
     height:160px;
-
     border-radius:8px;
-
     overflow:hidden;
-
     border:2px solid #777;
-
     flex-shrink:0;
-
     background:#1b1b1b;
-
     display:flex;
     align-items:center;
     justify-content:center;
@@ -320,9 +275,7 @@ button{
 
 .cv-title h2{
     margin:0;
-
     font-size:27px;
-
     letter-spacing:2px;
 }
 
@@ -338,11 +291,8 @@ button{
 .cv-block h3{
     font-size:13px;
     letter-spacing:2px;
-
     color:#aaa;
-
     border-left:4px solid #900000;
-
     padding-left:9px;
 }
 
@@ -360,37 +310,22 @@ button{
 
 .tag{
     background:#292929;
-
     border:1px solid #444;
-
     padding:7px 10px;
-
     border-radius:5px;
-
     font-size:12px;
 }
 
 .cv-footer{
     margin-top:30px;
-
     padding-top:15px;
-
     border-top:1px solid #444;
-
     color:#777;
-
     font-size:11px;
-
     text-align:center;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
 @media(max-width:650px){
-
     body{
         padding:15px 10px;
         background-attachment:scroll;
@@ -429,950 +364,399 @@ button{
         flex-direction:column;
         text-align:center;
     }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
 <div class="container">
 
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <div class="header">
-
-<h1>SOAS AIR SOFT TEAM</h1>
-
-<p>OPERATOR CV</p>
-
+    <h1>SOAS AIR SOFT TEAM</h1>
+    <p>OPERATOR CV</p>
 </div>
-
-
-<!-- =========================
-     IDENTITÀ
-========================= -->
 
 <div class="section">
 
-<div class="section-title">
-01 — IDENTITÀ OPERATORE
-</div>
-
+<div class="section-title">01 — IDENTITÀ OPERATORE</div>
 
 <div class="photo-area">
 
-
 <div class="photo-box">
 
-<img
-id="photoPreview"
-alt="Foto operatore"
->
+<img id="photoPreview" alt="Foto operatore">
 
-<div
-id="photoPlaceholder"
-class="photo-placeholder"
->
-
+<div id="photoPlaceholder" class="photo-placeholder">
 📷<br>
-
 FOTO OPERATORE
-
 </div>
 
 </div>
-
 
 <div class="photo-info">
 
-<label>
-CARICA FOTO OPERATORE
-</label>
+<label>CARICA FOTO OPERATORE</label>
 
-<input
-type="file"
-id="photoInput"
-accept="image/*"
->
+<input type="file" id="photoInput" accept="image/*">
 
 <p>
-
 Inserisci una tua foto.<br>
-
-La foto della squadra rimane
-esclusivamente come sfondo.
-
+La foto della squadra rimane esclusivamente come sfondo.
 </p>
 
 </div>
-
 </div>
-
 
 <br>
 
-
 <div class="grid">
 
-
 <div class="field">
-
 <label>NOME</label>
-
-<input
-type="text"
-id="nome"
-placeholder="Nome"
->
-
+<input type="text" id="nome" placeholder="Nome">
 </div>
 
-
 <div class="field">
-
 <label>COGNOME</label>
-
-<input
-type="text"
-id="cognome"
-placeholder="Cognome"
->
-
+<input type="text" id="cognome" placeholder="Cognome">
 </div>
 
-
 <div class="field">
-
 <label>NICKNAME</label>
-
-<input
-type="text"
-id="nickname"
-placeholder="Nickname"
->
-
+<input type="text" id="nickname" placeholder="Nickname">
 </div>
 
-
 <div class="field">
-
 <label>ETÀ</label>
-
-<input
-type="number"
-id="eta"
-placeholder="Età"
->
-
+<input type="number" id="eta" placeholder="Età">
 </div>
 
-
 <div class="field">
-
 <label>PROVINCIA</label>
-
-<input
-type="text"
-id="provincia"
-placeholder="Provincia"
->
-
+<input type="text" id="provincia" placeholder="Provincia">
 </div>
-
 
 <div class="field">
-
 <label>CITTÀ</label>
-
-<input
-type="text"
-id="citta"
-placeholder="Città"
->
-
-</div>
-
-
+<input type="text" id="citta" placeholder="Città">
 </div>
 
 </div>
+</div>
 
-
-<!-- =========================
-     ESPERIENZA
-========================= -->
 
 <div class="section">
 
-<div class="section-title">
-02 — ESPERIENZA
-</div>
-
+<div class="section-title">02 — ESPERIENZA</div>
 
 <div class="grid">
 
-
 <div class="field">
-
 <label>ANNI DI ESPERIENZA</label>
-
-<input
-type="number"
-id="anniEsperienza"
-placeholder="Es. 5"
->
-
+<input type="number" id="anniEsperienza" placeholder="Es. 5">
 </div>
-
 
 <div class="field">
-
 <label>SQUADRA ATTUALE</label>
-
-<input
-type="text"
-id="squadra"
-placeholder="Nome squadra"
->
-
+<input type="text" id="squadra" placeholder="Nome squadra">
 </div>
-
 
 <div class="field full">
-
-<label>
-ESPERIENZE PRECEDENTI
-</label>
-
-<textarea
-id="esperienze"
-placeholder="Squadre, eventi, tornei, milsim..."
-></textarea>
-
-</div>
-
-
+<label>ESPERIENZE PRECEDENTI</label>
+<textarea id="esperienze" placeholder="Squadre, eventi, tornei, milsim..."></textarea>
 </div>
 
 </div>
+</div>
 
-
-<!-- =========================
-     RUOLI
-========================= -->
 
 <div class="section">
 
-<div class="section-title">
-03 — RUOLO OPERATIVO
-</div>
-
+<div class="section-title">03 — RUOLO OPERATIVO</div>
 
 <div class="roles">
 
+<div class="role">
+<input type="checkbox" id="r1" value="Fuciliere">
+<label for="r1">Fuciliere</label>
+</div>
 
 <div class="role">
-
-<input
-type="checkbox"
-id="r1"
-value="Fuciliere"
->
-
-<label for="r1">
-Fuciliere
-</label>
-
+<input type="checkbox" id="r2" value="Assaltatore">
+<label for="r2">Assaltatore</label>
 </div>
-
 
 <div class="role">
-
-<input
-type="checkbox"
-id="r2"
-value="Assaltatore"
->
-
-<label for="r2">
-Assaltatore
-</label>
-
+<input type="checkbox" id="r3" value="Supporto">
+<label for="r3">Supporto</label>
 </div>
-
 
 <div class="role">
-
-<input
-type="checkbox"
-id="r3"
-value="Supporto"
->
-
-<label for="r3">
-Supporto
-</label>
-
+<input type="checkbox" id="r4" value="Sniper">
+<label for="r4">Sniper</label>
 </div>
-
 
 <div class="role">
-
-<input
-type="checkbox"
-id="r4"
-value="Sniper"
->
-
-<label for="r4">
-Sniper
-</label>
-
+<input type="checkbox" id="r5" value="Scout">
+<label for="r5">Scout</label>
 </div>
-
 
 <div class="role">
-
-<input
-type="checkbox"
-id="r5"
-value="Scout"
->
-
-<label for="r5">
-Scout
-</label>
-
+<input type="checkbox" id="r6" value="Medico">
+<label for="r6">Medico</label>
 </div>
-
 
 <div class="role">
-
-<input
-type="checkbox"
-id="r6"
-value="Medico"
->
-
-<label for="r6">
-Medico
-</label>
-
+<input type="checkbox" id="r7" value="Artificiere">
+<label for="r7">Artificiere</label>
 </div>
-
 
 <div class="role">
-
-<input
-type="checkbox"
-id="r7"
-value="Artificiere"
->
-
-<label for="r7">
-Artificiere
-</label>
-
+<input type="checkbox" id="r8" value="CQB">
+<label for="r8">CQB</label>
 </div>
-
 
 <div class="role">
-
-<input
-type="checkbox"
-id="r8"
-value="CQB"
->
-
-<label for="r8">
-CQB
-</label>
-
-</div>
-
-
-<div class="role">
-
-<input
-type="checkbox"
-id="r9"
-value="Comandante"
->
-
-<label for="r9">
-Comandante
-</label>
-
-</div>
-
-
+<input type="checkbox" id="r9" value="Comandante">
+<label for="r9">Comandante</label>
 </div>
 
 </div>
+</div>
 
-
-<!-- =========================
-     COMPETENZE
-========================= -->
 
 <div class="section">
 
-<div class="section-title">
-04 — COMPETENZE
-</div>
-
+<div class="section-title">04 — COMPETENZE</div>
 
 <div class="grid">
 
-
 <div class="field">
-
 <label>TIRO</label>
-
 <select id="tiro">
-
-<option value="">
-Seleziona
-</option>
-
-<option>
-Base
-</option>
-
-<option>
-Buono
-</option>
-
-<option>
-Avanzato
-</option>
-
-<option>
-Esperto
-</option>
-
+<option value="">Seleziona</option>
+<option>Base</option>
+<option>Buono</option>
+<option>Avanzato</option>
+<option>Esperto</option>
 </select>
-
 </div>
 
-
 <div class="field">
-
-<label>
-MOVIMENTO TATTICO
-</label>
-
+<label>MOVIMENTO TATTICO</label>
 <select id="movimento">
-
-<option value="">
-Seleziona
-</option>
-
-<option>
-Base
-</option>
-
-<option>
-Buono
-</option>
-
-<option>
-Avanzato
-</option>
-
-<option>
-Esperto
-</option>
-
+<option value="">Seleziona</option>
+<option>Base</option>
+<option>Buono</option>
+<option>Avanzato</option>
+<option>Esperto</option>
 </select>
-
 </div>
 
-
 <div class="field">
-
 <label>CQB</label>
-
 <select id="cqb">
-
-<option value="">
-Seleziona
-</option>
-
-<option>
-Base
-</option>
-
-<option>
-Buono
-</option>
-
-<option>
-Avanzato
-</option>
-
-<option>
-Esperto
-</option>
-
+<option value="">Seleziona</option>
+<option>Base</option>
+<option>Buono</option>
+<option>Avanzato</option>
+<option>Esperto</option>
 </select>
-
 </div>
 
-
 <div class="field">
-
-<label>
-COMUNICAZIONI RADIO
-</label>
-
+<label>COMUNICAZIONI RADIO</label>
 <select id="radio">
-
-<option value="">
-Seleziona
-</option>
-
-<option>
-Base
-</option>
-
-<option>
-Buono
-</option>
-
-<option>
-Avanzato
-</option>
-
-<option>
-Esperto
-</option>
-
+<option value="">Seleziona</option>
+<option>Base</option>
+<option>Buono</option>
+<option>Avanzato</option>
+<option>Esperto</option>
 </select>
-
 </div>
 
-
 <div class="field">
-
 <label>NAVIGAZIONE</label>
-
 <select id="navigazione">
-
-<option value="">
-Seleziona
-</option>
-
-<option>
-Base
-</option>
-
-<option>
-Buono
-</option>
-
-<option>
-Avanzato
-</option>
-
-<option>
-Esperto
-</option>
-
+<option value="">Seleziona</option>
+<option>Base</option>
+<option>Buono</option>
+<option>Avanzato</option>
+<option>Esperto</option>
 </select>
-
 </div>
-
 
 <div class="field">
-
-<label>
-PRIMO SOCCORSO
-</label>
-
+<label>PRIMO SOCCORSO</label>
 <select id="soccorso">
-
-<option value="">
-Seleziona
-</option>
-
-<option>
-Base
-</option>
-
-<option>
-Buono
-</option>
-
-<option>
-Avanzato
-</option>
-
-<option>
-Esperto
-</option>
-
+<option value="">Seleziona</option>
+<option>Base</option>
+<option>Buono</option>
+<option>Avanzato</option>
+<option>Esperto</option>
 </select>
-
-</div>
-
-
 </div>
 
 </div>
+</div>
 
-
-<!-- =========================
-     EQUIPAGGIAMENTO
-========================= -->
 
 <div class="section">
 
-<div class="section-title">
-05 — EQUIPAGGIAMENTO
-</div>
+<div class="section-title">05 — EQUIPAGGIAMENTO</div>
 
-<textarea
-id="equipaggiamento"
-placeholder="Inserisci il tuo equipaggiamento..."
-></textarea>
+<textarea id="equipaggiamento" placeholder="Inserisci il tuo equipaggiamento..."></textarea>
 
 </div>
 
-
-<!-- =========================
-     DISPONIBILITÀ
-========================= -->
 
 <div class="section">
 
-<div class="section-title">
-06 — DISPONIBILITÀ
-</div>
-
+<div class="section-title">06 — DISPONIBILITÀ</div>
 
 <div class="grid">
 
-
 <div class="field">
-
-<label>
-DISPONIBILITÀ
-</label>
+<label>DISPONIBILITÀ</label>
 
 <select id="disponibilita">
-
-<option value="">
-Seleziona
-</option>
-
-<option>
-Week-end
-</option>
-
-<option>
-Sabato
-</option>
-
-<option>
-Domenica
-</option>
-
-<option>
-Festivi
-</option>
-
-<option>
-Variabile
-</option>
-
+<option value="">Seleziona</option>
+<option>Week-end</option>
+<option>Sabato</option>
+<option>Domenica</option>
+<option>Festivi</option>
+<option>Variabile</option>
 </select>
-
 </div>
 
-
 <div class="field">
-
-<label>
-TRASFERTE
-</label>
+<label>TRASFERTE</label>
 
 <select id="trasferte">
-
-<option value="">
-Seleziona
-</option>
-
-<option>
-Si
-</option>
-
-<option>
-No
-</option>
-
-<option>
-Da valutare
-</option>
-
+<option value="">Seleziona</option>
+<option>Si</option>
+<option>No</option>
+<option>Da valutare</option>
 </select>
-
-</div>
-
-
 </div>
 
 </div>
+</div>
 
-
-<!-- =========================
-     PRESENTAZIONE
-========================= -->
 
 <div class="section">
 
-<div class="section-title">
-07 — PRESENTAZIONE PERSONALE
-</div>
+<div class="section-title">07 — PRESENTAZIONE PERSONALE</div>
 
-<textarea
-id="presentazione"
-placeholder="Parlaci di te, della tua esperienza e di cosa cerchi in una squadra..."
-></textarea>
+<textarea id="presentazione" placeholder="Parlaci di te, della tua esperienza e di cosa cerchi in una squadra..."></textarea>
 
 </div>
 
-
-<!-- =========================
-     CONTATTO
-========================= -->
 
 <div class="section">
 
-<div class="section-title">
-08 — CONTATTO
-</div>
-
+<div class="section-title">08 — CONTATTO</div>
 
 <div class="field">
 
-<label>
-NUMERO WHATSAPP
-</label>
+<label>NUMERO WHATSAPP</label>
 
-<input
-type="tel"
-id="whatsapp"
-placeholder="+39 333 1234567"
->
+<input type="tel" id="whatsapp" placeholder="+39 333 1234567">
 
 </div>
-
 </div>
 
-
-<!-- =========================
-     GENERA
-========================= -->
 
 <div class="button-area">
 
-<button
-class="generate"
-onclick="generaCV()"
->
-
+<button class="generate" onclick="generaCV()">
 ⚡ GENERA IL MIO CV
-
 </button>
 
 </div>
 
 
-<!-- =========================
-     CV GENERATO
-========================= -->
-
 <div id="generatedCV">
 
-
-<div
-class="cv-card"
-id="cvCard"
->
-
+<div class="cv-card" id="cvCard">
 
 <div class="cv-header">
 
-
 <div class="cv-photo">
-
-<img
-id="cvPhoto"
-alt="Foto operatore"
->
-
+<img id="cvPhoto" alt="Foto operatore">
 </div>
-
 
 <div class="cv-title">
-
-<h2 id="cvNome">
-OPERATORE
-</h2>
-
-<p id="cvNickname">
-SOAS AIR SOFT TEAM
-</p>
-
+<h2 id="cvNome">OPERATORE</h2>
+<p id="cvNickname">SOAS AIR SOFT TEAM</p>
 </div>
-
 
 </div>
 
 
 <div class="cv-block">
-
-<h3>
-DATI OPERATORE
-</h3>
-
-<div
-class="cv-data"
-id="cvDati"
-></div>
-
+<h3>DATI OPERATORE</h3>
+<div class="cv-data" id="cvDati"></div>
 </div>
 
 
 <div class="cv-block">
-
-<h3>
-RUOLO OPERATIVO
-</h3>
-
-<div
-class="tags"
-id="cvRuoli"
-></div>
-
+<h3>RUOLO OPERATIVO</h3>
+<div class="tags" id="cvRuoli"></div>
 </div>
 
 
 <div class="cv-block">
-
-<h3>
-ESPERIENZA
-</h3>
-
-<div
-class="cv-data"
-id="cvEsperienza"
-></div>
-
+<h3>ESPERIENZA</h3>
+<div class="cv-data" id="cvEsperienza"></div>
 </div>
 
 
 <div class="cv-block">
-
-<h3>
-COMPETENZE
-</h3>
-
-<div
-class="cv-data"
-id="cvCompetenze"
-></div>
-
+<h3>COMPETENZE</h3>
+<div class="cv-data" id="cvCompetenze"></div>
 </div>
 
 
 <div class="cv-block">
-
-<h3>
-EQUIPAGGIAMENTO
-</h3>
-
-<div
-class="cv-data"
-id="cvEquipaggiamento"
-></div>
-
+<h3>EQUIPAGGIAMENTO</h3>
+<div class="cv-data" id="cvEquipaggiamento"></div>
 </div>
 
 
 <div class="cv-block">
-
-<h3>
-DISPONIBILITÀ
-</h3>
-
-<div
-class="cv-data"
-id="cvDisponibilita"
-></div>
-
+<h3>DISPONIBILITÀ</h3>
+<div class="cv-data" id="cvDisponibilita"></div>
 </div>
 
 
 <div class="cv-block">
-
-<h3>
-PRESENTAZIONE
-</h3>
-
-<div
-class="cv-data"
-id="cvPresentazione"
-></div>
-
+<h3>PRESENTAZIONE</h3>
+<div class="cv-data" id="cvPresentazione"></div>
 </div>
 
 
 <div class="cv-block">
-
-<h3>
-CONTATTO
-</h3>
-
-<div
-class="cv-data"
-id="cvContatto"
-></div>
-
+<h3>CONTATTO</h3>
+<div class="cv-data" id="cvContatto"></div>
 </div>
 
 
 <div class="cv-footer">
-
 SOAS AIR SOFT TEAM — OPERATOR CV
-
 </div>
-
 
 </div>
 
 
 <div class="button-area">
 
-<button
-class="download"
-onclick="scaricaPDF()"
->
-
+<button class="download" onclick="scaricaPDF()">
 📄 SCARICA IL CV IN PDF
-
 </button>
 
 </div>
-
 
 </div>
 
@@ -1381,639 +765,318 @@ onclick="scaricaPDF()"
 
 <script>
 
+/* FOTO OPERATORE */
 
-/* =========================
-   FOTO OPERATORE
-========================= */
+let fotoOperatore = "";
 
-let fotoOperatore="";
+document.getElementById("photoInput").addEventListener("change", function(event){
 
+    const file = event.target.files[0];
 
-document
-.getElementById("photoInput")
-.addEventListener(
-"change",
-function(event){
+    if(!file) return;
 
-const file=
-event.target.files[0];
+    const reader = new FileReader();
 
-if(!file){
-return;
-}
+    reader.onload = function(e){
 
-const reader=
-new FileReader();
+        fotoOperatore = e.target.result;
 
+        document.getElementById("photoPreview").src = fotoOperatore;
+        document.getElementById("photoPreview").style.display = "block";
+        document.getElementById("photoPlaceholder").style.display = "none";
 
-reader.onload=
-function(e){
+    };
 
-fotoOperatore=
-e.target.result;
-
-
-const preview=
-document.getElementById(
-"photoPreview"
-);
-
-const placeholder=
-document.getElementById(
-"photoPlaceholder"
-);
-
-
-preview.src=
-fotoOperatore;
-
-preview.style.display=
-"block";
-
-placeholder.style.display=
-"none";
-
-};
-
-
-reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
 
 });
 
 
-/* =========================
-   GENERA CV
-========================= */
+/* GENERA CV */
 
 function generaCV(){
 
+    const nome = document.getElementById("nome").value.trim();
+    const cognome = document.getElementById("cognome").value.trim();
+    const nickname = document.getElementById("nickname").value.trim();
+    const eta = document.getElementById("eta").value.trim();
+    const provincia = document.getElementById("provincia").value.trim();
+    const citta = document.getElementById("citta").value.trim();
 
-const nome=
-document
-.getElementById("nome")
-.value
-.trim();
+    const anni = document.getElementById("anniEsperienza").value.trim();
+    const squadra = document.getElementById("squadra").value.trim();
+    const esperienze = document.getElementById("esperienze").value.trim();
 
+    const equipaggiamento = document.getElementById("equipaggiamento").value.trim();
+    const disponibilita = document.getElementById("disponibilita").value;
+    const trasferte = document.getElementById("trasferte").value;
 
-const cognome=
-document
-.getElementById("cognome")
-.value
-.trim();
+    const presentazione = document.getElementById("presentazione").value.trim();
+    const whatsapp = document.getElementById("whatsapp").value.trim();
 
 
-const nickname=
-document
-.getElementById("nickname")
-.value
-.trim();
+    const ruoli = [];
 
+    document.querySelectorAll(".role input:checked").forEach(function(item){
+        ruoli.push(item.value);
+    });
 
-const eta=
-document
-.getElementById("eta")
-.value
-.trim();
 
+    const competenze = [
+        ["Tiro", document.getElementById("tiro").value],
+        ["Movimento tattico", document.getElementById("movimento").value],
+        ["CQB", document.getElementById("cqb").value],
+        ["Comunicazioni radio", document.getElementById("radio").value],
+        ["Navigazione", document.getElementById("navigazione").value],
+        ["Primo soccorso", document.getElementById("soccorso").value]
+    ];
 
-const provincia=
-document
-.getElementById("provincia")
-.value
-.trim();
 
+    document.getElementById("cvNome").textContent =
+        ((nome + " " + cognome).trim()) || "OPERATORE";
 
-const citta=
-document
-.getElementById("citta")
-.value
-.trim();
 
+    document.getElementById("cvNickname").textContent =
+        nickname || "SOAS AIR SOFT TEAM";
 
-const anni=
-document
-.getElementById("anniEsperienza")
-.value
-.trim();
 
+    document.getElementById("cvDati").innerHTML =
+        "<strong>Età:</strong> " + (eta || "—") +
+        "<br><strong>Provincia:</strong> " + (provincia || "—") +
+        "<br><strong>Città:</strong> " + (citta || "—");
 
-const squadra=
-document
-.getElementById("squadra")
-.value
-.trim();
 
+    document.getElementById("cvRuoli").innerHTML =
+        ruoli.length
+        ?
+        ruoli.map(function(r){
+            return "<span class='tag'>" + r + "</span>";
+        }).join("")
+        :
+        "<span class='tag'>Nessun ruolo selezionato</span>";
 
-const esperienze=
-document
-.getElementById("esperienze")
-.value
-.trim();
 
+    document.getElementById("cvEsperienza").innerHTML =
+        "<strong>Anni di esperienza:</strong> " + (anni || "—") +
+        "<br><strong>Squadra attuale:</strong> " + (squadra || "—") +
+        "<br><br><strong>Esperienze precedenti:</strong><br>" +
+        (esperienze || "—");
 
-const equipaggiamento=
-document
-.getElementById("equipaggiamento")
-.value
-.trim();
 
+    let competenzeHTML = "";
 
-const disponibilita=
-document
-.getElementById("disponibilita")
-.value;
+    competenze.forEach(function(item){
 
+        competenzeHTML +=
+            "<strong>" + item[0] + ":</strong> " +
+            (item[1] || "—") + "<br>";
 
-const trasferte=
-document
-.getElementById("trasferte")
-.value;
+    });
 
+    document.getElementById("cvCompetenze").innerHTML =
+        competenzeHTML;
 
-const presentazione=
-document
-.getElementById("presentazione")
-.value
-.trim();
 
+    document.getElementById("cvEquipaggiamento").textContent =
+        equipaggiamento || "—";
 
-const whatsapp=
-document
-.getElementById("whatsapp")
-.value
-.trim();
 
+    document.getElementById("cvDisponibilita").innerHTML =
+        "<strong>Disponibilità:</strong> " + (disponibilita || "—") +
+        "<br><strong>Trasferte:</strong> " + (trasferte || "—");
 
-/* RUOLI */
 
-const ruoli=[];
+    document.getElementById("cvPresentazione").textContent =
+        presentazione || "—";
 
 
-document
-.querySelectorAll(
-".role input:checked"
-)
-.forEach(
-function(item){
+    document.getElementById("cvContatto").textContent =
+        whatsapp || "—";
 
-ruoli.push(
-item.value
-);
 
-});
+    const cvPhoto = document.getElementById("cvPhoto");
 
 
-/* COMPETENZE */
+    if(fotoOperatore){
 
-const competenze=[
+        cvPhoto.src = fotoOperatore;
+        cvPhoto.style.display = "block";
 
-[
-"Tiro",
-document.getElementById("tiro").value
-],
+    }else{
 
-[
-"Movimento tattico",
-document.getElementById("movimento").value
-],
+        cvPhoto.removeAttribute("src");
+        cvPhoto.style.display = "none";
 
-[
-"CQB",
-document.getElementById("cqb").value
-],
+    }
 
-[
-"Comunicazioni radio",
-document.getElementById("radio").value
-],
 
-[
-"Navigazione",
-document.getElementById("navigazione").value
-],
+    document.getElementById("generatedCV").style.display = "block";
 
-[
-"Primo soccorso",
-document.getElementById("soccorso").value
-]
 
-];
+    setTimeout(function(){
 
+        document.getElementById("generatedCV").scrollIntoView({
+            behavior:"smooth"
+        });
 
-/* NOME */
-
-document
-.getElementById("cvNome")
-.textContent=
-(
-(nome+" "+cognome)
-.trim()
-)
-||
-"OPERATORE";
-
-
-/* NICKNAME */
-
-document
-.getElementById("cvNickname")
-.textContent=
-nickname
-||
-"SOAS AIR SOFT TEAM";
-
-
-/* DATI */
-
-document
-.getElementById("cvDati")
-.innerHTML=
-
-"<strong>Età:</strong> "+
-(eta||"—")+
-
-"<br><strong>Provincia:</strong> "+
-(provincia||"—")+
-
-"<br><strong>Città:</strong> "+
-(citta||"—");
-
-
-/* RUOLI */
-
-document
-.getElementById("cvRuoli")
-.innerHTML=
-
-ruoli.length
-
-?
-
-ruoli
-.map(
-function(r){
-
-return
-"<span class='tag'>"+
-r+
-"</span>";
-
-})
-.join("")
-
-:
-
-"<span class='tag'>"+
-"Nessun ruolo selezionato"+
-"</span>";
-
-
-/* ESPERIENZA */
-
-document
-.getElementById("cvEsperienza")
-.innerHTML=
-
-"<strong>Anni di esperienza:</strong> "+
-(anni||"—")+
-
-"<br><strong>Squadra attuale:</strong> "+
-(squadra||"—")+
-
-"<br><br><strong>Esperienze precedenti:</strong><br>"+
-
-(esperienze||"—");
-
-
-/* COMPETENZE */
-
-let competenzeHTML="";
-
-
-competenze.forEach(
-function(item){
-
-competenzeHTML+=
-
-"<strong>"+
-item[0]+
-":</strong> "+
-(item[1]||"—")+
-"<br>";
-
-});
-
-
-document
-.getElementById("cvCompetenze")
-.innerHTML=
-competenzeHTML;
-
-
-/* EQUIPAGGIAMENTO */
-
-document
-.getElementById("cvEquipaggiamento")
-.textContent=
-equipaggiamento||"—";
-
-
-/* DISPONIBILITÀ */
-
-document
-.getElementById("cvDisponibilita")
-.innerHTML=
-
-"<strong>Disponibilità:</strong> "+
-(disponibilita||"—")+
-
-"<br><strong>Trasferte:</strong> "+
-(trasferte||"—");
-
-
-/* PRESENTAZIONE */
-
-document
-.getElementById("cvPresentazione")
-.textContent=
-presentazione||"—";
-
-
-/* CONTATTO */
-
-document
-.getElementById("cvContatto")
-.textContent=
-whatsapp||"—";
-
-
-/* FOTO */
-
-const cvPhoto=
-document.getElementById(
-"cvPhoto"
-);
-
-
-if(fotoOperatore){
-
-cvPhoto.src=
-fotoOperatore;
-
-cvPhoto.style.display=
-"block";
-
-}else{
-
-cvPhoto.removeAttribute(
-"src"
-);
-
-cvPhoto.style.display=
-"none";
-
-}
-
-
-/* MOSTRA CV */
-
-document
-.getElementById("generatedCV")
-.style.display=
-"block";
-
-
-/* SCROLL */
-
-setTimeout(
-function(){
-
-document
-.getElementById("generatedCV")
-.scrollIntoView({
-behavior:"smooth"
-});
-
-},
-100
-);
+    },100);
 
 }
 
 
 /* =========================
    PDF
-========================= */
+   ========================= */
 
 function scaricaPDF(){
 
+    const element = document.getElementById("cvCard");
 
-const element=
-document.getElementById(
-"cvCard"
-);
+    const nome =
+        document.getElementById("nome").value.trim();
 
+    const nickname =
+        document.getElementById("nickname").value.trim();
 
-const nome=
-document
-.getElementById("nome")
-.value
-.trim();
 
+    const nomeFile =
+        "CV_SOAS_" +
+        (nome || "Operatore") +
+        "_" +
+        (nickname || "SOAS") +
+        ".pdf";
 
-const nickname=
-document
-.getElementById("nickname")
-.value
-.trim();
 
+    /*
+     * Cloniamo il CV.
+     * La copia rimane nel viewport.
+     */
 
-const nomeFile=
+    const clone = element.cloneNode(true);
 
-"CV_SOAS_"+
-(nome||"Operatore")+
-"_"+
 
-(nickname||"SOAS")+
-".pdf";
+    clone.style.position = "fixed";
+    clone.style.left = "0";
+    clone.style.top = "0";
 
+    clone.style.width = "800px";
+    clone.style.maxWidth = "800px";
 
-/*
-COPIA DEL CV
-*/
+    clone.style.margin = "0";
 
-const clone=
-element.cloneNode(true);
+    clone.style.zIndex = "999999";
 
+    clone.style.background = "#111111";
+    clone.style.color = "#ffffff";
 
-/*
-POSIZIONE VISIBILE
-*/
+    clone.style.opacity = "1";
 
-clone.style.position=
-"fixed";
+    clone.style.pointerEvents = "none";
 
-clone.style.left=
-"0";
 
-clone.style.top=
-"0";
+    /*
+     * La copia viene resa invisibile
+     * senza usare opacity.
+     *
+     * Viene messa dietro al contenuto
+     * per evitare di coprire il CV.
+     */
 
-clone.style.width=
-"800px";
+    clone.style.transform = "translateX(-200vw)";
 
-clone.style.maxWidth=
-"800px";
 
-clone.style.margin=
-"0";
+    document.body.appendChild(clone);
 
-clone.style.zIndex=
-"999999";
 
-clone.style.background=
-"#111111";
+    /*
+     * Aspettiamo il rendering.
+     */
 
-clone.style.color=
-"#ffffff";
+    setTimeout(function(){
 
+        const options = {
 
-/*
-LO RENDIAMO TEMPORANEAMENTE
-VISIBILE MA TRASPARENTE
-ALL'UTENTE.
-*/
+            margin: 10,
 
-clone.style.opacity=
-"0.01";
+            filename: nomeFile,
 
+            image: {
+                type: "jpeg",
+                quality: 0.98
+            },
 
-document
-.body
-.appendChild(clone);
+            html2canvas: {
 
+                scale: 2,
 
-/*
-ATTESA RENDERING
-*/
+                useCORS: true,
 
-setTimeout(
-function(){
+                allowTaint: true,
 
+                backgroundColor: "#111111",
 
-const options={
+                logging: false,
 
+                scrollX: 0,
 
-margin:10,
+                scrollY: 0,
 
+                windowWidth: 800,
 
-filename:nomeFile,
+                windowHeight: clone.scrollHeight
 
+            },
 
-image:{
-type:"jpeg",
-quality:0.98
-},
+            jsPDF: {
 
+                unit: "mm",
 
-html2canvas:{
+                format: "a4",
 
-scale:2,
+                orientation: "portrait"
 
-useCORS:true,
+            },
 
-allowTaint:true,
+            pagebreak: {
 
-backgroundColor:"#111111",
+                mode: ["css","legacy"]
 
-logging:false,
+            }
 
-scrollX:0,
+        };
 
-scrollY:0,
 
-windowWidth:800,
+        html2pdf()
 
-windowHeight:
-clone.scrollHeight
+        .set(options)
 
-},
+        .from(clone)
 
+        .save()
 
-jsPDF:{
+        .then(function(){
 
-unit:"mm",
+            if(document.body.contains(clone)){
+                document.body.removeChild(clone);
+            }
 
-format:"a4",
+        })
 
-orientation:"portrait"
+        .catch(function(error){
 
-},
+            console.error("Errore PDF:", error);
 
+            if(document.body.contains(clone)){
+                document.body.removeChild(clone);
+            }
 
-pagebreak:{
+            alert(
+                "Errore durante la creazione del PDF."
+            );
 
-mode:[
-"css",
-"legacy"
-]
+        });
 
-}
-
-};
-
-
-/*
-GENERAZIONE PDF
-*/
-
-html2pdf()
-
-.set(options)
-
-.from(clone)
-
-.save()
-
-.then(
-function(){
-
-document
-.body
-.removeChild(clone);
-
-})
-
-.catch(
-function(error){
-
-console.error(
-"Errore PDF:",
-error
-);
-
-
-if(
-document.body.contains(clone)
-){
-
-document
-.body
-.removeChild(clone);
-
-}
-
-
-alert(
-"Errore durante la creazione del PDF."
-);
-
-});
-
-
-},
-800
-);
+    },800);
 
 }
 
