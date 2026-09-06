@@ -9,7 +9,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -332,7 +331,6 @@ textarea {
     .logo-title h1 {
         font-size: 24px;
     }
-
 }
 
 @media print {
@@ -359,9 +357,7 @@ textarea {
         box-shadow: none;
         border-radius: 0;
     }
-
 }
-
 </style>
 </head>
 
@@ -657,6 +653,11 @@ GENERA IL MIO CV
 
 </div>
 
+
+<!-- =========================
+     CV GENERATO
+========================= -->
+
 <div class="cv-result" id="cvResult">
 
 <div class="cv-header">
@@ -791,11 +792,8 @@ GENERA IL MIO CV
 
 </div>
 
-<div class="actions" id="actions">
 
-<div style="width:100%; text-align:center; font-size:12px; color:#888; margin-bottom:2px;">
-Da smartphone: il pulsante apre il menu del telefono per salvare o condividere il PDF.
-</div>
+<div class="actions" id="actions">
 
 <button
 type="button"
@@ -805,6 +803,7 @@ id="pdfButton"
 📄 CONDIVIDI / SALVA PDF
 </button>
 
+
 <a
 class="action-button whatsapp-button"
 id="whatsappButton"
@@ -813,6 +812,7 @@ aria-label="Apri la chat WhatsApp SOAS"
 >
 💬 APRI CHAT WHATSAPP SOAS
 </a>
+
 
 <button
 type="button"
@@ -824,6 +824,7 @@ id="printButton"
 
 </div>
 
+
 <div
 class="status"
 id="status"
@@ -831,15 +832,24 @@ aria-live="polite"
 ></div>
 
 </div>
-
 </div>
+
 
 <script>
 
 "use strict";
 
+
+/* =========================================
+   VARIABILI
+========================================= */
+
 let fotoBase64 = "";
-let fotoMimeType = "image/jpeg";
+
+
+/* =========================================
+   ELEMENTI
+========================================= */
 
 const fotoInput =
     document.getElementById("foto");
@@ -855,6 +865,9 @@ const pdfButton =
 
 const printButton =
     document.getElementById("printButton");
+
+const status =
+    document.getElementById("status");
 
 
 /* =========================================
@@ -880,36 +893,63 @@ fotoInput.addEventListener("change", function(event) {
         return;
     }
 
-    const reader = new FileReader();
+
+    const reader =
+        new FileReader();
+
 
     reader.onload = function(e) {
 
-        const tempImg = new Image();
+        const originalImage =
+            new Image();
 
-        tempImg.onload = function() {
+        originalImage.onload = function() {
+
+            /*
+                Convertiamo qualsiasi formato
+                in JPEG.
+
+                Questo evita problemi con WebP/HEIC
+                durante la creazione del PDF.
+            */
 
             const maxSize = 1400;
 
             let width =
-                tempImg.naturalWidth;
+                originalImage.naturalWidth;
 
             let height =
-                tempImg.naturalHeight;
+                originalImage.naturalHeight;
+
 
             if (width > maxSize || height > maxSize) {
 
-                const ratio =
-                    Math.min(
-                        maxSize / width,
-                        maxSize / height
-                    );
+                if (width > height) {
 
-                width =
-                    Math.round(width * ratio);
+                    height =
+                        Math.round(
+                            height *
+                            maxSize /
+                            width
+                        );
 
-                height =
-                    Math.round(height * ratio);
+                    width =
+                        maxSize;
+
+                } else {
+
+                    width =
+                        Math.round(
+                            width *
+                            maxSize /
+                            height
+                        );
+
+                    height =
+                        maxSize;
+                }
             }
+
 
             const canvas =
                 document.createElement("canvas");
@@ -917,34 +957,18 @@ fotoInput.addEventListener("change", function(event) {
             canvas.width = width;
             canvas.height = height;
 
+
             const ctx =
                 canvas.getContext("2d");
 
-            if (!ctx) {
-
-                alert(
-                    "Impossibile preparare la foto."
-                );
-
-                return;
-            }
-
-            ctx.fillStyle = "#ffffff";
-
-            ctx.fillRect(
-                0,
-                0,
-                width,
-                height
-            );
-
             ctx.drawImage(
-                tempImg,
+                originalImage,
                 0,
                 0,
                 width,
                 height
             );
+
 
             fotoBase64 =
                 canvas.toDataURL(
@@ -952,35 +976,40 @@ fotoInput.addEventListener("change", function(event) {
                     0.88
                 );
 
-            fotoMimeType =
-                "image/jpeg";
 
             photoPreview.innerHTML = "";
 
-            const img =
+
+            const previewImage =
                 document.createElement("img");
 
-            img.src =
+            previewImage.src =
                 fotoBase64;
 
-            img.alt =
+            previewImage.alt =
                 "Foto operatore";
 
-            photoPreview.appendChild(img);
-        };
 
-        tempImg.onerror = function() {
-
-            fotoBase64 = "";
-
-            alert(
-                "Non è stato possibile caricare la foto."
+            photoPreview.appendChild(
+                previewImage
             );
         };
 
-        tempImg.src =
+
+        originalImage.onerror = function() {
+
+            alert(
+                "Non è stato possibile elaborare la foto."
+            );
+
+            fotoBase64 = "";
+        };
+
+
+        originalImage.src =
             e.target.result;
     };
+
 
     reader.onerror = function() {
 
@@ -990,6 +1019,7 @@ fotoInput.addEventListener("change", function(event) {
             "Non è stato possibile leggere la foto."
         );
     };
+
 
     reader.readAsDataURL(file);
 
@@ -1027,6 +1057,7 @@ generateButton.addEventListener(
         const cognome =
             valore("cognome");
 
+
         if (!nome || !cognome) {
 
             alert(
@@ -1035,6 +1066,7 @@ generateButton.addEventListener(
 
             return;
         }
+
 
         document.getElementById(
             "cvNome"
@@ -1045,12 +1077,13 @@ generateButton.addEventListener(
         const nickname =
             valore("nickname");
 
+
         document.getElementById(
             "cvNickname"
         ).textContent =
             nickname
-                ? '"' + nickname + '"'
-                : "";
+            ? '"' + nickname + '"'
+            : "";
 
 
         const citta =
@@ -1059,39 +1092,43 @@ generateButton.addEventListener(
         const provincia =
             valore("provincia");
 
+
         document.getElementById(
             "cvLocalita"
         ).textContent =
             [citta, provincia]
-                .filter(Boolean)
-                .join(" - ");
+            .filter(Boolean)
+            .join(" - ");
 
 
         const eta =
             valore("eta");
 
+
         document.getElementById(
             "cvEta"
         ).textContent =
             eta
-                ? "Età: " + eta
-                : "";
+            ? "Età: " + eta
+            : "";
 
 
         const numero =
             valore("whatsapp");
 
+
         document.getElementById(
             "cvWhatsapp"
         ).textContent =
             numero
-                ? "WhatsApp: " + numero
-                : "";
+            ? "WhatsApp: " + numero
+            : "";
 
 
         /* RUOLI */
 
         const roles = [];
+
 
         document
             .querySelectorAll(
@@ -1099,16 +1136,19 @@ generateButton.addEventListener(
             )
             .forEach(function(item) {
 
-                roles.push(item.value);
+                roles.push(
+                    item.value
+                );
 
             });
+
 
         document.getElementById(
             "cvRuoli"
         ).textContent =
             roles.length
-                ? roles.join(" • ")
-                : "Nessun ruolo selezionato";
+            ? roles.join(" • ")
+            : "Nessun ruolo selezionato";
 
 
         /* ESPERIENZA */
@@ -1118,10 +1158,12 @@ generateButton.addEventListener(
         ).textContent =
             valore("esperienza") || "-";
 
+
         document.getElementById(
             "cvSquadra"
         ).textContent =
             valore("squadra") || "-";
+
 
         document.getElementById(
             "cvEsperienze"
@@ -1136,25 +1178,30 @@ generateButton.addEventListener(
         ).textContent =
             valore("tiro");
 
+
         document.getElementById(
             "cvMovimento"
         ).textContent =
             valore("movimento");
+
 
         document.getElementById(
             "cvCQB"
         ).textContent =
             valore("cqb");
 
+
         document.getElementById(
             "cvRadio"
         ).textContent =
             valore("radio");
 
+
         document.getElementById(
             "cvNavigazione"
         ).textContent =
             valore("navigazione");
+
 
         document.getElementById(
             "cvSoccorso"
@@ -1177,6 +1224,7 @@ generateButton.addEventListener(
         ).textContent =
             valore("disponibilita");
 
+
         document.getElementById(
             "cvTrasferte"
         ).textContent =
@@ -1198,23 +1246,31 @@ generateButton.addEventListener(
                 "cvPhotoContainer"
             );
 
+
         if (fotoBase64) {
 
             photoContainer.innerHTML = "";
 
+
             const img =
                 document.createElement("img");
+
 
             img.className =
                 "cv-photo";
 
+
             img.src =
                 fotoBase64;
+
 
             img.alt =
                 "Foto operatore";
 
-            photoContainer.appendChild(img);
+
+            photoContainer.appendChild(
+                img
+            );
 
         } else {
 
@@ -1230,18 +1286,20 @@ generateButton.addEventListener(
                 "cvResult"
             );
 
+
         cvResult.style.display =
             "block";
+
 
         document.getElementById(
             "actions"
         ).style.display =
             "flex";
 
-        document.getElementById(
-            "status"
-        ).textContent =
+
+        status.textContent =
             "✓ CV generato correttamente";
+
 
         cvResult.scrollIntoView({
             behavior: "smooth",
@@ -1256,12 +1314,13 @@ generateButton.addEventListener(
    CREA PDF
 ========================================= */
 
-async function creaPDF() {
+function creaPDF() {
 
     const cvResult =
         document.getElementById(
             "cvResult"
         );
+
 
     if (
         !cvResult ||
@@ -1273,9 +1332,11 @@ async function creaPDF() {
         );
     }
 
+
     const jsPDF =
         window.jspdf &&
         window.jspdf.jsPDF;
+
 
     if (!jsPDF) {
 
@@ -1283,6 +1344,7 @@ async function creaPDF() {
             "Libreria PDF non caricata."
         );
     }
+
 
     const pdf =
         new jsPDF({
@@ -1297,10 +1359,13 @@ async function creaPDF() {
             "cvNome"
         ).textContent;
 
+
     let y = 18;
 
 
-    /* TITOLO */
+    /* =========================================
+       TITOLO
+    ========================================= */
 
     pdf.setFont(
         "helvetica",
@@ -1309,15 +1374,19 @@ async function creaPDF() {
 
     pdf.setFontSize(20);
 
+
     pdf.text(
         "SOAS AIR SOFT TEAM",
         20,
         y
     );
 
+
     y += 8;
 
+
     pdf.setFontSize(12);
+
 
     pdf.text(
         "TACTICAL OPERATOR CV",
@@ -1325,10 +1394,13 @@ async function creaPDF() {
         y
     );
 
+
     y += 13;
 
 
-    /* FOTO */
+    /* =========================================
+       FOTO
+    ========================================= */
 
     if (fotoBase64) {
 
@@ -1343,7 +1415,9 @@ async function creaPDF() {
                 54
             );
 
-        } catch(error) {
+        }
+
+        catch(error) {
 
             console.warn(
                 "Impossibile inserire la foto nel PDF:",
@@ -1354,9 +1428,12 @@ async function creaPDF() {
     }
 
 
-    /* DATI */
+    /* =========================================
+       DATI
+    ========================================= */
 
     pdf.setFontSize(18);
+
 
     pdf.text(
         nome,
@@ -1364,12 +1441,15 @@ async function creaPDF() {
         y
     );
 
+
     y += 7;
+
 
     pdf.setFont(
         "helvetica",
         "normal"
     );
+
 
     pdf.setFontSize(10);
 
@@ -1378,6 +1458,7 @@ async function creaPDF() {
         document.getElementById(
             "cvNickname"
         ).textContent;
+
 
     if (nickname) {
 
@@ -1396,6 +1477,7 @@ async function creaPDF() {
             "cvLocalita"
         ).textContent;
 
+
     if (localita) {
 
         pdf.text(
@@ -1412,6 +1494,7 @@ async function creaPDF() {
         document.getElementById(
             "cvEta"
         ).textContent;
+
 
     if (eta) {
 
@@ -1430,6 +1513,7 @@ async function creaPDF() {
             "cvWhatsapp"
         ).textContent;
 
+
     if (whatsapp) {
 
         pdf.text(
@@ -1445,7 +1529,9 @@ async function creaPDF() {
     y += 8;
 
 
-    /* SEZIONI PDF */
+    /* =========================================
+       FUNZIONE SEZIONE
+    ========================================= */
 
     function sezione(
         titolo,
@@ -1459,6 +1545,7 @@ async function creaPDF() {
             y = 20;
         }
 
+
         pdf.setFont(
             "helvetica",
             "bold"
@@ -1466,13 +1553,16 @@ async function creaPDF() {
 
         pdf.setFontSize(12);
 
+
         pdf.text(
             titolo,
             20,
             y
         );
 
+
         y += 6;
+
 
         pdf.setFont(
             "helvetica",
@@ -1481,11 +1571,13 @@ async function creaPDF() {
 
         pdf.setFontSize(10);
 
+
         const righe =
             pdf.splitTextToSize(
                 testo || "-",
                 170
             );
+
 
         pdf.text(
             righe,
@@ -1493,11 +1585,16 @@ async function creaPDF() {
             y
         );
 
+
         y +=
             righe.length * 5 +
             8;
     }
 
+
+    /* =========================================
+       SEZIONI
+    ========================================= */
 
     sezione(
         "RUOLI OPERATIVI",
@@ -1582,6 +1679,10 @@ async function creaPDF() {
     );
 
 
+    /* =========================================
+       OUTPUT
+    ========================================= */
+
     const blob =
         pdf.output("blob");
 
@@ -1609,150 +1710,122 @@ async function creaPDF() {
 
 pdfButton.addEventListener(
     "click",
-    async function() {
-
-        let objectUrl = "";
+    function() {
 
         try {
 
-            const status =
-                document.getElementById(
-                    "status"
-                );
-
             status.textContent =
-                "⏳ Preparazione PDF...";
-
-
-            const result =
-                await creaPDF();
+                "⏳ Generazione PDF...";
 
 
             /*
-             * SMARTPHONE
-             *
-             * Apriamo il menu nativo
-             * di condivisione del telefono.
-             */
+                IMPORTANTE:
+                niente await prima di navigator.share().
+                Su Safari questo aiuta a mantenere
+                l'attivazione del pulsante.
+            */
+
+            const result =
+                creaPDF();
+
+
+            const pdfFile =
+                new File(
+                    [result.blob],
+                    result.filename,
+                    {
+                        type: "application/pdf"
+                    }
+                );
+
+
+            /*
+                SMARTPHONE
+            */
 
             if (
                 navigator.share &&
-                navigator.canShare
+                navigator.canShare &&
+                navigator.canShare({
+                    files: [pdfFile]
+                })
             ) {
 
-                const pdfFile =
-                    new File(
-                        [result.blob],
-                        result.filename,
-                        {
-                            type: "application/pdf"
-                        }
+                navigator.share({
+
+                    title:
+                        "CV Operatore SOAS",
+
+                    text:
+                        "CV Operatore SOAS",
+
+                    files:
+                        [pdfFile]
+
+                })
+
+                .then(function() {
+
+                    status.textContent =
+                        "✓ PDF pronto";
+
+                })
+
+                .catch(function(error) {
+
+                    /*
+                        Se l'utente chiude
+                        il menu di condivisione,
+                        non mostriamo errore.
+                    */
+
+                    if (
+                        error &&
+                        error.name ===
+                        "AbortError"
+                    ) {
+
+                        status.textContent =
+                            "PDF pronto";
+
+                        return;
+                    }
+
+
+                    apriPDF(
+                        result
                     );
 
-                if (
-                    navigator.canShare({
-                        files: [pdfFile]
-                    })
-                ) {
+                });
 
-                    status.textContent =
-                        "📤 Apertura menu Condividi...";
 
-                    await navigator.share({
-
-                        title:
-                            "CV Operatore SOAS",
-
-                        text:
-                            "CV Operatore SOAS",
-
-                        files: [pdfFile]
-
-                    });
-
-                    status.textContent =
-                        "✓ PDF pronto per essere salvato o condiviso";
-
-                    return;
-                }
+                return;
             }
 
 
             /*
-             * FALLBACK
-             *
-             * Browser che non supportano
-             * la condivisione dei file.
-             */
+                FALLBACK SAFARI / BROWSER
+            */
 
-            objectUrl =
-                URL.createObjectURL(
-                    result.blob
-                );
-
-            const newWindow =
-                window.open(
-                    objectUrl,
-                    "_blank"
-                );
-
-            if (!newWindow) {
-
-                window.location.href =
-                    objectUrl;
-            }
-
-            status.textContent =
-                "✓ PDF aperto. Usa Condividi o Salva dal telefono.";
-
-            setTimeout(
-                function() {
-
-                    if (objectUrl) {
-
-                        URL.revokeObjectURL(
-                            objectUrl
-                        );
-                    }
-
-                },
-                60000
+            apriPDF(
+                result
             );
 
         }
 
         catch(error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
 
 
-            /*
-             * L'utente ha semplicemente
-             * chiuso il menu Condividi.
-             */
-
-            if (
-                error &&
-                error.name === "AbortError"
-            ) {
-
-                document.getElementById(
-                    "status"
-                ).textContent =
-                    "PDF pronto. Condivisione annullata.";
-
-                return;
-            }
-
-
-            document.getElementById(
-                "status"
-            ).textContent =
+            status.textContent =
                 "❌ Errore nella generazione del PDF";
 
 
             alert(
-                "Non è stato possibile preparare il PDF. Riprova."
+                "Errore nella generazione del PDF."
             );
 
         }
@@ -1762,7 +1835,59 @@ pdfButton.addEventListener(
 
 
 /* =========================================
-   STAMPA
+   FALLBACK APRI PDF
+========================================= */
+
+function apriPDF(result) {
+
+    const url =
+        URL.createObjectURL(
+            result.blob
+        );
+
+
+    /*
+        Safari può aprire il PDF
+        direttamente nella sua anteprima.
+
+        Da lì:
+        CONDIVIDI → SALVA SU FILE
+    */
+
+    const nuovaFinestra =
+        window.open(
+            url,
+            "_blank"
+        );
+
+
+    if (!nuovaFinestra) {
+
+        window.location.href =
+            url;
+
+    }
+
+
+    status.textContent =
+        "✓ PDF pronto — usa Condividi → Salva su File";
+
+
+    setTimeout(
+        function() {
+
+            URL.revokeObjectURL(
+                url
+            );
+
+        },
+        60000
+    );
+}
+
+
+/* =========================================
+   STAMPA / SALVA PDF
 ========================================= */
 
 printButton.addEventListener(
@@ -1773,16 +1898,6 @@ printButton.addEventListener(
 
     }
 );
-
-
-/* =========================================
-   WHATSAPP
-========================================= */
-
-/*
-   Il pulsante WhatsApp è un normale link
-   HTTPS Click-to-Chat.
-*/
 
 </script>
 
