@@ -29,7 +29,9 @@
             overflow-x: hidden;
         }
 
+        /* ========================= */
         /* CONTENITORE HOMEPAGE */
+        /* ========================= */
 
         .homepage {
             position: relative;
@@ -37,7 +39,10 @@
             max-width: 972px;
         }
 
+
+        /* ========================= */
         /* IMMAGINE HOMEPAGE */
+        /* ========================= */
 
         .homepage img {
             display: block;
@@ -45,7 +50,10 @@
             height: auto;
         }
 
+
+        /* ========================= */
         /* ZONE CLICCABILI */
+        /* ========================= */
 
         .click-area {
             position: absolute;
@@ -379,7 +387,7 @@
 
 
     <!-- ========================= -->
-    <!-- AUDIO -->
+    <!-- MUSICA -->
     <!-- ========================= -->
 
     <audio
@@ -387,12 +395,11 @@
         preload="auto"
         loop
     >
+
         <source
             src="./musica.mp3"
             type="audio/mpeg"
         >
-
-        Il tuo browser non supporta l'audio HTML5.
 
     </audio>
 
@@ -416,19 +423,25 @@
 
         const musicBtn = document.getElementById("musicBtn");
 
+        let musicStarted = false;
+
 
         /* ========================= */
-        /* VOLUME */
+        /* VOLUME 18% */
         /* ========================= */
 
         music.volume = 0.18;
 
 
         /* ========================= */
-        /* FUNZIONE AVVIO MUSICA */
+        /* AVVIA MUSICA */
         /* ========================= */
 
         async function startMusic() {
+
+            if (!music.paused) {
+                return;
+            }
 
             try {
 
@@ -436,20 +449,18 @@
 
                 await music.play();
 
-                musicBtn.textContent = "🔊 MUSICA ON";
+                musicStarted = true;
 
-                return true;
+                musicBtn.textContent = "🔊 MUSICA ON";
 
             } catch (error) {
 
                 console.log(
-                    "Riproduzione bloccata dal browser:",
+                    "Il browser ha bloccato la riproduzione:",
                     error
                 );
 
                 musicBtn.textContent = "▶️ AVVIA MUSICA";
-
-                return false;
 
             }
 
@@ -457,7 +468,7 @@
 
 
         /* ========================= */
-        /* FUNZIONE STOP */
+        /* SPEGNI MUSICA */
         /* ========================= */
 
         function stopMusic() {
@@ -470,14 +481,20 @@
 
 
         /* ========================= */
-        /* PULSANTE */
+        /* PULSANTE ON / OFF */
         /* ========================= */
 
         musicBtn.addEventListener(
             "click",
             async function(event) {
 
+                /*
+                 * Impedisce che il click del pulsante
+                 * venga interpretato come click generale
+                 */
+
                 event.stopPropagation();
+
 
                 if (music.paused) {
 
@@ -494,51 +511,55 @@
 
 
         /* ========================= */
-        /* PRIMO CLICK SULLA PAGINA */
+        /* PRIMO CLICK OVUNQUE */
         /* ========================= */
 
         document.addEventListener(
-            "click",
-            async function() {
+            "pointerdown",
+            function(event) {
 
-                if (music.paused) {
+                /*
+                 * Se clicchiamo il pulsante,
+                 * lasciamo che sia il pulsante
+                 * a gestire la musica.
+                 */
 
-                    await startMusic();
+                if (
+                    event.target === musicBtn ||
+                    musicBtn.contains(event.target)
+                ) {
+                    return;
+                }
+
+
+                /*
+                 * Qualsiasi altro punto:
+                 * homepage, immagine, social,
+                 * pulsanti, ecc.
+                 */
+
+                if (!musicStarted) {
+
+                    startMusic();
 
                 }
 
             },
             {
-                once: true
+                capture: true
             }
         );
 
 
         /* ========================= */
-        /* CONTROLLO ERRORI AUDIO */
-        /* ========================= */
-
-        music.addEventListener(
-            "error",
-            function() {
-
-                console.error(
-                    "Errore caricamento musica.mp3"
-                );
-
-                musicBtn.textContent = "⚠️ AUDIO";
-
-            }
-        );
-
-
-        /* ========================= */
-        /* QUANDO PARTE */
+        /* SE LA MUSICA PARTE */
         /* ========================= */
 
         music.addEventListener(
             "play",
             function() {
+
+                musicStarted = true;
 
                 musicBtn.textContent = "🔊 MUSICA ON";
 
@@ -547,7 +568,7 @@
 
 
         /* ========================= */
-        /* QUANDO VIENE MESSA IN PAUSA */
+        /* SE LA MUSICA VIENE FERMATA */
         /* ========================= */
 
         music.addEventListener(
@@ -555,6 +576,24 @@
             function() {
 
                 musicBtn.textContent = "🔇 MUSICA OFF";
+
+            }
+        );
+
+
+        /* ========================= */
+        /* ERRORE AUDIO */
+        /* ========================= */
+
+        music.addEventListener(
+            "error",
+            function() {
+
+                console.error(
+                    "Errore nel caricamento di musica.mp3"
+                );
+
+                musicBtn.textContent = "⚠️ AUDIO";
 
             }
         );
