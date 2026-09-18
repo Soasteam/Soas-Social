@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://soasteam.github.io/Soas-Social/sitemap.xml
